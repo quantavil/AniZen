@@ -454,9 +454,13 @@ class MainActivity : BaseActivity() {
         val tabToOpen = when (intent.action) {
             Constants.SHORTCUT_ANIMELIB -> HomeScreen.Tab.AnimeLib()
             Constants.SHORTCUT_ANIME -> {
-                val idToOpen = intent.extras?.getLong(Constants.ANIME_EXTRA) ?: return false
-                navigator.popUntilRoot()
-                HomeScreen.Tab.AnimeLib(idToOpen)
+                val idToOpen = intent.extras?.getLong(Constants.ANIME_EXTRA)
+                if (idToOpen != null) {
+                    navigator.popUntilRoot()
+                    HomeScreen.Tab.AnimeLib(idToOpen)
+                } else {
+                    null
+                }
             }
             Constants.SHORTCUT_UPDATES -> HomeScreen.Tab.Updates
             Constants.SHORTCUT_HISTORY -> HomeScreen.Tab.History
@@ -506,7 +510,7 @@ class MainActivity : BaseActivity() {
                 }
                 null
             }
-            else -> return false
+            else -> null
         }
 
         if (tabToOpen != null) {
