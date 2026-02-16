@@ -95,6 +95,12 @@ class ExtensionManager(
         }
     }
 
+    fun getExtensionNameForSource(sourceId: Long): String? {
+        return installedExtensionsMapFlow.value.values
+            .find { ext -> ext.sources.any { it.id == sourceId } }
+            ?.name
+    }
+
     private var availableAnimeExtensionsSourcesData: Map<Long, StubSource> = emptyMap()
 
     private fun setupAvailableAnimeExtensionsSourcesDataMap(

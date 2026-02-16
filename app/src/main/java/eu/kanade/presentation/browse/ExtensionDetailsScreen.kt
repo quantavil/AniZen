@@ -401,7 +401,7 @@ private fun SourceSwitchPreference(
     TextPreferenceWidget(
         modifier = modifier,
         title = if (source.labelAsName) {
-            source.source.toString()
+            source.source.name
         } else {
             LocaleHelper.getSourceDisplayName(source.source.lang, context)
         },

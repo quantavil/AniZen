@@ -64,6 +64,9 @@ private val defaultContent: @Composable RowScope.(Source, String?) -> Unit = { s
     val healthMap by SourceHealthCache.healthMap.collectAsState()
     val sourceStatus = healthMap[source.id] ?: NodeStatus.OPERATIONAL
 
+    val extensionManager: eu.kanade.tachiyomi.extension.ExtensionManager = uy.kohesive.injekt.Injekt.get()
+    val extensionName = remember(source.id) { extensionManager.getExtensionNameForSource(source.id) }
+
     Column(
         modifier = Modifier
             .padding(horizontal = MaterialTheme.padding.medium)
@@ -106,10 +109,20 @@ private val defaultContent: @Composable RowScope.(Source, String?) -> Unit = { s
         }
 
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            if (sourceLangString != null) {
+            val secondaryText = buildString {
+                if (sourceLangString != null) {
+                    append(sourceLangString)
+                }
+                if (extensionName != null && extensionName != source.name) {
+                    if (isNotEmpty()) append(" • ")
+                    append(extensionName)
+                }
+            }
+
+            if (secondaryText.isNotEmpty()) {
                 Text(
                     modifier = Modifier.secondaryItemAlpha(),
-                    text = sourceLangString,
+                    text = secondaryText,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.bodySmall,
