@@ -305,9 +305,15 @@ internal object ExtensionLoader {
             }
             .flatMap {
                 try {
-                    when (val obj = Class.forName(it, false, classLoader).getDeclaredConstructor().newInstance()) {
-                        is Source -> listOf(obj)
-                        is SourceFactory -> obj.createSources()
+                    val obj = Class.forName(it, false, classLoader).getDeclaredConstructor().newInstance()
+                    when {
+                        obj is Source -> listOf(obj)
+                        obj is SourceFactory -> obj.createSources()
+                        // Reflection fallback for classloader mismatches
+                        obj.javaClass.methods.any { m -> m.name == "createSources" } -> {
+                            val method = obj.javaClass.getMethod("createSources")
+                            (method.invoke(obj) as List<*>).filterIsInstance<Source>()
+                        }
                         else -> throw Exception("Unknown source class type: ${obj.javaClass}")
                     }
                 } catch (e: LinkageError) {
