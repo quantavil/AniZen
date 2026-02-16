@@ -313,7 +313,16 @@ internal object ExtensionLoader {
                         }
                         is SourceFactory -> {
                             logcat { "Extension loaded factory: ${obj.javaClass.simpleName}" }
-                            obj.createSources()
+                            try {
+                                obj.createSources()
+                            } catch (e: AbstractMethodError) {
+                                logcat(LogPriority.WARN, e) { "SourceFactory.createSources() failed (AbstractMethodError). Attempting reflection fallback." }
+                                val method = obj.javaClass.methods.find { m ->
+                                    m.parameterTypes.isEmpty() && List::class.java.isAssignableFrom(m.returnType)
+                                } ?: throw e
+                                @Suppress("UNCHECKED_CAST")
+                                method.invoke(obj) as List<Source>
+                            }
                         }
                         else -> {
                             logcat(LogPriority.ERROR) { "Unknown source class type: ${obj.javaClass}" }
@@ -335,7 +344,16 @@ internal object ExtensionLoader {
                             }
                             is SourceFactory -> {
                                 logcat { "Extension loaded factory (fallback): ${obj.javaClass.simpleName}" }
-                                obj.createSources()
+                                try {
+                                    obj.createSources()
+                                } catch (e: AbstractMethodError) {
+                                    logcat(LogPriority.WARN, e) { "SourceFactory.createSources() failed (AbstractMethodError) in fallback. Attempting reflection fallback." }
+                                    val method = obj.javaClass.methods.find { m ->
+                                        m.parameterTypes.isEmpty() && List::class.java.isAssignableFrom(m.returnType)
+                                    } ?: throw e
+                                    @Suppress("UNCHECKED_CAST")
+                                    method.invoke(obj) as List<Source>
+                                }
                             }
                             else -> {
                                 logcat(LogPriority.ERROR) { "Unknown source class type (fallback): ${obj.javaClass}" }
