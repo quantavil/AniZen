@@ -242,13 +242,7 @@ internal object ExtensionLoader {
         val appInfo = pkgInfo.applicationInfo!!
         val pkgName = pkgInfo.packageName
 
-        val rawLabel = pkgManager.getApplicationLabel(appInfo).toString()
-        val extName = when {
-            rawLabel.startsWith("Aniyomi: ") -> rawLabel.substringAfter("Aniyomi: ")
-            rawLabel.startsWith("Anikku: ") -> rawLabel.substringAfter("Anikku: ")
-            rawLabel.contains(": ") -> rawLabel.substringAfter(": ")
-            else -> rawLabel
-        }
+        val extName = pkgManager.getApplicationLabel(appInfo).toString().substringAfter("Aniyomi: ")
         val versionName = pkgInfo.versionName
         val versionCode = PackageInfoCompat.getLongVersionCode(pkgInfo)
 
@@ -298,8 +292,6 @@ internal object ExtensionLoader {
             logcat(LogPriority.ERROR, e) { "Extension load error: $extName ($pkgName)" }
             return LoadResult.Error
         }
-
-        logcat(LogPriority.INFO) { "Loading extension: $extName ($pkgName)" }
 
         val sources = appInfo.metaData.getString(METADATA_SOURCE_CLASS)!!
             .split(";")
