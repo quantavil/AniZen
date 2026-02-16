@@ -45,6 +45,15 @@
         android:name="com.google.android.gms.permission.AD_ID"
         tools:node="remove" />
 
+    <queries>
+        <intent>
+            <action android:name="eu.kanade.tachiyomi.ANIMESOURCE" />
+        </intent>
+        <intent>
+            <action android:name="eu.kanade.tachiyomi.ANIMEEXTENSION" />
+        </intent>
+    </queries>
+
     <application
         android:name=".App"
         android:allowBackup="false"

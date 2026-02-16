@@ -305,26 +305,42 @@ internal object ExtensionLoader {
             }
             .flatMap {
                 try {
-                    when (val obj = Class.forName(it, false, classLoader).getDeclaredConstructor().newInstance()) {
-                        is Source -> listOf(obj)
-                        is SourceFactory -> obj.createSources()
-                        else -> throw Exception("Unknown source class type: ${obj.javaClass}")
+                    val obj = Class.forName(it, false, classLoader).getDeclaredConstructor().newInstance()
+                    when (obj) {
+                        is Source -> {
+                            logcat { "Extension loaded source: ${obj.name}" }
+                            listOf(obj)
+                        }
+                        is SourceFactory -> {
+                            logcat { "Extension loaded factory: ${obj.javaClass.simpleName}" }
+                            obj.createSources()
+                        }
+                        else -> {
+                            logcat(LogPriority.ERROR) { "Unknown source class type: ${obj.javaClass}" }
+                            throw Exception("Unknown source class type: ${obj.javaClass}")
+                        }
                     }
                 } catch (e: LinkageError) {
                     try {
                         val fallBackClassLoader = PathClassLoader(appInfo.sourceDir, null, context.classLoader)
-                        when (
-                            val obj = Class.forName(
-                                it,
-                                false,
-                                fallBackClassLoader,
-                            ).getDeclaredConstructor().newInstance()
-                        ) {
+                        val obj = Class.forName(
+                            it,
+                            false,
+                            fallBackClassLoader,
+                        ).getDeclaredConstructor().newInstance()
+                        when (obj) {
                             is Source -> {
+                                logcat { "Extension loaded source (fallback): ${obj.name}" }
                                 listOf(obj)
                             }
-                            is SourceFactory -> obj.createSources()
-                            else -> throw Exception("Unknown source class type: ${obj.javaClass}")
+                            is SourceFactory -> {
+                                logcat { "Extension loaded factory (fallback): ${obj.javaClass.simpleName}" }
+                                obj.createSources()
+                            }
+                            else -> {
+                                logcat(LogPriority.ERROR) { "Unknown source class type (fallback): ${obj.javaClass}" }
+                                throw Exception("Unknown source class type: ${obj.javaClass}")
+                            }
                         }
                     } catch (e: Throwable) {
                         logcat(LogPriority.ERROR, e) { "Extension load error: $extName ($it)" }
