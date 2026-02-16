@@ -242,7 +242,8 @@ internal object ExtensionLoader {
         val appInfo = pkgInfo.applicationInfo!!
         val pkgName = pkgInfo.packageName
 
-        val extName = pkgManager.getApplicationLabel(appInfo).toString().substringAfter("Aniyomi: ")
+        val rawLabel = pkgManager.getApplicationLabel(appInfo).toString()
+        val extName = rawLabel.substringAfter("Aniyomi: ")
         val versionName = pkgInfo.versionName
         val versionCode = PackageInfoCompat.getLongVersionCode(pkgInfo)
 
@@ -287,11 +288,13 @@ internal object ExtensionLoader {
         val isTorrent = appInfo.metaData.getInt(METADATA_TORRENT) == 1
 
         val classLoader = try {
-            PathClassLoader(appInfo.sourceDir, null, context.classLoader)
+            ChildFirstPathClassLoader(appInfo.sourceDir, null, context.classLoader)
         } catch (e: Exception) {
             logcat(LogPriority.ERROR, e) { "Extension load error: $extName ($pkgName)" }
             return LoadResult.Error
         }
+
+        logcat(LogPriority.INFO) { "Loading extension: $extName ($pkgName)" }
 
         val sources = appInfo.metaData.getString(METADATA_SOURCE_CLASS)!!
             .split(";")
@@ -390,7 +393,9 @@ internal object ExtensionLoader {
      * @param pkgInfo The package info of the application.
      */
     private fun isPackageAnExtension(pkgInfo: PackageInfo): Boolean {
-        return pkgInfo.reqFeatures.orEmpty().any { it.name == EXTENSION_FEATURE }
+        val hasFeature = pkgInfo.reqFeatures.orEmpty().any { it.name == EXTENSION_FEATURE }
+        val hasMetadata = pkgInfo.applicationInfo?.metaData?.containsKey(METADATA_SOURCE_CLASS) == true
+        return hasFeature || hasMetadata
     }
 
     /**
