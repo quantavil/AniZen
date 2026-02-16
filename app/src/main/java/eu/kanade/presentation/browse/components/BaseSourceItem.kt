@@ -10,11 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,12 +24,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.network.model.NodeStatus
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import tachiyomi.domain.source.model.Source
 import tachiyomi.domain.source.service.SourceHealthCache
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.util.secondaryItemAlpha
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 @Composable
 fun BaseSourceItem(
@@ -64,7 +66,7 @@ private val defaultContent: @Composable RowScope.(Source, String?) -> Unit = { s
     val healthMap by SourceHealthCache.healthMap.collectAsState()
     val sourceStatus = healthMap[source.id] ?: NodeStatus.OPERATIONAL
 
-    val extensionManager: eu.kanade.tachiyomi.extension.ExtensionManager = uy.kohesive.injekt.Injekt.get()
+    val extensionManager: ExtensionManager = Injekt.get()
     val extensionName = remember(source.id) { extensionManager.getExtensionNameForSource(source.id) }
 
     Column(
