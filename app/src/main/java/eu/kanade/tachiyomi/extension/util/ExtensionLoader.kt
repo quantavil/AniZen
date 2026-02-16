@@ -287,7 +287,7 @@ internal object ExtensionLoader {
         val isTorrent = appInfo.metaData.getInt(METADATA_TORRENT) == 1
 
         val classLoader = try {
-            ChildFirstPathClassLoader(appInfo.sourceDir, null, context.classLoader)
+            PathClassLoader(appInfo.sourceDir, null, context.classLoader)
         } catch (e: Exception) {
             logcat(LogPriority.ERROR, e) { "Extension load error: $extName ($pkgName)" }
             return LoadResult.Error
@@ -305,15 +305,9 @@ internal object ExtensionLoader {
             }
             .flatMap {
                 try {
-                    val obj = Class.forName(it, false, classLoader).getDeclaredConstructor().newInstance()
-                    when {
-                        obj is Source -> listOf(obj)
-                        obj is SourceFactory -> obj.createSources()
-                        // Reflection fallback for classloader mismatches
-                        obj.javaClass.methods.any { m -> m.name == "createSources" } -> {
-                            val method = obj.javaClass.getMethod("createSources")
-                            (method.invoke(obj) as List<*>).filterIsInstance<Source>()
-                        }
+                    when (val obj = Class.forName(it, false, classLoader).getDeclaredConstructor().newInstance()) {
+                        is Source -> listOf(obj)
+                        is SourceFactory -> obj.createSources()
                         else -> throw Exception("Unknown source class type: ${obj.javaClass}")
                     }
                 } catch (e: LinkageError) {
@@ -338,6 +332,9 @@ internal object ExtensionLoader {
                     }
                 } catch (e: Throwable) {
                     logcat(LogPriority.ERROR, e) { "Extension load error: $extName ($it)" }
+                    return LoadResult.Error
+                }
+            }
                     return LoadResult.Error
                 }
             }
@@ -396,9 +393,7 @@ internal object ExtensionLoader {
      * @param pkgInfo The package info of the application.
      */
     private fun isPackageAnExtension(pkgInfo: PackageInfo): Boolean {
-        val hasFeature = pkgInfo.reqFeatures.orEmpty().any { it.name == EXTENSION_FEATURE }
-        val hasMetadata = pkgInfo.applicationInfo?.metaData?.containsKey(METADATA_SOURCE_CLASS) == true
-        return hasFeature || hasMetadata
+        return pkgInfo.reqFeatures.orEmpty().any { it.name == EXTENSION_FEATURE }
     }
 
     /**
