@@ -335,9 +335,6 @@ internal object ExtensionLoader {
                     return LoadResult.Error
                 }
             }
-                    return LoadResult.Error
-                }
-            }
 
         val langs = sources.filterIsInstance<CatalogueSource>()
             .map { it.lang }
