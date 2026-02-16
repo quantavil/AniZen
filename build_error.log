@@ -1,0 +1,1353 @@
+Build & Public Release	Set up job	﻿2026-02-16T05:54:20.4495253Z Current runner version: '2.331.0'
+Build & Public Release	Set up job	2026-02-16T05:54:20.4520143Z ##[group]Runner Image Provisioner
+Build & Public Release	Set up job	2026-02-16T05:54:20.4521106Z Hosted Compute Agent
+Build & Public Release	Set up job	2026-02-16T05:54:20.4521882Z Version: 20260123.484
+Build & Public Release	Set up job	2026-02-16T05:54:20.4522453Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+Build & Public Release	Set up job	2026-02-16T05:54:20.4523217Z Build Date: 2026-01-23T19:41:17Z
+Build & Public Release	Set up job	2026-02-16T05:54:20.4523862Z Worker ID: {71bd9e37-437e-435b-ad42-4b8a52aa615f}
+Build & Public Release	Set up job	2026-02-16T05:54:20.4524592Z Azure Region: westus3
+Build & Public Release	Set up job	2026-02-16T05:54:20.4525082Z ##[endgroup]
+Build & Public Release	Set up job	2026-02-16T05:54:20.4526593Z ##[group]Operating System
+Build & Public Release	Set up job	2026-02-16T05:54:20.4527181Z Ubuntu
+Build & Public Release	Set up job	2026-02-16T05:54:20.4527645Z 24.04.3
+Build & Public Release	Set up job	2026-02-16T05:54:20.4528215Z LTS
+Build & Public Release	Set up job	2026-02-16T05:54:20.4528674Z ##[endgroup]
+Build & Public Release	Set up job	2026-02-16T05:54:20.4529164Z ##[group]Runner Image
+Build & Public Release	Set up job	2026-02-16T05:54:20.4529754Z Image: ubuntu-24.04
+Build & Public Release	Set up job	2026-02-16T05:54:20.4530272Z Version: 20260209.23.1
+Build & Public Release	Set up job	2026-02-16T05:54:20.4531221Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260209.23/images/ubuntu/Ubuntu2404-Readme.md
+Build & Public Release	Set up job	2026-02-16T05:54:20.4533299Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260209.23
+Build & Public Release	Set up job	2026-02-16T05:54:20.4534283Z ##[endgroup]
+Build & Public Release	Set up job	2026-02-16T05:54:20.4535434Z ##[group]GITHUB_TOKEN Permissions
+Build & Public Release	Set up job	2026-02-16T05:54:20.4537209Z Contents: write
+Build & Public Release	Set up job	2026-02-16T05:54:20.4537828Z Metadata: read
+Build & Public Release	Set up job	2026-02-16T05:54:20.4538399Z ##[endgroup]
+Build & Public Release	Set up job	2026-02-16T05:54:20.4540461Z Secret source: Actions
+Build & Public Release	Set up job	2026-02-16T05:54:20.4541498Z Prepare workflow directory
+Build & Public Release	Set up job	2026-02-16T05:54:20.4878581Z Prepare all required actions
+Build & Public Release	Set up job	2026-02-16T05:54:20.4917846Z Getting action download info
+Build & Public Release	Set up job	2026-02-16T05:54:20.9223768Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Build & Public Release	Set up job	2026-02-16T05:54:21.0978101Z Download action repository 'actions/setup-java@v4' (SHA:c1e323688fd81a25caa38c78aa6df2d33d3e20d9)
+Build & Public Release	Set up job	2026-02-16T05:54:22.0820735Z Download action repository 'gradle/actions@v4' (SHA:ed408507eac070d1f99cc633dbcf757c94c7933a)
+Build & Public Release	Set up job	2026-02-16T05:54:23.6453906Z Download action repository 'softprops/action-gh-release@v1' (SHA:de2c0eb89ae2a093876385947365aca7b0e5f844)
+Build & Public Release	Set up job	2026-02-16T05:54:24.4553526Z Complete job name: Build & Public Release
+Build & Public Release	Clone repo	﻿2026-02-16T05:54:24.5211258Z ##[group]Run actions/checkout@v4
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5212346Z with:
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5212548Z   fetch-depth: 0
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5212763Z   repository: salmanbappi/AniZen
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5213173Z   token: ***
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5213355Z   ssh-strict: true
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5213545Z   ssh-user: git
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5213732Z   persist-credentials: true
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5213954Z   clean: true
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5214146Z   sparse-checkout-cone-mode: true
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5214388Z   fetch-tags: false
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5214574Z   show-progress: true
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5214779Z   lfs: false
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5214943Z   submodules: false
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5215134Z   set-safe-directory: true
+Build & Public Release	Clone repo	2026-02-16T05:54:24.5215536Z ##[endgroup]
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6344750Z Syncing repository: salmanbappi/AniZen
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6347034Z ##[group]Getting Git version info
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6347752Z Working directory is '/home/runner/work/AniZen/AniZen'
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6348925Z [command]/usr/bin/git version
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6349455Z git version 2.52.0
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6373761Z ##[endgroup]
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6390244Z Temporarily overriding HOME='/home/runner/work/_temp/406ddaaf-e296-4c6b-a996-c4c31a238811' before making global git config changes
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6391980Z Adding repository directory to the temporary git global config as a safe directory
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6397395Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AniZen/AniZen
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6454110Z Deleting the contents of '/home/runner/work/AniZen/AniZen'
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6458578Z ##[group]Initializing the repository
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6464912Z [command]/usr/bin/git init /home/runner/work/AniZen/AniZen
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6605596Z hint: Using 'master' as the name for the initial branch. This default branch name
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6606932Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6607503Z hint: to use in all of your new repositories, which will suppress this warning,
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6607922Z hint: call:
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6608090Z hint:
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6608374Z hint: 	git config --global init.defaultBranch <name>
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6608683Z hint:
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6608969Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6609471Z hint: 'development'. The just-created branch can be renamed via this command:
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6609858Z hint:
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6610034Z hint: 	git branch -m <name>
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6610269Z hint:
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6610571Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6612616Z Initialized empty Git repository in /home/runner/work/AniZen/AniZen/.git/
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6625063Z [command]/usr/bin/git remote add origin https://github.com/salmanbappi/AniZen
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6662422Z ##[endgroup]
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6663058Z ##[group]Disabling automatic garbage collection
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6667592Z [command]/usr/bin/git config --local gc.auto 0
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6697531Z ##[endgroup]
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6698156Z ##[group]Setting up auth
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6705593Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Public Release	Clone repo	2026-02-16T05:54:24.6737591Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Public Release	Clone repo	2026-02-16T05:54:24.7128420Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Public Release	Clone repo	2026-02-16T05:54:24.7161599Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Public Release	Clone repo	2026-02-16T05:54:24.7391261Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Public Release	Clone repo	2026-02-16T05:54:24.7423971Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Public Release	Clone repo	2026-02-16T05:54:24.7663419Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Build & Public Release	Clone repo	2026-02-16T05:54:24.7697623Z ##[endgroup]
+Build & Public Release	Clone repo	2026-02-16T05:54:24.7698327Z ##[group]Fetching the repository
+Build & Public Release	Clone repo	2026-02-16T05:54:24.7707088Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5693441Z From https://github.com/salmanbappi/AniZen
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5694544Z  * [new branch]          master          -> origin/master
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5695234Z  * [new tag]             v0.1.10-MOD     -> v0.1.10-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5695873Z  * [new tag]             v0.1.101-MOD    -> v0.1.101-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5696947Z  * [new tag]             v0.1.103-MOD    -> v0.1.103-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5698042Z  * [new tag]             v0.1.105-MOD    -> v0.1.105-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5699308Z  * [new tag]             v0.1.109-MOD    -> v0.1.109-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5700305Z  * [new tag]             v0.1.112-MOD    -> v0.1.112-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5701158Z  * [new tag]             v0.1.116-MOD    -> v0.1.116-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5702312Z  * [new tag]             v0.1.118-MOD    -> v0.1.118-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5703287Z  * [new tag]             v0.1.129-MOD    -> v0.1.129-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5704206Z  * [new tag]             v0.1.131-MOD    -> v0.1.131-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5706614Z  * [new tag]             v0.1.133-MOD    -> v0.1.133-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5707158Z  * [new tag]             v0.1.136-MOD    -> v0.1.136-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5707765Z  * [new tag]             v0.1.137-MOD    -> v0.1.137-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5708938Z  * [new tag]             v0.1.144-MOD    -> v0.1.144-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5709960Z  * [new tag]             v0.1.147-MOD    -> v0.1.147-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5710741Z  * [new tag]             v0.1.148-MOD    -> v0.1.148-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5711502Z  * [new tag]             v0.1.15-MOD     -> v0.1.15-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5712116Z  * [new tag]             v0.1.151-MOD    -> v0.1.151-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5712693Z  * [new tag]             v0.1.155-MOD    -> v0.1.155-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5713256Z  * [new tag]             v0.1.162-MOD    -> v0.1.162-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5713801Z  * [new tag]             v0.1.166-MOD    -> v0.1.166-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5714391Z  * [new tag]             v0.1.170-MOD    -> v0.1.170-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5714917Z  * [new tag]             v0.1.172-MOD    -> v0.1.172-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5715425Z  * [new tag]             v0.1.173-MOD    -> v0.1.173-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5715966Z  * [new tag]             v0.1.174-MOD    -> v0.1.174-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5716480Z  * [new tag]             v0.1.175-MOD    -> v0.1.175-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5717029Z  * [new tag]             v0.1.176-MOD    -> v0.1.176-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5717679Z  * [new tag]             v0.1.180-MOD    -> v0.1.180-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5718549Z  * [new tag]             v0.1.186-MOD    -> v0.1.186-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5719085Z  * [new tag]             v0.1.188-MOD    -> v0.1.188-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5719602Z  * [new tag]             v0.1.194-MOD    -> v0.1.194-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5720195Z  * [new tag]             v0.1.197-MOD    -> v0.1.197-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5720639Z  * [new tag]             v0.1.199-MOD    -> v0.1.199-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5720943Z  * [new tag]             v0.1.2          -> v0.1.2
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5721243Z  * [new tag]             v0.1.202-MOD    -> v0.1.202-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5721828Z  * [new tag]             v0.1.205-MOD    -> v0.1.205-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5722247Z  * [new tag]             v0.1.207-MOD    -> v0.1.207-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5722770Z  * [new tag]             v0.1.213-MOD    -> v0.1.213-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5723208Z  * [new tag]             v0.1.217-MOD    -> v0.1.217-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5723663Z  * [new tag]             v0.1.225-MOD    -> v0.1.225-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5725852Z  * [new tag]             v0.1.226-MOD    -> v0.1.226-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5727094Z  * [new tag]             v0.1.24-MOD     -> v0.1.24-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5728545Z  * [new tag]             v0.1.25-MOD     -> v0.1.25-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5729840Z  * [new tag]             v0.1.26-MOD     -> v0.1.26-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5731467Z  * [new tag]             v0.1.293-MOD    -> v0.1.293-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5732705Z  * [new tag]             v0.1.294-MOD    -> v0.1.294-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5734129Z  * [new tag]             v0.1.295-MOD    -> v0.1.295-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5735385Z  * [new tag]             v0.1.298-MOD    -> v0.1.298-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5736822Z  * [new tag]             v0.1.299        -> v0.1.299
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5738579Z  * [new tag]             v0.1.3          -> v0.1.3
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5739792Z  * [new tag]             v0.1.300        -> v0.1.300
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5740888Z  * [new tag]             v0.1.301        -> v0.1.301
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5742626Z  * [new tag]             v0.1.302        -> v0.1.302
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5743924Z  * [new tag]             v0.1.303        -> v0.1.303
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5745061Z  * [new tag]             v0.1.305        -> v0.1.305
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5746509Z  * [new tag]             v0.1.306        -> v0.1.306
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5747587Z  * [new tag]             v0.1.315        -> v0.1.315
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5748832Z  * [new tag]             v0.1.316        -> v0.1.316
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5821673Z  * [new tag]             v0.1.317        -> v0.1.317
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5822291Z  * [new tag]             v0.1.318        -> v0.1.318
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5822858Z  * [new tag]             v0.1.319        -> v0.1.319
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5823377Z  * [new tag]             v0.1.320        -> v0.1.320
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5823898Z  * [new tag]             v0.1.321        -> v0.1.321
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5824713Z  * [new tag]             v0.1.339        -> v0.1.339
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5825296Z  * [new tag]             v0.1.340        -> v0.1.340
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5825834Z  * [new tag]             v0.1.343        -> v0.1.343
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5826344Z  * [new tag]             v0.1.344        -> v0.1.344
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5826935Z  * [new tag]             v0.1.348        -> v0.1.348
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5827474Z  * [new tag]             v0.1.35-MOD     -> v0.1.35-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5828043Z  * [new tag]             v0.1.352        -> v0.1.352
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5828588Z  * [new tag]             v0.1.353        -> v0.1.353
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5829086Z  * [new tag]             v0.1.354        -> v0.1.354
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5829400Z  * [new tag]             v0.1.356        -> v0.1.356
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5829688Z  * [new tag]             v0.1.358        -> v0.1.358
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5829980Z  * [new tag]             v0.1.361        -> v0.1.361
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5830416Z  * [new tag]             v0.1.362        -> v0.1.362
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5830728Z  * [new tag]             v0.1.363        -> v0.1.363
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5831037Z  * [new tag]             v0.1.364        -> v0.1.364
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5831607Z  * [new tag]             v0.1.365        -> v0.1.365
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5831921Z  * [new tag]             v0.1.366        -> v0.1.366
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5832226Z  * [new tag]             v0.1.368        -> v0.1.368
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5832528Z  * [new tag]             v0.1.369        -> v0.1.369
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5832833Z  * [new tag]             v0.1.372        -> v0.1.372
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5833142Z  * [new tag]             v0.1.373        -> v0.1.373
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5833443Z  * [new tag]             v0.1.374        -> v0.1.374
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5833750Z  * [new tag]             v0.1.375        -> v0.1.375
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5834051Z  * [new tag]             v0.1.376        -> v0.1.376
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5834354Z  * [new tag]             v0.1.377        -> v0.1.377
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5834681Z  * [new tag]             v0.1.38-MOD     -> v0.1.38-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5835007Z  * [new tag]             v0.1.39-MOD     -> v0.1.39-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5835521Z  * [new tag]             v0.1.4          -> v0.1.4
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5835842Z  * [new tag]             v0.1.41-MOD     -> v0.1.41-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5836167Z  * [new tag]             v0.1.42-MOD     -> v0.1.42-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5836479Z  * [new tag]             v0.1.43-MOD     -> v0.1.43-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5836798Z  * [new tag]             v0.1.44-MOD     -> v0.1.44-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5837113Z  * [new tag]             v0.1.46-MOD     -> v0.1.46-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5837433Z  * [new tag]             v0.1.48-MOD     -> v0.1.48-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5837739Z  * [new tag]             v0.1.49-MOD     -> v0.1.49-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5838058Z  * [new tag]             v0.1.5-b18      -> v0.1.5-b18
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5838383Z  * [new tag]             v0.1.5-b20      -> v0.1.5-b20
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5838707Z  * [new tag]             v0.1.5-b8       -> v0.1.5-b8
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5839035Z  * [new tag]             v0.1.5-b9       -> v0.1.5-b9
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5839361Z  * [new tag]             v0.1.59-MOD     -> v0.1.59-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5839706Z  * [new tag]             v0.1.6-MOD-b30  -> v0.1.6-MOD-b30
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5840050Z  * [new tag]             v0.1.6-MOD-b31  -> v0.1.6-MOD-b31
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5840389Z  * [new tag]             v0.1.6-MOD-b33  -> v0.1.6-MOD-b33
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5840721Z  * [new tag]             v0.1.6-MOD-b38  -> v0.1.6-MOD-b38
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5841050Z  * [new tag]             v0.1.6-MOD-b43  -> v0.1.6-MOD-b43
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5841562Z  * [new tag]             v0.1.6-MOD-b44  -> v0.1.6-MOD-b44
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5841905Z  * [new tag]             v0.1.6-MOD-b47  -> v0.1.6-MOD-b47
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5842240Z  * [new tag]             v0.1.6-MOD-b51  -> v0.1.6-MOD-b51
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5842576Z  * [new tag]             v0.1.6-MOD-b52  -> v0.1.6-MOD-b52
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5843075Z  * [new tag]             v0.1.6-MOD-b55  -> v0.1.6-MOD-b55
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5843417Z  * [new tag]             v0.1.6-MOD-b57  -> v0.1.6-MOD-b57
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5843749Z  * [new tag]             v0.1.68-MOD     -> v0.1.68-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5844097Z  * [new tag]             v0.1.7-MOD-b102 -> v0.1.7-MOD-b102
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5844435Z  * [new tag]             v0.1.7-MOD-b103 -> v0.1.7-MOD-b103
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5844774Z  * [new tag]             v0.1.7-MOD-b105 -> v0.1.7-MOD-b105
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5845111Z  * [new tag]             v0.1.7-MOD-b106 -> v0.1.7-MOD-b106
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5845440Z  * [new tag]             v0.1.7-MOD-b107 -> v0.1.7-MOD-b107
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5845770Z  * [new tag]             v0.1.7-MOD-b108 -> v0.1.7-MOD-b108
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5846097Z  * [new tag]             v0.1.7-MOD-b11  -> v0.1.7-MOD-b11
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5846428Z  * [new tag]             v0.1.7-MOD-b110 -> v0.1.7-MOD-b110
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5846763Z  * [new tag]             v0.1.7-MOD-b113 -> v0.1.7-MOD-b113
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5847099Z  * [new tag]             v0.1.7-MOD-b114 -> v0.1.7-MOD-b114
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5847428Z  * [new tag]             v0.1.7-MOD-b115 -> v0.1.7-MOD-b115
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5847756Z  * [new tag]             v0.1.7-MOD-b117 -> v0.1.7-MOD-b117
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5848090Z  * [new tag]             v0.1.7-MOD-b118 -> v0.1.7-MOD-b118
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5848418Z  * [new tag]             v0.1.7-MOD-b120 -> v0.1.7-MOD-b120
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5848758Z  * [new tag]             v0.1.7-MOD-b121 -> v0.1.7-MOD-b121
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5849090Z  * [new tag]             v0.1.7-MOD-b124 -> v0.1.7-MOD-b124
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5849425Z  * [new tag]             v0.1.7-MOD-b129 -> v0.1.7-MOD-b129
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5849753Z  * [new tag]             v0.1.7-MOD-b130 -> v0.1.7-MOD-b130
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5850091Z  * [new tag]             v0.1.7-MOD-b131 -> v0.1.7-MOD-b131
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5850425Z  * [new tag]             v0.1.7-MOD-b132 -> v0.1.7-MOD-b132
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5850762Z  * [new tag]             v0.1.7-MOD-b133 -> v0.1.7-MOD-b133
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5851099Z  * [new tag]             v0.1.7-MOD-b136 -> v0.1.7-MOD-b136
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5851737Z  * [new tag]             v0.1.7-MOD-b137 -> v0.1.7-MOD-b137
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5852080Z  * [new tag]             v0.1.7-MOD-b138 -> v0.1.7-MOD-b138
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5852417Z  * [new tag]             v0.1.7-MOD-b139 -> v0.1.7-MOD-b139
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5852755Z  * [new tag]             v0.1.7-MOD-b141 -> v0.1.7-MOD-b141
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5853090Z  * [new tag]             v0.1.7-MOD-b142 -> v0.1.7-MOD-b142
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5853443Z  * [new tag]             v0.1.7-MOD-b143 -> v0.1.7-MOD-b143
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5853778Z  * [new tag]             v0.1.7-MOD-b144 -> v0.1.7-MOD-b144
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5854109Z  * [new tag]             v0.1.7-MOD-b145 -> v0.1.7-MOD-b145
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5854449Z  * [new tag]             v0.1.7-MOD-b146 -> v0.1.7-MOD-b146
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5854784Z  * [new tag]             v0.1.7-MOD-b152 -> v0.1.7-MOD-b152
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5855123Z  * [new tag]             v0.1.7-MOD-b153 -> v0.1.7-MOD-b153
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5855467Z  * [new tag]             v0.1.7-MOD-b16  -> v0.1.7-MOD-b16
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5855803Z  * [new tag]             v0.1.7-MOD-b24  -> v0.1.7-MOD-b24
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5856143Z  * [new tag]             v0.1.7-MOD-b25  -> v0.1.7-MOD-b25
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5856473Z  * [new tag]             v0.1.7-MOD-b59  -> v0.1.7-MOD-b59
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5856808Z  * [new tag]             v0.1.7-MOD-b61  -> v0.1.7-MOD-b61
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5857137Z  * [new tag]             v0.1.7-MOD-b62  -> v0.1.7-MOD-b62
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5857470Z  * [new tag]             v0.1.7-MOD-b63  -> v0.1.7-MOD-b63
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5857806Z  * [new tag]             v0.1.7-MOD-b64  -> v0.1.7-MOD-b64
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5858135Z  * [new tag]             v0.1.7-MOD-b66  -> v0.1.7-MOD-b66
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5858472Z  * [new tag]             v0.1.7-MOD-b67  -> v0.1.7-MOD-b67
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5858931Z  * [new tag]             v0.1.7-MOD-b70  -> v0.1.7-MOD-b70
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5859271Z  * [new tag]             v0.1.7-MOD-b72  -> v0.1.7-MOD-b72
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5859604Z  * [new tag]             v0.1.7-MOD-b73  -> v0.1.7-MOD-b73
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5859943Z  * [new tag]             v0.1.7-MOD-b76  -> v0.1.7-MOD-b76
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5860279Z  * [new tag]             v0.1.7-MOD-b80  -> v0.1.7-MOD-b80
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5860608Z  * [new tag]             v0.1.7-MOD-b81  -> v0.1.7-MOD-b81
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5860946Z  * [new tag]             v0.1.7-MOD-b83  -> v0.1.7-MOD-b83
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5861435Z  * [new tag]             v0.1.7-MOD-b84  -> v0.1.7-MOD-b84
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5861829Z  * [new tag]             v0.1.7-MOD-b86  -> v0.1.7-MOD-b86
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5862162Z  * [new tag]             v0.1.7-MOD-b90  -> v0.1.7-MOD-b90
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5862499Z  * [new tag]             v0.1.7-MOD-b91  -> v0.1.7-MOD-b91
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5862836Z  * [new tag]             v0.1.7-MOD-b92  -> v0.1.7-MOD-b92
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5863172Z  * [new tag]             v0.1.7-MOD-b93  -> v0.1.7-MOD-b93
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5863506Z  * [new tag]             v0.1.7-MOD-b94  -> v0.1.7-MOD-b94
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5863837Z  * [new tag]             v0.1.7-MOD-b96  -> v0.1.7-MOD-b96
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5864171Z  * [new tag]             v0.1.77-MOD     -> v0.1.77-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5864504Z  * [new tag]             v0.1.8-MOD-b102 -> v0.1.8-MOD-b102
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5864842Z  * [new tag]             v0.1.8-MOD-b11  -> v0.1.8-MOD-b11
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5865168Z  * [new tag]             v0.1.8-MOD-b13  -> v0.1.8-MOD-b13
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5865500Z  * [new tag]             v0.1.8-MOD-b14  -> v0.1.8-MOD-b14
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5865836Z  * [new tag]             v0.1.8-MOD-b15  -> v0.1.8-MOD-b15
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5866169Z  * [new tag]             v0.1.8-MOD-b155 -> v0.1.8-MOD-b155
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5866512Z  * [new tag]             v0.1.8-MOD-b156 -> v0.1.8-MOD-b156
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5866852Z  * [new tag]             v0.1.8-MOD-b16  -> v0.1.8-MOD-b16
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5867191Z  * [new tag]             v0.1.8-MOD-b17  -> v0.1.8-MOD-b17
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5867644Z  * [new tag]             v0.1.8-MOD-b19  -> v0.1.8-MOD-b19
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5867988Z  * [new tag]             v0.1.8-MOD-b2   -> v0.1.8-MOD-b2
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5868330Z  * [new tag]             v0.1.8-MOD-b21  -> v0.1.8-MOD-b21
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5868661Z  * [new tag]             v0.1.8-MOD-b22  -> v0.1.8-MOD-b22
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5868996Z  * [new tag]             v0.1.8-MOD-b23  -> v0.1.8-MOD-b23
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5869324Z  * [new tag]             v0.1.8-MOD-b24  -> v0.1.8-MOD-b24
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5869663Z  * [new tag]             v0.1.8-MOD-b3   -> v0.1.8-MOD-b3
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5869995Z  * [new tag]             v0.1.8-MOD-b30  -> v0.1.8-MOD-b30
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5870348Z  * [new tag]             v0.1.8-MOD-b32  -> v0.1.8-MOD-b32
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5870675Z  * [new tag]             v0.1.8-MOD-b33  -> v0.1.8-MOD-b33
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5871021Z  * [new tag]             v0.1.8-MOD-b35  -> v0.1.8-MOD-b35
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5871525Z  * [new tag]             v0.1.8-MOD-b36  -> v0.1.8-MOD-b36
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5871874Z  * [new tag]             v0.1.8-MOD-b39  -> v0.1.8-MOD-b39
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5872203Z  * [new tag]             v0.1.8-MOD-b40  -> v0.1.8-MOD-b40
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5872540Z  * [new tag]             v0.1.8-MOD-b42  -> v0.1.8-MOD-b42
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5872874Z  * [new tag]             v0.1.8-MOD-b44  -> v0.1.8-MOD-b44
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5873204Z  * [new tag]             v0.1.8-MOD-b47  -> v0.1.8-MOD-b47
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5873543Z  * [new tag]             v0.1.8-MOD-b5   -> v0.1.8-MOD-b5
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5873875Z  * [new tag]             v0.1.8-MOD-b51  -> v0.1.8-MOD-b51
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5874212Z  * [new tag]             v0.1.8-MOD-b52  -> v0.1.8-MOD-b52
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5874539Z  * [new tag]             v0.1.8-MOD-b53  -> v0.1.8-MOD-b53
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5875008Z  * [new tag]             v0.1.8-MOD-b54  -> v0.1.8-MOD-b54
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5875342Z  * [new tag]             v0.1.8-MOD-b56  -> v0.1.8-MOD-b56
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5875674Z  * [new tag]             v0.1.8-MOD-b57  -> v0.1.8-MOD-b57
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5876012Z  * [new tag]             v0.1.8-MOD-b59  -> v0.1.8-MOD-b59
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5876341Z  * [new tag]             v0.1.8-MOD-b60  -> v0.1.8-MOD-b60
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5876679Z  * [new tag]             v0.1.8-MOD-b63  -> v0.1.8-MOD-b63
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5877006Z  * [new tag]             v0.1.8-MOD-b64  -> v0.1.8-MOD-b64
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5877343Z  * [new tag]             v0.1.8-MOD-b72  -> v0.1.8-MOD-b72
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5877685Z  * [new tag]             v0.1.8-MOD-b77  -> v0.1.8-MOD-b77
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5878035Z  * [new tag]             v0.1.8-MOD-b80  -> v0.1.8-MOD-b80
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5878375Z  * [new tag]             v0.1.8-MOD-b81  -> v0.1.8-MOD-b81
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5878707Z  * [new tag]             v0.1.8-MOD-b85  -> v0.1.8-MOD-b85
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5879050Z  * [new tag]             v0.1.8-MOD-b86  -> v0.1.8-MOD-b86
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5879379Z  * [new tag]             v0.1.8-MOD-b88  -> v0.1.8-MOD-b88
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5879723Z  * [new tag]             v0.1.8-MOD-b89  -> v0.1.8-MOD-b89
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5880057Z  * [new tag]             v0.1.8-MOD-b9   -> v0.1.8-MOD-b9
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5880391Z  * [new tag]             v0.1.8-MOD-b95  -> v0.1.8-MOD-b95
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5880728Z  * [new tag]             v0.1.8-MOD-b98  -> v0.1.8-MOD-b98
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5881053Z  * [new tag]             v0.1.85-MOD     -> v0.1.85-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5881530Z  * [new tag]             v0.1.9-MOD      -> v0.1.9-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5881862Z  * [new tag]             v0.1.95-MOD     -> v0.1.95-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5882184Z  * [new tag]             v0.1.96-MOD     -> v0.1.96-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5882498Z  * [new tag]             v0.1.98-MOD     -> v0.1.98-MOD
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5882815Z  * [new tag]             v0.5.1          -> v0.5.1
+Build & Public Release	Clone repo	2026-02-16T05:54:32.5954031Z [command]/usr/bin/git branch --list --remote origin/master
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6000224Z   origin/master
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6008869Z [command]/usr/bin/git rev-parse refs/remotes/origin/master
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6029829Z 5ad23b1943c7b81345ee4fbc740f2d81d38ce128
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6034535Z ##[endgroup]
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6035047Z ##[group]Determining the checkout info
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6035784Z ##[endgroup]
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6039878Z [command]/usr/bin/git sparse-checkout disable
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6084056Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6110134Z ##[group]Checking out the ref
+Build & Public Release	Clone repo	2026-02-16T05:54:32.6114664Z [command]/usr/bin/git checkout --progress --force -B master refs/remotes/origin/master
+Build & Public Release	Clone repo	2026-02-16T05:54:32.7855805Z Reset branch 'master'
+Build & Public Release	Clone repo	2026-02-16T05:54:32.7859284Z branch 'master' set up to track 'origin/master'.
+Build & Public Release	Clone repo	2026-02-16T05:54:32.7879083Z ##[endgroup]
+Build & Public Release	Clone repo	2026-02-16T05:54:32.7922177Z [command]/usr/bin/git log -1 --format=%H
+Build & Public Release	Clone repo	2026-02-16T05:54:32.7947582Z 5ad23b1943c7b81345ee4fbc740f2d81d38ce128
+Build & Public Release	Set up JDK	﻿2026-02-16T05:54:32.8185453Z ##[group]Run actions/setup-java@v4
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8185744Z with:
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8185921Z   java-version: 17
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8186118Z   distribution: temurin
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8186319Z   java-package: jdk
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8186509Z   check-latest: false
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8186701Z   server-id: github
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8186895Z   server-username: GITHUB_ACTOR
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8187133Z   server-password: GITHUB_TOKEN
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8187362Z   overwrite-settings: true
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8187582Z   job-status: success
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8187889Z   token: ***
+Build & Public Release	Set up JDK	2026-02-16T05:54:32.8188070Z ##[endgroup]
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0152899Z ##[group]Installed distributions
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0852897Z Resolved Java 17.0.18+8 from tool-cache
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0853785Z Setting Java 17.0.18+8 as the default
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0867648Z Creating toolchains.xml for JDK version 17 from temurin
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0946360Z Writing to /home/runner/.m2/toolchains.xml
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0946813Z 
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0947058Z Java configuration:
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0949228Z   Distribution: temurin
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0949651Z   Version: 17.0.18+8
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0950209Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0950782Z 
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0951229Z ##[endgroup]
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0967263Z Creating settings.xml with server-id: github
+Build & Public Release	Set up JDK	2026-02-16T05:54:33.0996941Z Writing to /home/runner/.m2/settings.xml
+Build & Public Release	Set up Gradle	﻿2026-02-16T05:54:33.1241789Z ##[group]Run gradle/actions/setup-gradle@v4
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1242582Z with:
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1242757Z   cache-disabled: false
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1242967Z   cache-read-only: false
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1243170Z   cache-write-only: false
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1243390Z   cache-overwrite-existing: false
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1243624Z   cache-cleanup: on-success
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1243896Z   gradle-home-cache-includes: caches
+Build & Public Release	Set up Gradle	notifications
+Build & Public Release	Set up Gradle	
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1244209Z   add-job-summary: always
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1244435Z   add-job-summary-as-pr-comment: never
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1244697Z   dependency-graph: disabled
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1244980Z   dependency-graph-report-dir: dependency-graph-reports
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1245332Z   dependency-graph-continue-on-failure: true
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1245611Z   build-scan-publish: false
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1245837Z   validate-wrappers: true
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1246053Z   allow-snapshot-wrappers: false
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1246308Z   gradle-home-cache-strict-match: false
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1246598Z   workflow-job-context: null
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1246958Z   github-token: ***
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1247145Z env:
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1247411Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1247876Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Set up Gradle	2026-02-16T05:54:33.1248222Z ##[endgroup]
+Build & Public Release	Set up Gradle	2026-02-16T05:54:36.3367831Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+Build & Public Release	Set up Gradle	2026-02-16T05:54:36.3370131Z Preparing cache for cleanup.
+Build & Public Release	Set up Gradle	2026-02-16T05:54:36.3374830Z ##[group]Restore Gradle state from cache
+Build & Public Release	Set up Gradle	2026-02-16T05:54:36.5857137Z Cache hit for restore-key: gradle-home-v1|Linux-X64|build-release[16cd6cc2a04430ca045959c87cb8ce3a]-37893165afb447a5b4e00ca5511f487a014bf554
+Build & Public Release	Set up Gradle	2026-02-16T05:54:37.8541106Z Received 12582912 of 320889478 (3.9%), 12.0 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:38.8542006Z Received 155189248 of 320889478 (48.4%), 74.0 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:39.8542937Z Received 268435456 of 320889478 (83.7%), 85.3 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:40.1373666Z Received 320889478 of 320889478 (100.0%), 93.2 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:40.1377412Z Cache Size: ~306 MB (320889478 B)
+Build & Public Release	Set up Gradle	2026-02-16T05:54:40.1425936Z [command]/usr/bin/tar -xf /home/runner/work/_temp/f23bf350-d6bc-4327-a4d4-cfac94b44455/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Public Release	Set up Gradle	2026-02-16T05:54:40.8955621Z Cache restored successfully
+Build & Public Release	Set up Gradle	2026-02-16T05:54:40.9593266Z Restored cache entry with key gradle-home-v1|Linux-X64|build-release[16cd6cc2a04430ca045959c87cb8ce3a]-5ad23b1943c7b81345ee4fbc740f2d81d38ce128 to /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 4620ms
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.1878699Z Cache hit for: gradle-instrumented-jars-v1-81af1bba565ff59af53fd9f5765cdb14
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.1889270Z Cache hit for: gradle-dependencies-v1-09c77ba6c1631df41a785d92a97ec1ef
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.1959266Z Cache hit for: gradle-generated-gradle-jars-v1-4434c59050703a48bf14168622b59891
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.2027066Z Cache hit for: gradle-transforms-v1-1086d44ab07daab6cbe629e45cd28c2e
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.2032553Z Cache hit for: gradle-wrapper-zips-v1-5ae5d3da5e8e0c748d04bcdd9bc97bdb
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.2065900Z Cache hit for: gradle-kotlin-dsl-v1-af54c2f717bc09c409f26ad2a9cbc4da
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.2086048Z Cache hit for: gradle-groovy-dsl-v1-21b5f742e91920dff6fbfab2b1d9e436
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.8437889Z Received 122454 of 122454 (100.0%), 0.3 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.8440508Z Cache Size: ~0 MB (122454 B)
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.8477919Z [command]/usr/bin/tar -xf /home/runner/work/_temp/ee549ad3-84cf-4dc7-920d-025925218302/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.8644507Z Cache restored successfully
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.8649926Z Restored cache entry with key gradle-instrumented-jars-v1-81af1bba565ff59af53fd9f5765cdb14 to /home/runner/.gradle/caches/jars-*/*/ in 903ms
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.9716761Z Received 188048 of 188048 (100.0%), 0.4 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.9717911Z Cache Size: ~0 MB (188048 B)
+Build & Public Release	Set up Gradle	2026-02-16T05:54:41.9978191Z Received 41092997 of 41092997 (100.0%), 53.0 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.0002391Z Cache Size: ~39 MB (41092997 B)
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.0074446Z [command]/usr/bin/tar -xf /home/runner/work/_temp/ce99cb95-2565-4ddc-b4bc-bbfb6d2299db/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.0123233Z [command]/usr/bin/tar -xf /home/runner/work/_temp/4d042c76-3d3c-4760-a922-d071bcbf2a4b/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.0424240Z Cache restored successfully
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.0425755Z Restored cache entry with key gradle-groovy-dsl-v1-21b5f742e91920dff6fbfab2b1d9e436 to /home/runner/.gradle/caches/*/groovy-dsl/*/ in 1080ms
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.2944766Z Received 1960856 of 1960856 (100.0%), 2.2 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.3002704Z Cache Size: ~2 MB (1960856 B)
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.3857795Z [command]/usr/bin/tar -xf /home/runner/work/_temp/fba370cf-e95f-4a86-ad7b-f5de4e8ea52d/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.3992311Z Cache restored successfully
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.4335472Z Restored cache entry with key gradle-generated-gradle-jars-v1-4434c59050703a48bf14168622b59891 to /home/runner/.gradle/caches/8.14.3/generated-gradle-jars/gradle-api-8.14.3.jar in 1473ms
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.4398825Z Received 20971520 of 443341431 (4.7%), 19.9 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.4625028Z Received 33554432 of 688643429 (4.9%), 31.9 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:42.4903722Z Received 16777216 of 136706942 (12.3%), 16.0 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:43.4642454Z Cache restored successfully
+Build & Public Release	Set up Gradle	2026-02-16T05:54:43.4643725Z Received 134217728 of 443341431 (30.3%), 63.1 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:43.4644597Z Received 134217728 of 688643429 (19.5%), 63.8 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:43.4792193Z Restored cache entry with key gradle-kotlin-dsl-v1-af54c2f717bc09c409f26ad2a9cbc4da to /home/runner/.gradle/caches/*/kotlin-dsl/accessors/*/,/home/runner/.gradle/caches/*/kotlin-dsl/scripts/*/ in 2516ms
+Build & Public Release	Set up Gradle	2026-02-16T05:54:43.4920612Z Received 117440512 of 136706942 (85.9%), 55.9 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:43.9137510Z Received 136706942 of 136706942 (100.0%), 53.8 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:43.9140410Z Cache Size: ~130 MB (136706942 B)
+Build & Public Release	Set up Gradle	2026-02-16T05:54:43.9176272Z [command]/usr/bin/tar -xf /home/runner/work/_temp/448f5489-e7b8-4149-b9bb-829443d96426/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Public Release	Set up Gradle	2026-02-16T05:54:44.2519419Z Cache restored successfully
+Build & Public Release	Set up Gradle	2026-02-16T05:54:44.2900264Z Restored cache entry with key gradle-wrapper-zips-v1-5ae5d3da5e8e0c748d04bcdd9bc97bdb to /home/runner/.gradle/wrapper/dists/gradle-8.14.3-bin/cv11ve7ro1n3o1j4so8xd9n66 in 3328ms
+Build & Public Release	Set up Gradle	2026-02-16T05:54:44.5102412Z Received 260046848 of 443341431 (58.7%), 80.6 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:44.5103430Z Received 268435456 of 688643429 (39.0%), 83.8 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:45.5955061Z Received 385875968 of 443341431 (87.0%), 88.4 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:45.5975707Z Received 402653184 of 688643429 (58.5%), 92.8 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:46.1410140Z Received 443341431 of 443341431 (100.0%), 89.8 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:46.1427312Z Cache Size: ~423 MB (443341431 B)
+Build & Public Release	Set up Gradle	2026-02-16T05:54:46.1559226Z [command]/usr/bin/tar -xf /home/runner/work/_temp/a7a19e0e-90d3-4ca6-a4d2-b7dbc221079b/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Public Release	Set up Gradle	2026-02-16T05:54:46.6892406Z Received 536870912 of 688643429 (78.0%), 97.9 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:47.6873750Z Received 671088640 of 688643429 (97.5%), 102.7 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:47.8763150Z Received 688643429 of 688643429 (100.0%), 102.3 MBs/sec
+Build & Public Release	Set up Gradle	2026-02-16T05:54:47.8767934Z Cache Size: ~657 MB (688643429 B)
+Build & Public Release	Set up Gradle	2026-02-16T05:54:47.8818714Z [command]/usr/bin/tar -xf /home/runner/work/_temp/9dd20cf3-3566-4350-beca-b9b7b76850de/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Public Release	Set up Gradle	2026-02-16T05:54:50.3027607Z Cache restored successfully
+Build & Public Release	Set up Gradle	2026-02-16T05:54:50.4425850Z Restored cache entry with key gradle-dependencies-v1-09c77ba6c1631df41a785d92a97ec1ef to /home/runner/.gradle/caches/modules-*/files-*/*/*/*/* in 9481ms
+Build & Public Release	Set up Gradle	2026-02-16T05:54:51.5944322Z Cache restored successfully
+Build & Public Release	Set up Gradle	2026-02-16T05:54:51.6733432Z Restored cache entry with key gradle-transforms-v1-1086d44ab07daab6cbe629e45cd28c2e to /home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/ in 10711ms
+Build & Public Release	Set up Gradle	2026-02-16T05:54:51.7910850Z ##[endgroup]
+Build & Public Release	Set up Gradle	2026-02-16T05:54:52.1560323Z ##[group]All Gradle Wrapper jars are valid
+Build & Public Release	Set up Gradle	2026-02-16T05:54:52.1561705Z ✓ Found known Gradle Wrapper JAR files:
+Build & Public Release	Set up Gradle	2026-02-16T05:54:52.1562407Z   7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172 gradle/wrapper/gradle-wrapper.jar
+Build & Public Release	Set up Gradle	2026-02-16T05:54:52.1563376Z ##[endgroup]
+Build & Public Release	Run Code Analysis (Detekt)	﻿2026-02-16T05:54:52.1993335Z ##[group]Run ./gradlew detekt --no-daemon
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.1993753Z [36;1m./gradlew detekt --no-daemon[0m
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2045477Z shell: /usr/bin/bash -e {0}
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2045777Z env:
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2046117Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2046685Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2047156Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2047498Z   GRADLE_USER_HOME: /home/runner/.gradle
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2047809Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2048157Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2048643Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2049174Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2049524Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:52.2049818Z ##[endgroup]
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:54.8485362Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:56.7472901Z Daemon will be stopped at the end of the build 
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:54:57.0473403Z Configuration on demand is an incubating feature.
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:02.6477028Z Type-safe project accessors is an incubating feature.
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:05.9508978Z > Task :buildSrc:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:06.0508000Z > Task :buildSrc:generateExternalPluginSpecBuilders FROM-CACHE
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:06.0509562Z > Task :buildSrc:extractPrecompiledScriptPluginPlugins FROM-CACHE
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:06.3484883Z > Task :buildSrc:compilePluginsBlocks FROM-CACHE
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:06.6479241Z > Task :buildSrc:generatePrecompiledScriptPluginAccessors FROM-CACHE
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:06.6480842Z > Task :buildSrc:generateScriptPluginAdapters FROM-CACHE
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:07.1475288Z > Task :buildSrc:compileKotlin FROM-CACHE
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:07.1483178Z > Task :buildSrc:compileJava NO-SOURCE
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:07.1497468Z > Task :buildSrc:compileGroovy NO-SOURCE
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:07.1500614Z > Task :buildSrc:pluginDescriptors
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:07.2475438Z > Task :buildSrc:processResources
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:07.2482836Z > Task :buildSrc:classes
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:07.5479433Z > Task :buildSrc:jar
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8484891Z > Task :detekt NO-SOURCE
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8486499Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1771221300961.json
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8488201Z 
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8489129Z [Incubating] Problems report is available at: file:///home/runner/work/AniZen/AniZen/build/reports/problems/problems-report.html
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8492675Z 
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8493325Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8494010Z 
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8494756Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8495682Z 
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8496562Z For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8497620Z 
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8497788Z BUILD SUCCESSFUL in 23s
+Build & Public Release	Run Code Analysis (Detekt)	2026-02-16T05:55:15.8498269Z 9 actionable tasks: 3 executed, 6 from cache
+Build & Public Release	Bump Version	﻿2026-02-16T05:55:16.0275613Z ##[group]Run ./scripts/bump_version.sh
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0276018Z [36;1m./scripts/bump_version.sh[0m
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0325599Z shell: /usr/bin/bash -e {0}
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0325884Z env:
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0326216Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0326773Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0327241Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0327573Z   GRADLE_USER_HOME: /home/runner/.gradle
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0327902Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0328223Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0328693Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0329208Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0329554Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0329846Z ##[endgroup]
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0552130Z Bumped versionCode from 502 to 503
+Build & Public Release	Bump Version	2026-02-16T05:55:16.0552667Z Bumped versionName from 0.5.2 to 0.5.3
+Build & Public Release	Commit and Push Version Bump	﻿2026-02-16T05:55:16.0601797Z ##[group]Run git config --global user.name "github-actions[bot]"
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0602397Z [36;1mgit config --global user.name "github-actions[bot]"[0m
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0602987Z [36;1mgit config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"[0m
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0603493Z [36;1mgit add app/build.gradle.kts[0m
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0603846Z [36;1mgit commit -m "chore: bump version to 0.5.3"[0m
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0604193Z [36;1mgit push origin master[0m
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0649986Z shell: /usr/bin/bash -e {0}
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0650275Z env:
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0650612Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0651170Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0651816Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0652149Z   GRADLE_USER_HOME: /home/runner/.gradle
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0652472Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0652857Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0653327Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0653838Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0654178Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0654462Z   NEW_VN: 0.5.3
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.0654688Z ##[endgroup]
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.1825259Z [master 804505735] chore: bump version to 0.5.3
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.1825967Z  1 file changed, 2 insertions(+), 2 deletions(-)
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.8734346Z To https://github.com/salmanbappi/AniZen
+Build & Public Release	Commit and Push Version Bump	2026-02-16T05:55:16.8735076Z    5ad23b194..804505735  master -> master
+Build & Public Release	Build Release APK	﻿2026-02-16T05:55:16.8815835Z ##[group]Run ./gradlew assembleRelease -Pinclude-telemetry=false -Penable-updater=false --no-daemon
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8816651Z [36;1m./gradlew assembleRelease -Pinclude-telemetry=false -Penable-updater=false --no-daemon[0m
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8865879Z shell: /usr/bin/bash -e {0}
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8866164Z env:
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8866495Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8867041Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8867499Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8867834Z   GRADLE_USER_HOME: /home/runner/.gradle
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8868141Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8868459Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8868920Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8869420Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8869796Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8870091Z   NEW_VN: 0.5.3
+Build & Public Release	Build Release APK	2026-02-16T05:55:16.8870306Z ##[endgroup]
+Build & Public Release	Build Release APK	2026-02-16T05:55:17.5692029Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Build & Public Release	Build Release APK	2026-02-16T05:55:18.6694309Z Daemon will be stopped at the end of the build 
+Build & Public Release	Build Release APK	2026-02-16T05:55:18.9685763Z Configuration on demand is an incubating feature.
+Build & Public Release	Build Release APK	2026-02-16T05:55:21.9688884Z Type-safe project accessors is an incubating feature.
+Build & Public Release	Build Release APK	2026-02-16T05:55:24.9705545Z > Task :buildSrc:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.1742390Z > Task :buildSrc:generateExternalPluginSpecBuilders UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.1744047Z > Task :buildSrc:extractPrecompiledScriptPluginPlugins UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.3681671Z > Task :buildSrc:compilePluginsBlocks UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.6687571Z > Task :buildSrc:generatePrecompiledScriptPluginAccessors UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.6689386Z > Task :buildSrc:generateScriptPluginAdapters UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.9711024Z > Task :buildSrc:compileKotlin UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.9721634Z > Task :buildSrc:compileJava NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.9722235Z > Task :buildSrc:compileGroovy NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.9722863Z > Task :buildSrc:pluginDescriptors UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.9723495Z > Task :buildSrc:processResources UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.9724077Z > Task :buildSrc:classes UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:25.9724594Z > Task :buildSrc:jar UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.6693289Z > Task :data:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.6693941Z > Task :domain:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.6696336Z > Task :core-metadata:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.6697385Z > Task :data:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.6698370Z > Task :domain:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.6722161Z > Task :app:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.6732295Z > Task :app:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.6738323Z > Task :core-metadata:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8689000Z > Task :app:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8690183Z > Task :data:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8690904Z > Task :domain:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8691715Z > Task :core-metadata:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8692303Z > Task :flagkit:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8693381Z > Task :flagkit:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8694015Z > Task :core-metadata:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8694632Z > Task :data:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8721553Z > Task :domain:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8722216Z > Task :flagkit:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8722826Z > Task :flagkit:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8723438Z > Task :data:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8724389Z > Task :i18n:generateLocalesConfig UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8724982Z > Task :domain:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8733197Z > Task :core-metadata:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.8733909Z > Task :flagkit:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9702660Z > Task :i18n-kmk:generateMRcommonMain FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9703905Z > Task :i18n-kmk:generateMRandroidDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9704927Z > Task :i18n-ank:generateMRcommonMain FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9705851Z > Task :i18n-ank:generateMRandroidDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9706722Z > Task :i18n-sy:generateMRcommonMain FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9707626Z > Task :i18n-sy:generateMRandroidDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9708589Z > Task :i18n-kmk:generateMRandroidInstrumentedTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9709892Z > Task :i18n-kmk:generateMRandroidInstrumentedTestDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9710980Z > Task :i18n-ank:generateMRandroidInstrumentedTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9712378Z > Task :i18n-ank:generateMRandroidInstrumentedTestDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9713497Z > Task :i18n-sy:generateMRandroidInstrumentedTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:43.9714631Z > Task :i18n-sy:generateMRandroidInstrumentedTestDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0681851Z > Task :i18n:generateMRcommonMain FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0684078Z > Task :i18n:generateMRandroidDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0686234Z > Task :i18n:generateMRandroidInstrumentedTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0688555Z > Task :i18n:generateMRandroidInstrumentedTestDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0690885Z > Task :i18n-kmk:generateMRandroidMain FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0692901Z > Task :i18n-kmk:generateMRandroidRelease SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0694047Z > Task :i18n-ank:generateMRandroidMain FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0694898Z > Task :i18n-kmk:generateMRcommonTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0695555Z > Task :i18n-ank:generateMRandroidRelease SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0696216Z > Task :i18n-sy:generateMRandroidMain FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0696832Z > Task :i18n-sy:generateMRandroidRelease SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0697437Z > Task :i18n-ank:generateMRcommonTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0698096Z > Task :i18n-kmk:generateMRandroidUnitTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0698790Z > Task :i18n-kmk:generateMRandroidUnitTestDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0699494Z > Task :i18n-sy:generateMRcommonTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0700206Z > Task :i18n-kmk:generateMRandroidUnitTestRelease SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0700865Z > Task :i18n-kmk:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0701628Z > Task :i18n-kmk:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0702312Z > Task :i18n-ank:generateMRandroidUnitTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.0703030Z > Task :i18n-ank:generateMRandroidUnitTestDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1714395Z > Task :i18n-sy:generateMRandroidUnitTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1722388Z > Task :i18n-ank:generateMRandroidUnitTestRelease SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1723625Z > Task :i18n-kmk:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1724881Z > Task :i18n-sy:generateMRandroidUnitTestDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1725755Z > Task :i18n-ank:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1726377Z > Task :i18n-ank:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1727033Z > Task :i18n-sy:generateMRandroidUnitTestRelease SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1727707Z > Task :i18n-kmk:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1728297Z > Task :i18n-sy:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1728817Z > Task :i18n-sy:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1729394Z > Task :i18n-kmk:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1729995Z > Task :presentation-core:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1730766Z > Task :presentation-core:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1731826Z > Task :i18n-ank:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1733025Z > Task :i18n-sy:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1734237Z > Task :i18n-ank:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1735068Z > Task :i18n-sy:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1736204Z > Task :i18n-sy:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1737441Z > Task :presentation-widget:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1762698Z > Task :presentation-core:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1763511Z > Task :i18n-ank:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1764151Z > Task :source-api:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1764806Z > Task :presentation-widget:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1765511Z > Task :source-api:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1766236Z > Task :presentation-core:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1767074Z > Task :presentation-core:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1767798Z > Task :source-local:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1768440Z > Task :source-local:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1769129Z > Task :source-api:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1769838Z > Task :presentation-widget:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1770641Z > Task :presentation-widget:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1798832Z > Task :source-api:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1799592Z > Task :source-api:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1800217Z > Task :telemetry:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1800773Z > Task :telemetry:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1801569Z > Task :source-local:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1802262Z > Task :presentation-widget:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1802987Z > Task :source-local:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1803599Z > Task :core:archive:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1804200Z > Task :source-local:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1804832Z > Task :core:archive:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1805428Z > Task :telemetry:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1832828Z > Task :core:common:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1833447Z > Task :core:common:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.1834143Z > Task :telemetry:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2708190Z > Task :telemetry:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2709421Z > Task :core-metadata:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2710395Z > Task :core:archive:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2711567Z > Task :core:common:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2713263Z > Task :data:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2714117Z > Task :core:common:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2715038Z > Task :core:archive:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2715982Z > Task :core:common:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2716897Z > Task :core:archive:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2717711Z > Task :domain:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2718529Z > Task :flagkit:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2719397Z > Task :i18n-ank:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2720236Z > Task :i18n-sy:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2721057Z > Task :i18n-kmk:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2722076Z > Task :presentation-core:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2722949Z > Task :presentation-widget:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2723820Z > Task :source-local:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2724697Z > Task :i18n:generateMRandroidMain FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2725566Z > Task :source-api:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2726531Z > Task :i18n:generateMRandroidRelease SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2727370Z > Task :telemetry:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2728194Z > Task :core:archive:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2729328Z > Task :core-metadata:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2730703Z > Task :core:common:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2731950Z > Task :i18n:generateMRcommonTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2732976Z > Task :i18n-sy:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2734429Z > Task :core-metadata:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2735569Z > Task :source-api:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2736594Z > Task :i18n:generateMRandroidUnitTest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2737644Z > Task :i18n:generateMRandroidUnitTestDebug SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2738708Z > Task :i18n:generateMRandroidUnitTestRelease SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2765713Z > Task :i18n:preBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2769597Z > Task :i18n:preReleaseBuild UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2770569Z > Task :source-api:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2771774Z > Task :i18n-sy:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.2772698Z > Task :core-metadata:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.3694564Z > Task :i18n:mergeReleaseJniLibFolders
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.3696130Z > Task :source-api:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.3697323Z > Task :core-metadata:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.3709957Z > Task :i18n:mergeReleaseNativeLibs NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.3710663Z > Task :i18n:copyReleaseJniLibsProjectOnly
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.3711543Z > Task :i18n-sy:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.3712237Z > Task :i18n:prepareReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:44.3712863Z > Task :i18n:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.3695222Z > Task :i18n:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.3696042Z > Task :source-api:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.4678951Z > Task :i18n-sy:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.5680119Z > Task :i18n:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.6683519Z > Task :i18n:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.6687738Z > Task :i18n:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.6691124Z > Task :core:common:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.7692539Z > Task :core:common:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.8685444Z > Task :core:common:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.8686839Z > Task :core:common:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.8688059Z > Task :source-api:kmpPartiallyResolvedDependenciesChecker
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.8693411Z > Task :source-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.8702085Z > Task :i18n:kmpPartiallyResolvedDependenciesChecker
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.8702918Z > Task :i18n:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.9680097Z > Task :core-metadata:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.9705544Z > Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.9707614Z > Task :core:common:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.9708390Z > Task :source-api:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.9709153Z > Task :core-metadata:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.9710000Z > Task :domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.9710851Z > Task :domain:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:46.9711749Z > Task :domain:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.0706259Z > Task :domain:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.0707111Z > Task :domain:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.0707814Z > Task :i18n-ank:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.0708513Z > Task :i18n-ank:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.0709206Z > Task :i18n-sy:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.1678387Z > Task :i18n-ank:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.1687680Z > Task :i18n-sy:kmpPartiallyResolvedDependenciesChecker
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.1693301Z > Task :i18n-sy:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.3677877Z > Task :core:common:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.5686919Z > Task :i18n-sy:compileReleaseKotlinAndroid FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.5689546Z > Task :i18n:compileReleaseKotlinAndroid FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.6679199Z > Task :i18n:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.6684413Z > Task :i18n:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.6689107Z > Task :app:mergeReleaseArtProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.6693887Z > Task :source-api:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.7686132Z > Task :i18n:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.7696121Z > Task :i18n-sy:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.7697327Z > Task :i18n-sy:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.7698483Z > Task :i18n-sy:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.7699371Z > Task :core-metadata:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.7700089Z > Task :i18n-ank:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:47.8680473Z > Task :i18n-ank:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.3683180Z > Task :app:mergeReleaseNativeLibs
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.3688254Z > Task :i18n-ank:kmpPartiallyResolvedDependenciesChecker
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.3690866Z > Task :i18n-ank:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.4722225Z > Task :domain:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.4723753Z > Task :domain:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.4724835Z > Task :source-local:kmpPartiallyResolvedDependenciesChecker
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.4726053Z > Task :source-local:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.4727006Z > Task :source-local:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.4727766Z > Task :source-local:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5682904Z > Task :i18n-ank:compileReleaseKotlinAndroid FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5688224Z > Task :source-local:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5703954Z > Task :i18n-ank:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5708455Z > Task :i18n-ank:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5736938Z > Task :source-local:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5764717Z > Task :core:archive:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5765449Z > Task :i18n-ank:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5766188Z > Task :core:archive:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5766922Z > Task :source-local:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5767719Z > Task :data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5768656Z > Task :core:archive:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.5769407Z > Task :core:archive:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6733683Z > Task :core:common:compileReleaseKotlin FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6735659Z > Task :core:common:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6737789Z > Task :data:generateReleaseDatabaseInterface FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6744444Z > Task :data:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6746753Z > Task :data:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6749124Z > Task :core:common:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6753132Z > Task :data:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6754064Z > Task :core:archive:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6755083Z > Task :data:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.6756234Z > Task :core:archive:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.7696609Z > Task :app:expandReleaseL8ArtProfileWildcards FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.7697875Z > Task :source-local:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.8705386Z > Task :core:archive:compileReleaseKotlin FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.8707266Z > Task :core:archive:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.8708867Z > Task :core:archive:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.8715050Z > Task :source-api:compileReleaseKotlinAndroid FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.8716147Z > Task :source-api:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.9684427Z > Task :core:archive:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.9687018Z > Task :core:archive:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.9697623Z > Task :data:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.9698326Z > Task :data:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.9701667Z > Task :presentation-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.9702722Z > Task :presentation-core:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.9703542Z > Task :core:archive:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:48.9704321Z > Task :source-api:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.0680969Z > Task :presentation-core:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.0689076Z > Task :presentation-core:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.0694418Z > Task :presentation-core:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.1681239Z > Task :core-metadata:compileReleaseKotlin FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.1690246Z > Task :core-metadata:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.1696576Z > Task :core-metadata:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.1702049Z > Task :core-metadata:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.1733122Z > Task :core-metadata:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.1734427Z > Task :presentation-widget:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.1735631Z > Task :presentation-widget:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5677960Z > Task :app:stripReleaseDebugSymbols
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5681002Z > Task :app:extractReleaseNativeSymbolTables FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5682015Z > Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5682784Z > Task :source-api:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5683685Z > Task :presentation-widget:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5684562Z > Task :source-api:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5685443Z > Task :flagkit:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5690353Z > Task :flagkit:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5698392Z > Task :presentation-widget:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5699395Z > Task :presentation-widget:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.5700279Z > Task :presentation-widget:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.6762507Z > Task :flagkit:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.6774011Z > Task :core:common:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.6774801Z > Task :core:common:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.6775496Z > Task :i18n:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.6776241Z > Task :presentation-core:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.6776946Z > Task :i18n:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.7677348Z > Task :flagkit:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.7678583Z > Task :flagkit:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.8677749Z > Task :flagkit:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.8684260Z > Task :domain:compileReleaseKotlin FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.8690329Z > Task :presentation-widget:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.8697739Z > Task :i18n-kmk:kmpPartiallyResolvedDependenciesChecker
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.8703603Z > Task :i18n-kmk:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.8706041Z > Task :domain:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.8710980Z > Task :i18n-kmk:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.8712307Z > Task :i18n-kmk:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.8732176Z > Task :flagkit:compileReleaseKotlin FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9687509Z > Task :domain:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9688721Z > Task :domain:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9690194Z > Task :flagkit:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9691206Z > Task :flagkit:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9692363Z > Task :flagkit:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9693302Z > Task :flagkit:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9694229Z > Task :i18n-ank:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9695196Z > Task :presentation-core:compileReleaseKotlin FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9696143Z > Task :i18n-ank:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9697047Z > Task :i18n-kmk:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9698037Z > Task :i18n-sy:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9698953Z > Task :presentation-core:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9699710Z > Task :i18n-sy:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9700469Z > Task :presentation-core:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9701556Z > Task :telemetry:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9702402Z > Task :i18n-kmk:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9703072Z > Task :domain:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9704035Z > Task :telemetry:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9704694Z > Task :i18n-kmk:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9705446Z > Task :presentation-core:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:49.9706286Z > Task :presentation-core:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.0679876Z > Task :presentation-core:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1701587Z > Task :i18n-kmk:compileReleaseKotlinAndroid FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1706795Z > Task :source-local:compileReleaseKotlinAndroid FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1712314Z > Task :i18n-kmk:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1716378Z > Task :i18n-kmk:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1720198Z > Task :source-local:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1723307Z > Task :source-local:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1737900Z > Task :i18n-kmk:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1738721Z > Task :source-local:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1739513Z > Task :telemetry:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1740271Z > Task :i18n-kmk:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1741010Z > Task :telemetry:packageReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1741985Z > Task :telemetry:parseReleaseLocalResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1742715Z > Task :telemetry:generateReleaseRFile FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1743451Z > Task :presentation-widget:compileReleaseKotlin FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1744345Z > Task :presentation-widget:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1745244Z > Task :presentation-widget:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.1746017Z > Task :app:buildKotlinToolingMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.2679411Z > Task :presentation-widget:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.2684731Z > Task :telemetry:compileReleaseKotlin FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.2685934Z > Task :telemetry:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.2688508Z > Task :telemetry:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.2689720Z > Task :telemetry:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.2692189Z > Task :data:compileReleaseKotlin FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.2696028Z > Task :data:compileReleaseJavaWithJavac NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.2697522Z > Task :data:mergeReleaseGeneratedProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.2698473Z > Task :telemetry:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.3678520Z > Task :core-metadata:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.3684784Z > Task :data:exportReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.3685458Z > Task :domain:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.3686395Z > Task :flagkit:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.3686989Z > Task :data:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.3687600Z > Task :i18n-ank:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4683770Z > Task :i18n-sy:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4689300Z > Task :i18n-kmk:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4695558Z > Task :i18n:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4700045Z > Task :presentation-core:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4701608Z > Task :presentation-widget:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4702925Z > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4712408Z > Task :source-api:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4716508Z > Task :source-local:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4717408Z > Task :telemetry:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4718257Z > Task :core:common:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4719025Z > Task :core:archive:writeReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4720093Z > Task :data:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.4721098Z > Task :core-metadata:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5689558Z > Task :core-metadata:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5705028Z > Task :data:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5705789Z > Task :domain:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5706497Z > Task :flagkit:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5707192Z > Task :domain:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5707880Z > Task :flagkit:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5708543Z > Task :i18n:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5709212Z > Task :i18n-ank:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5709892Z > Task :i18n:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5710598Z > Task :i18n-kmk:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5711446Z > Task :i18n-ank:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5712151Z > Task :i18n-sy:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5712815Z > Task :i18n-kmk:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5713571Z > Task :presentation-core:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5714342Z > Task :i18n-sy:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5715113Z > Task :presentation-widget:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5715947Z > Task :presentation-core:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.5716730Z > Task :source-api:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6694522Z > Task :source-api:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6696867Z > Task :presentation-widget:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6697627Z > Task :telemetry:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6710789Z > Task :source-local:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6711833Z > Task :telemetry:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6712611Z > Task :source-local:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6713299Z > Task :app:checkReleaseDuplicateClasses
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6713989Z > Task :core:archive:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6714715Z > Task :core:common:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6715439Z > Task :core:archive:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6716149Z > Task :core:common:processReleaseManifest FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.6716815Z > Task :i18n-kmk:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.7681622Z > Task :flagkit:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.7700126Z > Task :app:dataBindingMergeDependencyArtifactsRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.7701563Z > Task :app:generateReleaseResValues FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.7702633Z > Task :presentation-widget:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.7703618Z > Task :data:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.7704238Z > Task :core-metadata:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.7705105Z > Task :source-local:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8697082Z > Task :app:generateReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8697862Z > Task :telemetry:bundleLibCompileToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8698487Z > Task :data:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8699082Z > Task :flagkit:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8699682Z > Task :domain:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8700342Z > Task :app:prepareLibraryDefinitionsRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8701004Z > Task :i18n:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8701765Z > Task :i18n-kmk:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8702358Z > Task :i18n-ank:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8702943Z > Task :i18n-sy:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8703641Z > Task :presentation-widget:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8704369Z > Task :presentation-core:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8705086Z > Task :source-api:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8705759Z > Task :telemetry:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8706433Z > Task :source-local:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8707119Z > Task :core:archive:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.8707785Z > Task :core:common:bundleLibRuntimeToJarRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9684120Z > Task :core-metadata:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9684867Z > Task :data:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9685448Z > Task :flagkit:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9686002Z > Task :i18n:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9686557Z > Task :i18n-ank:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9687139Z > Task :i18n-kmk:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9687749Z > Task :i18n-sy:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9688321Z > Task :domain:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9688906Z > Task :presentation-core:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:50.9689525Z > Task :presentation-widget:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0699640Z > Task :telemetry:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0701236Z > Task :source-api:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0702389Z > Task :source-local:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0703191Z > Task :core-metadata:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0704257Z > Task :core:archive:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0707800Z > Task :core-metadata:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0712105Z > Task :core:common:processReleaseJavaRes
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0712945Z > Task :core-metadata:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0713750Z > Task :domain:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0723433Z > Task :data:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0728468Z > Task :core-metadata:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0729143Z > Task :domain:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0729793Z > Task :domain:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0730417Z > Task :data:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.0731978Z > Task :data:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1722313Z > Task :domain:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1725075Z > Task :data:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1725842Z > Task :flagkit:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1726650Z > Task :flagkit:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1727513Z > Task :flagkit:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1728347Z > Task :i18n-ank:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1729097Z > Task :i18n:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1729896Z > Task :i18n-ank:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1730753Z > Task :i18n:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1731858Z > Task :i18n-ank:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1733111Z > Task :i18n:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1733939Z > Task :flagkit:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1734786Z > Task :i18n-ank:releaseAssetsCopyForAGP NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1736044Z > Task :i18n:releaseAssetsCopyForAGP NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1736865Z > Task :i18n:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1737605Z > Task :i18n-ank:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1742175Z > Task :i18n-kmk:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1742905Z > Task :i18n-kmk:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1743676Z > Task :i18n-kmk:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1744795Z > Task :i18n-kmk:releaseAssetsCopyForAGP NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1745511Z > Task :i18n-sy:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1746386Z > Task :presentation-core:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1747175Z > Task :presentation-core:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1747955Z > Task :i18n-sy:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1748704Z > Task :i18n-sy:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1749478Z > Task :presentation-core:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1750259Z > Task :i18n-sy:releaseAssetsCopyForAGP NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1751453Z > Task :i18n-kmk:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1752165Z > Task :presentation-core:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1754319Z > Task :i18n-sy:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1755253Z > Task :presentation-widget:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1756405Z > Task :presentation-widget:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1757562Z > Task :presentation-widget:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1758580Z > Task :source-api:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1759432Z > Task :source-api:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1760337Z > Task :source-api:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1761181Z > Task :source-local:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1762205Z > Task :source-api:releaseAssetsCopyForAGP NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1762997Z > Task :presentation-widget:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1763783Z > Task :source-local:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1764769Z > Task :source-local:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1765882Z > Task :source-local:releaseAssetsCopyForAGP NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1766911Z > Task :telemetry:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1767814Z > Task :source-api:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1768717Z > Task :telemetry:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.1769703Z > Task :telemetry:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2678886Z > Task :source-local:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2703395Z > Task :core:archive:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2708194Z > Task :telemetry:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2713063Z > Task :core:archive:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2714305Z > Task :core:archive:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2716647Z > Task :core-metadata:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2723023Z > Task :core:common:mergeReleaseShaders
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2723887Z > Task :core:archive:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2724845Z > Task :core:common:compileReleaseShaders NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2725776Z > Task :core-metadata:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2729198Z > Task :core:common:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2733071Z > Task :core-metadata:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2734492Z > Task :i18n:compileReleaseLibraryResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2735386Z > Task :core:common:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2736218Z > Task :i18n-sy:compileReleaseLibraryResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2737258Z > Task :source-api:compileReleaseLibraryResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2738141Z > Task :data:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2739034Z > Task :core:common:compileReleaseLibraryResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2740555Z > Task :domain:compileReleaseLibraryResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2743404Z > Task :data:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2744660Z > Task :data:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2745579Z > Task :i18n-ank:compileReleaseLibraryResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2761941Z > Task :domain:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2762928Z > Task :domain:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.2763857Z > Task :domain:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:51.5678049Z > Task :app:prepareReleaseShortcutXML
+Build & Public Release	Build Release APK	2026-02-16T05:55:52.9677778Z > Task :core-metadata:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:52.9683444Z > Task :core-metadata:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:52.9688542Z > Task :core-metadata:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.1689778Z > Task :data:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.1690625Z > Task :domain:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.1691517Z > Task :data:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.1692419Z > Task :data:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.1693208Z > Task :core-metadata:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.1693961Z > Task :data:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.2693290Z > Task :domain:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.2698741Z > Task :domain:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.2699789Z > Task :core-metadata:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.2700777Z > Task :data:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.2701937Z > Task :domain:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.2702786Z > Task :core-metadata:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.2703692Z > Task :domain:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.2704570Z > Task :data:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.3702470Z > Task :core-metadata:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.4706562Z > Task :domain:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.4707555Z > Task :app:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.4708421Z > Task :data:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.4709226Z > Task :domain:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.6677838Z > Task :app:dataBindingGenBaseClassesRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.8677722Z > Task :core-metadata:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.9680000Z > Task :domain:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.9681063Z > Task :app:generateReleaseBuildConfig
+Build & Public Release	Build Release APK	2026-02-16T05:55:53.9682151Z > Task :data:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.1704623Z > Task :core-metadata:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.1705846Z > Task :core-metadata:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.1706735Z > Task :flagkit:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.1707763Z > Task :flagkit:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.1708747Z > Task :flagkit:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.1709735Z > Task :domain:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.1710560Z > Task :domain:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.1711654Z > Task :i18n:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.1712631Z > Task :flagkit:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2679054Z > Task :flagkit:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2680318Z > Task :flagkit:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2681502Z > Task :flagkit:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2682345Z > Task :app:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2683191Z > Task :flagkit:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2684029Z > Task :app:checkReleaseAarMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2684958Z > Task :app:createReleaseCompatibleScreenManifests
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2685978Z > Task :i18n:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2686905Z > Task :app:extractDeepLinksRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2687795Z > Task :i18n:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2689219Z > Task :data:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2690381Z > Task :data:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.2691934Z > Task :i18n-ank:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.3677662Z > Task :i18n:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.3679134Z > Task :i18n:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.4678027Z > Task :i18n:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.4679192Z > Task :i18n-ank:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.4680405Z > Task :i18n-ank:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.4682780Z > Task :i18n:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.4683552Z > Task :flagkit:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.4684264Z > Task :i18n:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.4685082Z > Task :i18n-ank:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.4690119Z > Task :i18n-ank:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.5694822Z > Task :i18n-ank:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.5695897Z > Task :i18n-ank:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.5696732Z > Task :flagkit:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.5697637Z > Task :i18n-ank:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.6677713Z > Task :i18n-ank:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.6682782Z > Task :i18n-ank:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.7676955Z > Task :i18n:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.7695502Z > Task :i18n:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.7696210Z > Task :i18n-ank:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.8685467Z > Task :i18n-ank:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.8691151Z > Task :i18n-ank:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.8696952Z > Task :i18n-kmk:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.8697733Z > Task :i18n-kmk:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.8701640Z > Task :i18n-kmk:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.8732071Z > Task :i18n-kmk:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.8733507Z > Task :i18n-kmk:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.8734556Z > Task :i18n-kmk:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.8736773Z > Task :i18n-kmk:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.9712462Z > Task :i18n-kmk:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.9742201Z > Task :i18n-kmk:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:54.9742810Z > Task :i18n-kmk:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.0706407Z > Task :i18n-kmk:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1717348Z > Task :i18n:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1718375Z > Task :i18n-kmk:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1719215Z > Task :i18n-kmk:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1720032Z > Task :i18n-sy:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1720909Z > Task :i18n-sy:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1722072Z > Task :i18n-sy:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1723108Z > Task :i18n-sy:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1724056Z > Task :i18n-sy:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1724906Z > Task :i18n-sy:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1725652Z > Task :i18n-sy:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.1726453Z > Task :i18n-sy:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.2677829Z > Task :i18n:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.2678979Z > Task :i18n:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.2679942Z > Task :presentation-core:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.2680962Z > Task :presentation-core:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.2682366Z > Task :presentation-core:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.2683433Z > Task :flagkit:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.2684324Z > Task :i18n-sy:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.3677767Z > Task :presentation-core:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.3679356Z > Task :i18n-sy:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.3687404Z > Task :presentation-core:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.3696464Z > Task :presentation-core:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.3701628Z > Task :presentation-core:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.3706569Z > Task :presentation-core:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.3712005Z > Task :presentation-core:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.4679722Z > Task :presentation-core:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.4684202Z > Task :i18n-sy:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5690364Z > Task :flagkit:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5716718Z > Task :flagkit:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5717478Z 
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5718140Z > Task :app:processReleaseMainManifest
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5719030Z /home/runner/work/AniZen/AniZen/app/src/main/AndroidManifest.xml:44:5-46:31 Warning:
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5720656Z 	uses-permission#com.google.android.gms.permission.AD_ID was tagged at AndroidManifest.xml:44 to remove other declarations but no other declaration present
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5721946Z 
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5722315Z > Task :presentation-widget:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5723183Z > Task :presentation-widget:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5724085Z > Task :presentation-widget:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5724864Z > Task :i18n-sy:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.5725429Z > Task :i18n-sy:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.6717659Z > Task :source-api:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.6760728Z > Task :source-api:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.6761723Z > Task :source-api:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.6762620Z > Task :presentation-widget:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.6763506Z > Task :presentation-widget:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.6764365Z > Task :presentation-widget:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.6765089Z > Task :presentation-widget:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.7729955Z > Task :presentation-widget:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.7734783Z > Task :source-api:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.7735519Z > Task :source-api:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.7736181Z > Task :source-api:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.7736780Z > Task :source-api:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.7737382Z > Task :presentation-widget:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.8677836Z > Task :presentation-widget:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.9712403Z > Task :app:processReleaseManifest
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.9713462Z > Task :source-api:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.9714442Z > Task :presentation-core:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:55.9715407Z > Task :source-api:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.0703678Z > Task :app:javaPreCompileRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.0704403Z > Task :app:extractProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.0705004Z > Task :app:mergeReleaseStartupProfile
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.0705632Z > Task :app:generateReleaseAssets UP-TO-DATE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.2684353Z > Task :presentation-core:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.2685576Z > Task :presentation-core:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.2686482Z > Task :app:mergeReleaseAssets
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.2687468Z > Task :presentation-core:compileReleaseLibraryResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.2688483Z > Task :source-api:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.3677103Z > Task :app:compressReleaseAssets FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.3683489Z > Task :source-local:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.3688628Z > Task :source-local:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.3693901Z > Task :source-local:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.6677683Z > Task :presentation-widget:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.6683678Z > Task :app:processReleaseManifestForPackage
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.6686754Z > Task :source-local:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.6689442Z > Task :source-api:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.6721971Z > Task :source-local:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.8681119Z > Task :source-api:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.8687579Z > Task :source-api:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.8691891Z > Task :source-local:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.8694416Z > Task :core-metadata:compileReleaseLibraryResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.8696971Z > Task :source-local:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.9685327Z > Task :core:archive:compileReleaseLibraryResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.9687671Z > Task :telemetry:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.9693501Z > Task :source-local:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.9696261Z > Task :source-local:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:56.9698371Z > Task :source-local:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.0676667Z > Task :app:extractReleaseVersionControlInfo
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.0682004Z > Task :app:validateSigningRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.1688053Z > Task :app:writeReleaseAppMetadata
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.1693249Z > Task :app:writeReleaseSigningConfigVersions
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.1700721Z > Task :telemetry:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.1702010Z > Task :telemetry:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.1732062Z > Task :telemetry:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.1733057Z > Task :telemetry:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.1733911Z > Task :telemetry:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2678377Z > Task :telemetry:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2679128Z > Task :telemetry:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2682321Z > Task :telemetry:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2686683Z > Task :telemetry:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2691492Z > Task :core:archive:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2696634Z > Task :core:archive:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2697786Z > Task :core:archive:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2698744Z > Task :core:archive:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2699520Z > Task :core:archive:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.2700202Z > Task :core:archive:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.3677905Z > Task :core:archive:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.3692680Z > Task :core:archive:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.3693274Z > Task :core:archive:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.3693863Z > Task :core:archive:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.3694523Z > Task :core:common:stripReleaseDebugSymbols NO-SOURCE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.3695302Z > Task :core:common:copyReleaseJniLibsProjectAndLocalJars
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.3696065Z > Task :core:common:extractDeepLinksForAarRelease FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.4677189Z > Task :presentation-widget:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.4678248Z > Task :presentation-widget:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.4679033Z > Task :telemetry:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.4679899Z > Task :telemetry:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.4680645Z > Task :telemetry:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.5694332Z > Task :core:common:extractReleaseAnnotations FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.5695515Z > Task :source-local:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.5696525Z > Task :core:common:mergeReleaseConsumerProguardFiles
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.5697399Z > Task :core:common:prepareLintJarForPublish
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.5698192Z > Task :core:common:mergeReleaseJavaResource
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.5699007Z > Task :core:common:syncReleaseLibJars FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.6677015Z > Task :core:common:bundleReleaseAar
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.6682109Z > Task :core:common:mapReleaseSourceSetPaths
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.7676700Z > Task :source-local:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.7680724Z > Task :source-local:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:57.9704162Z > Task :core:archive:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:58.1677597Z > Task :core:common:mergeReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:58.1678749Z > Task :core:archive:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:58.1684088Z > Task :core:archive:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:55:58.2677105Z > Task :core:common:verifyReleaseResources FROM-CACHE
+Build & Public Release	Build Release APK	2026-02-16T05:55:58.2682725Z > Task :core:common:assembleRelease
+Build & Public Release	Build Release APK	2026-02-16T05:56:05.0679561Z > Task :app:processReleaseResources
+Build & Public Release	Build Release APK	2026-02-16T05:56:35.0677248Z > Task :app:compileReleaseKotlin
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.2679949Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/presentation/browse/components/BaseSourceItem.kt:74:35 Unresolved reference 'MaterialTheme'.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.2686667Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/presentation/browse/components/BaseSourceItem.kt:78:13 Unresolved reference 'Text'.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.2693177Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/presentation/browse/components/BaseSourceItem.kt:82:25 Unresolved reference 'MaterialTheme'.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.2697676Z 
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.2699591Z > Task :app:compileReleaseKotlin FAILED
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.2742970Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/presentation/browse/components/BaseSourceItem.kt:125:17 Unresolved reference 'Text'.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.2745707Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/presentation/browse/components/BaseSourceItem.kt:130:29 Unresolved reference 'MaterialTheme'.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.2748266Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/presentation/browse/components/BaseSourceItem.kt:155:19 Unresolved reference 'MaterialTheme'.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.2773780Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/presentation/browse/components/BaseSourceItem.kt:159:9 Unresolved reference 'Text'.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4683751Z 
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4684919Z FAILURE: Build failed with an exception.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4685526Z 
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4686040Z * What went wrong:
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4686773Z Execution failed for task ':app:compileReleaseKotlin'.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4688124Z > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4689360Z    > Compilation error. See log for more details
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4689745Z 
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4689879Z * Try:
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4690308Z > Run with --stacktrace option to get the stack trace.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4690977Z > Run with --info or --debug option to get more log output.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4693408Z > Run with --scan to get full insights.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4694030Z > Get more help at https://help.gradle.org.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4694429Z 
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4694622Z BUILD FAILED in 1m 32s
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4695561Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_4-1771221320235.json
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4696393Z 
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4697121Z [Incubating] Problems report is available at: file:///home/runner/work/AniZen/AniZen/build/reports/problems/problems-report.html
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4698044Z 
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4698527Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4699190Z 
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4699941Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4700868Z 
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4701893Z For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+Build & Public Release	Build Release APK	2026-02-16T05:56:49.4703742Z 544 actionable tasks: 285 executed, 250 from cache, 9 up-to-date
+Build & Public Release	Build Release APK	2026-02-16T05:56:50.0270949Z ##[error]Process completed with exit code 1.
+Build & Public Release	Post Set up Gradle	﻿2026-02-16T05:56:50.0405743Z Post job cleanup.
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:50.3643382Z In post-action step
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:50.3655949Z ##[group]Stopping Gradle daemons
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:50.3657450Z Stopping Gradle daemons for /home/runner/.gradle/wrapper/dists/gradle-8.14.3-bin/cv11ve7ro1n3o1j4so8xd9n66/gradle-8.14.3
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:50.3675443Z [command]/home/runner/.gradle/wrapper/dists/gradle-8.14.3-bin/cv11ve7ro1n3o1j4so8xd9n66/gradle-8.14.3/bin/gradle --stop
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:50.9601751Z No Gradle daemons are running.
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:50.9694996Z ##[endgroup]
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:50.9696699Z Not performing cache-cleanup due to build failure
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:50.9698142Z ##[group]Caching Gradle state
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:51.9140609Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/AniZen/AniZen --files-from manifest.txt --use-compress-program zstdmt
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:55.0293620Z Sent 131072 of 2000235 (6.6%), 0.1 MBs/sec
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:55.6482872Z Sent 2000235 of 2000235 (100.0%), 0.7 MBs/sec
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:55.8918389Z Saved cache entry with key gradle-kotlin-dsl-v1-87c86419b1d2162a68fa20b8f11af355 from /home/runner/.gradle/caches/*/kotlin-dsl/accessors/*/,/home/runner/.gradle/caches/*/kotlin-dsl/scripts/*/ in 4140ms
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:56.5200228Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/AniZen/AniZen --files-from manifest.txt --use-compress-program zstdmt
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:58.6188317Z Sent 14347618 of 349891938 (4.1%), 13.7 MBs/sec
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:59.4897757Z Sent 349891938 of 349891938 (100.0%), 178.3 MBs/sec
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:59.8077394Z Saved cache entry with key gradle-home-v1|Linux-X64|build-release[16cd6cc2a04430ca045959c87cb8ce3a]-5ad23b1943c7b81345ee4fbc740f2d81d38ce128 from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 3298ms
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:59.8078857Z ##[endgroup]
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:59.8085588Z Generating Job Summary
+Build & Public Release	Post Set up Gradle	2026-02-16T05:56:59.8100028Z Completed post-action step
+Build & Public Release	Post Set up JDK	﻿2026-02-16T05:56:59.8318910Z Post job cleanup.
+Build & Public Release	Post Clone repo	﻿2026-02-16T05:57:00.0104618Z Post job cleanup.
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1086387Z [command]/usr/bin/git version
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1124869Z git version 2.52.0
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1163759Z Copying '/home/runner/.gitconfig' to '/home/runner/work/_temp/1122d216-75d2-4012-ae9d-aa2a1c85ab8b/.gitconfig'
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1174025Z Temporarily overriding HOME='/home/runner/work/_temp/1122d216-75d2-4012-ae9d-aa2a1c85ab8b' before making global git config changes
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1175483Z Adding repository directory to the temporary git global config as a safe directory
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1179545Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AniZen/AniZen
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1216802Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1250197Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1498478Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1520797Z http.https://github.com/.extraheader
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1534367Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1565876Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1807209Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Public Release	Post Clone repo	2026-02-16T05:57:00.1840055Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Public Release	Complete job	﻿2026-02-16T05:57:00.2186247Z Cleaning up orphan processes
