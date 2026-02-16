@@ -242,7 +242,12 @@ internal object ExtensionLoader {
         val appInfo = pkgInfo.applicationInfo!!
         val pkgName = pkgInfo.packageName
 
-        val extName = pkgManager.getApplicationLabel(appInfo).toString().substringAfter("Aniyomi: ")
+        val rawLabel = pkgManager.getApplicationLabel(appInfo).toString()
+        val extName = when {
+            rawLabel.startsWith("Aniyomi: ") -> rawLabel.substringAfter("Aniyomi: ")
+            rawLabel.startsWith("Anikku: ") -> rawLabel.substringAfter("Anikku: ")
+            else -> rawLabel
+        }
         val versionName = pkgInfo.versionName
         val versionCode = PackageInfoCompat.getLongVersionCode(pkgInfo)
 
@@ -390,7 +395,10 @@ internal object ExtensionLoader {
      * @param pkgInfo The package info of the application.
      */
     private fun isPackageAnExtension(pkgInfo: PackageInfo): Boolean {
-        return pkgInfo.reqFeatures.orEmpty().any { it.name == EXTENSION_FEATURE }
+        val hasFeature = pkgInfo.reqFeatures.orEmpty().any { 
+            it.name == "tachiyomi.animeextension" || it.name == "anikku.animeextension" 
+        }
+        return hasFeature || pkgInfo.applicationInfo?.metaData?.containsKey(METADATA_SOURCE_CLASS) == true
     }
 
     /**
