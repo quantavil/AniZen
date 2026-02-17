@@ -97,9 +97,7 @@ class AiManager(
             if (engine == "gemini") {
                 callGeminiStream(messages, apiKey, systemInstruction, withTools = true).collect { emit(it) }
             } else {
-                // Groq doesn't support easy streaming with tools in this setup yet, fallback to non-stream for now or implement if needed
-                val resp = callGroqWithTools(messages, apiKey, systemInstruction)
-                if (resp != null) emit(resp)
+                callGroqStream(messages, apiKey, systemInstruction, withTools = true).collect { emit(it) }
             }
         } finally {
             aiPreferences.isRequestPending().set(false)
@@ -159,8 +157,7 @@ class AiManager(
             if (engine == "gemini") {
                 callGeminiStream(listOf(ChatMessage(role = "user", content = prompt)), apiKey, "You are a senior behavioral data analyst.").collect { emit(it) }
             } else {
-                val resp = callGroq(listOf(ChatMessage(role = "user", content = prompt)), apiKey, "You are a senior behavioral data analyst.")
-                if (resp != null) emit(resp)
+                callGroqStream(listOf(ChatMessage(role = "user", content = prompt)), apiKey, "You are a senior behavioral data analyst.").collect { emit(it) }
             }
         } finally {
             aiPreferences.isRequestPending().set(false)
@@ -486,60 +483,124 @@ class AiManager(
         } catch (e: Exception) { "Groq Connection Exception: ${e.message}" }
     }
 
-    private suspend fun callGroqWithTools(messages: List<ChatMessage>, apiKey: String, systemInstruction: String? = null): String? {
-        val lastQuery = messages.last().content.lowercase()
-        val toolContext = StringBuilder()
-        if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash""".toRegex())) {
-            if (aiPreferences.aiAssistantLogs().get()) {
-                toolContext.append("\n[DIAGNOSTICS_DATA]:\n${getSanitizedLogs()}\n")
+        private suspend fun callGroqStream(
+            messages: List<ChatMessage>,
+            apiKey: String,
+            systemInstruction: String? = null,
+            withTools: Boolean = false
+        ): Flow<String> = flow {
+            val finalMessages = if (withTools) {
+                val lastQuery = messages.last().content.lowercase()
+                val toolContext = StringBuilder()
+                if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash""".toRegex())) {
+                    if (aiPreferences.aiAssistantLogs().get()) {
+                        toolContext.append("\n[DIAGNOSTICS_DATA]:\n${getSanitizedLogs()}\n")
+                    }
+                }
+                if (lastQuery.contains("""library|anime|watch|collection|have|my|list|recommend""".toRegex())) {
+                    if (aiPreferences.aiAssistantLibrary().get()) {
+                        toolContext.append("\n[USER_LIBRARY_DATA]:\n${getLibrarySummary()}\n")
+                    }
+                }
+                messages.dropLast(1) + ChatMessage("user", messages.last().content + "\n\n" + toolContext.toString())
+            } else {
+                messages
+            }
+    
+            val groqMessages = mutableListOf<GroqMessage>()
+            if (systemInstruction != null) groqMessages.add(GroqMessage(role = "system", content = systemInstruction))
+            finalMessages.forEach { msg -> groqMessages.add(GroqMessage(role = if (msg.role == "user") "user" else "assistant", content = msg.content)) }
+            
+            val requestBody = GroqRequest(messages = groqMessages, model = "groq/compound-mini", stream = true)
+            val request = Request.Builder()
+                .url("https://api.groq.com/openai/v1/chat/completions")
+                .header("Authorization", "Bearer $apiKey")
+                .header("Content-Type", "application/json")
+                .post(json.encodeToString(GroqRequest.serializer(), requestBody).toRequestBody(jsonMediaType))
+                .build()
+    
+            try {
+                val timedClient = networkHelper.client.newBuilder()
+                    .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                    .readTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
+                    .build()
+                
+                timedClient.newCall(request).execute().use { response ->
+                    if (!response.isSuccessful) {
+                        emit("Groq Error ${response.code}")
+                        return@flow
+                    }
+                    val reader = response.body.source().inputStream().bufferedReader()
+                    while (true) {
+                        val line = reader.readLine() ?: break
+                        if (line.startsWith("data: ")) {
+                            val data = line.substring(6).trim()
+                            if (data == "[DONE]") break
+                            try {
+                                val chunk = json.decodeFromString(GroqStreamResponse.serializer(), data)
+                                val text = chunk.choices.firstOrNull()?.delta?.content
+                                if (text != null) emit(text)
+                            } catch (e: Exception) {
+                                // Skip partial or invalid JSON
+                            }
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                emit("Groq Exception: ${e.message}")
             }
         }
-        if (lastQuery.contains("""library|anime|watch|collection|have|my|list|recommend""".toRegex())) {
-            if (aiPreferences.aiAssistantLibrary().get()) {
-                toolContext.append("\n[USER_LIBRARY_DATA]:\n${getLibrarySummary()}\n")
-            }
-        }
-        val finalMessages = messages.dropLast(1) + ChatMessage("user", messages.last().content + "\n\n" + toolContext.toString())
-        return callGroq(finalMessages, apiKey, systemInstruction)
+    
+        @Serializable
+        data class ChatMessage(val role: String, val content: String)
+    
+        @Serializable
+        private data class GeminiRequest(
+            val contents: List<GeminiContent>, 
+            @kotlinx.serialization.SerialName("system_instruction") val systemInstruction: GeminiContent? = null,
+            val safetySettings: List<GeminiSafetySetting>? = null
+        )
+    
+        @Serializable
+        private data class GeminiSafetySetting(
+            val category: String,
+            val threshold: String
+        )
+    
+        @Serializable
+        private data class GeminiContent(val parts: List<GeminiPart>, val role: String? = null)
+    
+        @Serializable
+        private data class GeminiPart(val text: String)
+    
+        @Serializable
+        private data class GeminiResponse(val candidates: List<GeminiCandidate>)
+    
+        @Serializable
+        private data class GeminiCandidate(val content: GeminiContent)
+    
+        @Serializable
+        private data class GroqRequest(
+            val messages: List<GroqMessage>, 
+            val model: String,
+            val stream: Boolean = false
+        )
+    
+        @Serializable
+        private data class GroqMessage(val role: String, val content: String)
+    
+        @Serializable
+        private data class GroqResponse(val choices: List<GroqChoice>)
+    
+        @Serializable
+        private data class GroqChoice(val message: GroqMessage)
+    
+        @Serializable
+        private data class GroqStreamResponse(val choices: List<GroqStreamChoice>)
+    
+        @Serializable
+        private data class GroqStreamChoice(val delta: GroqStreamDelta)
+    
+        @Serializable
+        private data class GroqStreamDelta(val content: String? = null)
     }
-
-    @Serializable
-    data class ChatMessage(val role: String, val content: String)
-
-    @Serializable
-    private data class GeminiRequest(
-        val contents: List<GeminiContent>, 
-        @kotlinx.serialization.SerialName("system_instruction") val systemInstruction: GeminiContent? = null,
-        val safetySettings: List<GeminiSafetySetting>? = null
-    )
-
-    @Serializable
-    private data class GeminiSafetySetting(
-        val category: String,
-        val threshold: String
-    )
-
-    @Serializable
-    private data class GeminiContent(val parts: List<GeminiPart>, val role: String? = null)
-
-    @Serializable
-    private data class GeminiPart(val text: String)
-
-    @Serializable
-    private data class GeminiResponse(val candidates: List<GeminiCandidate>)
-
-    @Serializable
-    private data class GeminiCandidate(val content: GeminiContent)
-
-    @Serializable
-    private data class GroqRequest(val messages: List<GroqMessage>, val model: String)
-
-    @Serializable
-    private data class GroqMessage(val role: String, val content: String)
-
-    @Serializable
-    private data class GroqResponse(val choices: List<GroqChoice>)
-
-    @Serializable
-    private data class GroqChoice(val message: GroqMessage)
-}

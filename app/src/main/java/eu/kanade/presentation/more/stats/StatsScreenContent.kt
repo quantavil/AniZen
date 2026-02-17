@@ -217,11 +217,6 @@ private fun AiIntelligenceSection(
     var expanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
     
-    // Auto-expand when analysis is received
-    LaunchedEffect(analysis) {
-        if (analysis != null) expanded = true
-    }
-
     StatsSectionCard(
         title = "Behavioral Analytics",
         modifier = Modifier.clickable(enabled = analysis != null) { expanded = !expanded }

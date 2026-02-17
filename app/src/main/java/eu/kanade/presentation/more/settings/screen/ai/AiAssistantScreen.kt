@@ -122,9 +122,12 @@ class AiAssistantScreen : Screen() {
             errorCount = aiManager.getErrorCount()
         }
 
-        LaunchedEffect(state.messages.size, state.isLoading) {
-            if (state.messages.isNotEmpty()) {
-                listState.animateScrollToItem(state.messages.size - 1)
+        LaunchedEffect(state.messages.size, state.isLoading, state.streamingMessage) {
+            if (state.messages.isNotEmpty() || state.streamingMessage != null) {
+                val lastIndex = if (state.streamingMessage != null) state.messages.size else state.messages.size - 1
+                if (lastIndex >= 0) {
+                    listState.animateScrollToItem(lastIndex)
+                }
             }
         }
 
