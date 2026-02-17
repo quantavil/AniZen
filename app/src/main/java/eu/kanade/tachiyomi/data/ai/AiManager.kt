@@ -421,23 +421,23 @@ class AiManager(
                 .readTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
                 .build()
             
-            timedClient.newCall(request).execute().use { response ->
+                timedClient.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) {
                     emit("Gemini Error ${response.code}")
                     return@flow
                 }
-                val reader = response.body.source().inputStream().bufferedReader()
-                while (true) {
-                    val line = reader.readLine() ?: break
+                val source = response.body.source()
+                while (!source.exhausted()) {
+                    val line = source.readUtf8Line() ?: break
                     if (line.startsWith("data: ")) {
-                        val data = line.substring(6)
+                        val data = line.substring(6).trim()
                         if (data == "[DONE]") break
                         try {
                             val chunk = json.decodeFromString(GeminiResponse.serializer(), data)
                             val text = chunk.candidates.firstOrNull()?.content?.parts?.firstOrNull()?.text
                             if (text != null) emit(text)
                         } catch (e: Exception) {
-                            // Skip partial or invalid JSON in stream
+                            // Skip partial or invalid JSON
                         }
                     }
                 }
@@ -526,26 +526,26 @@ class AiManager(
                     .build()
                 
                 timedClient.newCall(request).execute().use { response ->
-                    if (!response.isSuccessful) {
-                        emit("Groq Error ${response.code}")
-                        return@flow
-                    }
-                    val reader = response.body.source().inputStream().bufferedReader()
-                    while (true) {
-                        val line = reader.readLine() ?: break
-                        if (line.startsWith("data: ")) {
-                            val data = line.substring(6).trim()
-                            if (data == "[DONE]") break
-                            try {
-                                val chunk = json.decodeFromString(GroqStreamResponse.serializer(), data)
-                                val text = chunk.choices.firstOrNull()?.delta?.content
-                                if (text != null) emit(text)
-                            } catch (e: Exception) {
-                                // Skip partial or invalid JSON
-                            }
+                if (!response.isSuccessful) {
+                    emit("Groq Error ${response.code}")
+                    return@flow
+                }
+                val source = response.body.source()
+                while (!source.exhausted()) {
+                    val line = source.readUtf8Line() ?: break
+                    if (line.startsWith("data: ")) {
+                        val data = line.substring(6).trim()
+                        if (data == "[DONE]") break
+                        try {
+                            val chunk = json.decodeFromString(GroqStreamResponse.serializer(), data)
+                            val text = chunk.choices.firstOrNull()?.delta?.content
+                            if (text != null) emit(text)
+                        } catch (e: Exception) {
+                            // Skip partial or invalid JSON
                         }
                     }
                 }
+            }
             } catch (e: Exception) {
                 emit("Groq Exception: ${e.message}")
             }
