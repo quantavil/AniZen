@@ -264,7 +264,18 @@ class AiAssistantScreen : Screen() {
                                     )
                                 }
                             }
-                            if (state.isLoading) {
+                            state.streamingMessage?.let { streamingContent ->
+                                item {
+                                    AssistantMessage(
+                                        content = streamingContent,
+                                        onCopy = {
+                                            context.copyToClipboard("AniZen AI", it)
+                                            scope.launch { snackbarHostState.showSnackbar("Copied to clipboard") }
+                                        }
+                                    )
+                                }
+                            }
+                            if (state.isLoading && state.streamingMessage == null) {
                                 item {
                                     ProcessingIndicator(input)
                                 }
@@ -396,19 +407,13 @@ class AiAssistantScreen : Screen() {
     @Composable
     private fun UserMessage(content: String) {
         Box(modifier = Modifier.fillMaxWidth().padding(start = 48.dp, bottom = 4.dp), contentAlignment = Alignment.CenterEnd) {
-            Surface(
-                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.8f), // Secondary 30% usage
-                shape = RoundedCornerShape(24.dp, 24.dp, 4.dp, 24.dp),
-                modifier = Modifier.widthIn(min = 40.dp)
-            ) {
-                SelectionContainer {
-                    Text(
-                        text = content,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
+            SelectionContainer {
+                Text(
+                    text = content,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                    style = MaterialTheme.typography.bodyLarge
+                )
             }
         }
     }
@@ -453,15 +458,9 @@ class AiAssistantScreen : Screen() {
                 }
             }
             
-            Surface(
-                color = MaterialTheme.colorScheme.surfaceContainerLow, // Secondary 30% area
-                shape = RoundedCornerShape(4.dp, 24.dp, 24.dp, 24.dp),
-                modifier = Modifier.fillMaxWidth().padding(end = 48.dp)
-            ) {
-                Box(modifier = Modifier.padding(16.dp)) {
-                    SelectionContainer {
-                        MarkdownRender(content = content)
-                    }
+            Box(modifier = Modifier.fillMaxWidth().padding(end = 48.dp).padding(horizontal = 16.dp)) {
+                SelectionContainer {
+                    MarkdownRender(content = content)
                 }
             }
         }

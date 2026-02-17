@@ -22,5 +22,6 @@ sealed interface StatsScreenState {
         val infrastructure: StatsData.InfrastructureAnalytics? = null,
         val aiAnalysis: String? = null,
         val isAiLoading: Boolean = false,
+        val streamingAnalysis: String? = null,
     ) : StatsScreenState
 }

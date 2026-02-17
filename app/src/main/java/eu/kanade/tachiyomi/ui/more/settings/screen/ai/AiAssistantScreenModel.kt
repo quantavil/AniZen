@@ -173,25 +173,35 @@ class AiAssistantScreenModel(
             }
 
             // 2. Update Loading State
-            mutableState.update { it.copy(isLoading = true) }
+            mutableState.update { it.copy(isLoading = true, streamingMessage = "") }
 
-            // 3. Call AI
+            // 3. Call AI with streaming
             val history = state.value.messages.map { AiManager.ChatMessage(it.role, it.content) }
-            val response = aiManager.chatWithAssistant(query, history)
-
-            // 4. Save AI Response
-            if (response != null) {
-                chatRepository.insertMessage(sessionId, "model", response)
-                
-                // 5. Update Session Title if it's the first message from human
-                // Note: state.value.messages already includes the user query and potentially the AI response
-                val userMessages = state.value.messages.filter { it.role == "user" }
-                if (userMessages.size == 1) {
-                    updateSessionTitle(sessionId, query)
+            val fullResponse = StringBuilder()
+            
+            try {
+                aiManager.chatWithAssistantStream(query, history).collect { chunk ->
+                    fullResponse.append(chunk)
+                    mutableState.update { it.copy(streamingMessage = fullResponse.toString()) }
                 }
-            }
 
-            mutableState.update { it.copy(isLoading = false) }
+                // 4. Save AI Response once complete
+                val response = fullResponse.toString()
+                if (response.isNotBlank()) {
+                    chatRepository.insertMessage(sessionId, "model", response)
+                    
+                    // 5. Update Session Title if it's the first message from human
+                    val userMessages = state.value.messages.filter { it.role == "user" }
+                    if (userMessages.size == 1) {
+                        updateSessionTitle(sessionId, query)
+                    }
+                }
+            } catch (e: Exception) {
+                logcat(LogPriority.ERROR, e)
+                chatRepository.insertMessage(sessionId, "model", "System error during uplink: ${e.message}")
+            } finally {
+                mutableState.update { it.copy(isLoading = false, streamingMessage = null) }
+            }
         }
     }
 
@@ -228,5 +238,6 @@ class AiAssistantScreenModel(
         val messages: ImmutableList<ChatMessage> = persistentListOf(),
         val isLoading: Boolean = false,
         val selectedSessionIds: Set<Long> = emptySet(),
+        val streamingMessage: String? = null,
     )
 }

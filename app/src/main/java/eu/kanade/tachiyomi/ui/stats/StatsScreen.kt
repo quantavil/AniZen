@@ -54,6 +54,7 @@ object StatsScreen : Screen {
                     state = state as StatsScreenState.SuccessAnime,
                     paddingValues = contentPadding,
                     onGenerateAiAnalysis = animeScreenModel::generateAiAnalysis,
+                    onRegenerateAiAnalysis = animeScreenModel::regenerateAiAnalysis,
                     onClickExtensionReport = {
                         val report = (state as? StatsScreenState.SuccessAnime)?.infrastructure?.healthReport
                         if (report != null) {

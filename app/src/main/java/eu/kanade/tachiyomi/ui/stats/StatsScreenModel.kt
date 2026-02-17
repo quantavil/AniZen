@@ -204,7 +204,7 @@ class StatsScreenModel(
                     scores = scoreDistribution,
                     statuses = statusBreakdown,
                     infrastructure = infrastructure,
-                    aiAnalysis = null,
+                    aiAnalysis = aiPreferences.lastStatsAnalysis().get().takeIf { it.isNotBlank() },
                     isAiLoading = false,
                 )
             }
@@ -215,15 +215,29 @@ class StatsScreenModel(
         val currentState = state.value as? StatsScreenState.SuccessAnime ?: return
         if (currentState.aiAnalysis != null || currentState.isAiLoading) return
 
+        startAiAnalysis(currentState)
+    }
+
+    fun regenerateAiAnalysis() {
+        val currentState = state.value as? StatsScreenState.SuccessAnime ?: return
+        if (currentState.isAiLoading) return
+
+        startAiAnalysis(currentState)
+    }
+
+    private fun startAiAnalysis(currentState: StatsScreenState.SuccessAnime) {
         mutableState.update {
-            if (it is StatsScreenState.SuccessAnime) it.copy(isAiLoading = true) else it
+            if (it is StatsScreenState.SuccessAnime) it.copy(
+                isAiLoading = true, 
+                streamingAnalysis = "",
+                aiAnalysis = null
+            ) else it
         }
 
         screenModelScope.launchIO {
             val animelibAnime = getAnimelibAnime.await()
-            val distinctLibraryAnime = animelibAnime.fastDistinctBy { it.id }
-            val analysis = fetchAiAnalysis(
-                distinctLibraryAnime,
+            val summary = prepareSummary(
+                animelibAnime.fastDistinctBy { it.id },
                 currentState.episodes,
                 currentState.trackers,
                 currentState.extensions,
@@ -231,13 +245,74 @@ class StatsScreenModel(
                 currentState.scores,
                 currentState.statuses
             )
-            mutableState.update {
-                if (it is StatsScreenState.SuccessAnime) it.copy(
-                    aiAnalysis = analysis, 
-                    isAiLoading = false
-                ) else it
+
+            val fullAnalysis = StringBuilder()
+            try {
+                aiManager.getStatisticsAnalysisStream(summary).collect { chunk ->
+                    fullAnalysis.append(chunk)
+                    mutableState.update {
+                        if (it is StatsScreenState.SuccessAnime) it.copy(streamingAnalysis = fullAnalysis.toString()) else it
+                    }
+                }
+
+                val finalResult = fullAnalysis.toString()
+                if (finalResult.isNotBlank()) {
+                    aiPreferences.lastStatsAnalysis().set(finalResult)
+                    mutableState.update {
+                        if (it is StatsScreenState.SuccessAnime) it.copy(
+                            aiAnalysis = finalResult,
+                            streamingAnalysis = null,
+                            isAiLoading = false
+                        ) else it
+                    }
+                }
+            } catch (e: Exception) {
+                mutableState.update {
+                    if (it is StatsScreenState.SuccessAnime) it.copy(
+                        isAiLoading = false,
+                        streamingAnalysis = null
+                    ) else it
+                }
             }
         }
+    }
+
+    private fun prepareSummary(
+        animeList: List<LibraryAnime>,
+        episodes: StatsData.Episodes,
+        trackers: StatsData.Trackers,
+        extensions: StatsData.ExtensionUsage,
+        genres: StatsData.GenreAffinity,
+        scores: StatsData.ScoreDistribution,
+        statuses: StatsData.StatusBreakdown,
+    ): String {
+        val summary = StringBuilder()
+        summary.append("Total Anime: ").append(animeList.size).append("\n")
+        summary.append("Sources Count: ").append(trackers.sourceCount).append("\n")
+        summary.append("Status Breakdown: Completed=").append(statuses.completedCount)
+            .append(", Ongoing=").append(statuses.ongoingCount)
+            .append(", Dropped=").append(statuses.droppedCount)
+            .append(", OnHold=").append(statuses.onHoldCount).append("\n")
+        
+        val scoreDist = scores.distribution.entries.joinToString { entry -> 
+            entry.key.toString() + ": " + entry.value.toString() 
+        }
+        summary.append("Score Distribution: ").append(scoreDist).append("\n")
+        
+        summary.append("Total Episodes Watched: ").append(episodes.readEpisodeCount).append("\n")
+        
+        val extUsage = extensions.topExtensions.joinToString { info ->
+            info.name + " (" + (info.repo ?: "Unknown Repo") + ")"
+        }
+        summary.append("Top Extensions (with repos): ").append(extUsage).append("\n")
+        
+        val favGenres = genres.genreScores.joinToString { it.first }
+        summary.append("Favorite Genres: ").append(favGenres).append("\n")
+        
+        val recentTitles = animeList.take(10).joinToString { it.anime.title }
+        summary.append("Recent Highlights: ").append(recentTitles).append("\n")
+
+        return summary.toString()
     }
 
     private fun calculateInfrastructureAnalytics(

@@ -6,12 +6,17 @@ import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.network.NetworkHelper
 import com.hippo.unifile.UniFile
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
 import tachiyomi.core.common.util.lang.withIOContext
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -40,14 +45,21 @@ class AiManager(
     }
 
     suspend fun chatWithAssistant(query: String, history: List<ChatMessage>): String? {
-        if (!aiPreferences.enableAi().get() || !aiPreferences.enableAiAssistant().get()) return null
+        val result = StringBuilder()
+        chatWithAssistantStream(query, history).collect { result.append(it) }
+        return result.toString().ifBlank { null }
+    }
+
+    fun chatWithAssistantStream(query: String, history: List<ChatMessage>): Flow<String> = flow {
+        if (!aiPreferences.enableAi().get() || !aiPreferences.enableAiAssistant().get()) return@flow
         
-        // 1. Stability & Kill Switch Check
         if (isCircuitBreakerTripped()) {
-            return "Stability Alert: AI temporarily disabled due to detected app instability. [RESET_REQUIRED]"
+            emit("Stability Alert: AI temporarily disabled due to detected app instability. [RESET_REQUIRED]")
+            return@flow
         }
         if (isRemoteKillSwitchActive()) {
-            return "Service Maintenance: AI Assistant is currently offline."
+            emit("Service Maintenance: AI Assistant is currently offline.")
+            return@flow
         }
 
         val engine = aiPreferences.aiEngine().get()
@@ -55,7 +67,10 @@ class AiManager(
             aiPreferences.geminiApiKey().get()
         } else {
             aiPreferences.groqApiKey().get()
-        }.ifBlank { return "Please set an API Key in Settings > Advanced Analytics" }
+        }.ifBlank { 
+            emit("Please set an API Key in Settings > Advanced Analytics")
+            return@flow 
+        }
 
         val customPrompt = aiPreferences.aiSystemPrompt().get()
         val defaultSystemInstruction = """
@@ -76,21 +91,20 @@ class AiManager(
         val messages = history.toMutableList()
         messages.add(ChatMessage(role = "user", content = query))
 
-        // 2. Track Request State (Backoff for crashes)
         aiPreferences.isRequestPending().set(true)
         
-        val response = try {
+        try {
             if (engine == "gemini") {
-                callGeminiWithTools(messages, apiKey, systemInstruction)
+                callGeminiStream(messages, apiKey, systemInstruction, withTools = true).collect { emit(it) }
             } else {
-                callGroqWithTools(messages, apiKey, systemInstruction)
+                // Groq doesn't support easy streaming with tools in this setup yet, fallback to non-stream for now or implement if needed
+                val resp = callGroqWithTools(messages, apiKey, systemInstruction)
+                if (resp != null) emit(resp)
             }
         } finally {
             aiPreferences.isRequestPending().set(false)
             recordRequestSuccess()
         }
-        
-        return response
     }
 
     private suspend fun getLibrarySummary(): String {
@@ -108,17 +122,22 @@ class AiManager(
     }
 
     suspend fun getStatisticsAnalysis(statsSummary: String): String? {
-        if (!aiPreferences.enableAi().get() || !aiPreferences.enableAiStatistics().get()) return null
+        val result = StringBuilder()
+        getStatisticsAnalysisStream(statsSummary).collect { result.append(it) }
+        return result.toString().ifBlank { null }
+    }
+
+    fun getStatisticsAnalysisStream(statsSummary: String): Flow<String> = flow {
+        if (!aiPreferences.enableAi().get() || !aiPreferences.enableAiStatistics().get()) return@flow
         
-        // Circuit Breaker for Stats too
-        if (isCircuitBreakerTripped()) return null
+        if (isCircuitBreakerTripped()) return@flow
 
         val engine = aiPreferences.aiEngine().get()
         val apiKey = if (engine == "gemini") {
             aiPreferences.geminiApiKey().get()
         } else {
             aiPreferences.groqApiKey().get()
-        }.ifBlank { return null }
+        }.ifBlank { return@flow }
 
         val prompt = """
             Generate a 'System Behavioral Profile' based on the following data.
@@ -136,17 +155,17 @@ class AiManager(
         """.trimIndent()
 
         aiPreferences.isRequestPending().set(true)
-        val response = try {
+        try {
             if (engine == "gemini") {
-                callGemini(listOf(ChatMessage(role = "user", content = prompt)), apiKey, "You are a senior behavioral data analyst.")
+                callGeminiStream(listOf(ChatMessage(role = "user", content = prompt)), apiKey, "You are a senior behavioral data analyst.").collect { emit(it) }
             } else {
-                callGroq(listOf(ChatMessage(role = "user", content = prompt)), apiKey, "You are a senior behavioral data analyst.")
+                val resp = callGroq(listOf(ChatMessage(role = "user", content = prompt)), apiKey, "You are a senior behavioral data analyst.")
+                if (resp != null) emit(resp)
             }
         } finally {
             aiPreferences.isRequestPending().set(false)
             recordRequestSuccess()
         }
-        return response
     }
 
     private fun isCircuitBreakerTripped(): Boolean {
@@ -304,46 +323,6 @@ class AiManager(
         else installed.joinToString("\n") { "- ${it.name} (${it.pkgName}) v${it.versionName} [Obsolete: ${it.isObsolete}, Update: ${it.hasUpdate}]" }
     }
 
-    private suspend fun callGeminiWithTools(messages: List<ChatMessage>, apiKey: String, systemInstruction: String? = null): String? {
-        val lastQuery = messages.last().content.lowercase()
-        val toolContext = StringBuilder()
-        
-        if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash|die|dead""".toRegex())) {
-            if (aiPreferences.aiAssistantLogs().get()) {
-                toolContext.append("\n[DIAGNOSTICS_DATA]:\n${getSanitizedLogs()}\n")
-            }
-            toolContext.append("\n[NAVIGATION_MAP]:\n${getAppMap()}\n")
-            toolContext.append("\n[EXTENSIONS_STATUS]:\n${getExtensionStatusSummary()}\n")
-            toolContext.append("\n[ENVIRONMENT]: ${getDeviceInfo()}\n")
-        }
-
-        if (lastQuery.contains("""library|anime|watch|collection|have|my|list|recommend""".toRegex())) {
-            if (aiPreferences.aiAssistantLibrary().get()) {
-                toolContext.append("\n[USER_LIBRARY_DATA]:\n${getLibrarySummary()}\n")
-            }
-        }
-        
-        val finalMessages = messages.dropLast(1) + ChatMessage("user", messages.last().content + "\n\n" + toolContext.toString())
-        return callGemini(finalMessages, apiKey, systemInstruction)
-    }
-
-    private suspend fun callGroqWithTools(messages: List<ChatMessage>, apiKey: String, systemInstruction: String? = null): String? {
-        val lastQuery = messages.last().content.lowercase()
-        val toolContext = StringBuilder()
-        if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash""".toRegex())) {
-            if (aiPreferences.aiAssistantLogs().get()) {
-                toolContext.append("\n[DIAGNOSTICS_DATA]:\n${getSanitizedLogs()}\n")
-            }
-        }
-        if (lastQuery.contains("""library|anime|watch|collection|have|my|list|recommend""".toRegex())) {
-            if (aiPreferences.aiAssistantLibrary().get()) {
-                toolContext.append("\n[USER_LIBRARY_DATA]:\n${getLibrarySummary()}\n")
-            }
-        }
-        val finalMessages = messages.dropLast(1) + ChatMessage("user", messages.last().content + "\n\n" + toolContext.toString())
-        return callGroq(finalMessages, apiKey, systemInstruction)
-    }
-
     private fun getDeviceInfo(): String = "Model: ${android.os.Build.MODEL}, SDK: ${android.os.Build.VERSION.SDK_INT}, App: AniZen"
 
     suspend fun getErrorCount(): Int = withIOContext {
@@ -391,8 +370,36 @@ class AiManager(
         } catch (e: Exception) { 0 }
     }
 
-    private suspend fun callGemini(messages: List<ChatMessage>, apiKey: String, systemInstruction: String? = null): String? = withIOContext {
-        val geminiContents = messages.map { msg ->
+    private suspend fun callGeminiStream(
+        messages: List<ChatMessage>, 
+        apiKey: String, 
+        systemInstruction: String? = null,
+        withTools: Boolean = false
+    ): Flow<String> = flow {
+        val finalMessages = if (withTools) {
+            val lastQuery = messages.last().content.lowercase()
+            val toolContext = StringBuilder()
+            
+            if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash|die|dead""".toRegex())) {
+                if (aiPreferences.aiAssistantLogs().get()) {
+                    toolContext.append("\n[DIAGNOSTICS_DATA]:\n${getSanitizedLogs()}\n")
+                }
+                toolContext.append("\n[NAVIGATION_MAP]:\n${getAppMap()}\n")
+                toolContext.append("\n[EXTENSIONS_STATUS]:\n${getExtensionStatusSummary()}\n")
+                toolContext.append("\n[ENVIRONMENT]: ${getDeviceInfo()}\n")
+            }
+
+            if (lastQuery.contains("""library|anime|watch|collection|have|my|list|recommend""".toRegex())) {
+                if (aiPreferences.aiAssistantLibrary().get()) {
+                    toolContext.append("\n[USER_LIBRARY_DATA]:\n${getLibrarySummary()}\n")
+                }
+            }
+            messages.dropLast(1) + ChatMessage("user", messages.last().content + "\n\n" + toolContext.toString())
+        } else {
+            messages
+        }
+
+        val geminiContents = finalMessages.map { msg ->
             GeminiContent(parts = listOf(GeminiPart(text = msg.content)), role = if (msg.role == "user") "user" else "model")
         }
         val requestBody = GeminiRequest(
@@ -406,23 +413,40 @@ class AiManager(
             )
         )
         val request = Request.Builder()
-            .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=$apiKey")
+            .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:streamGenerateContent?alt=sse&key=$apiKey")
             .header("Content-Type", "application/json")
             .post(json.encodeToString(GeminiRequest.serializer(), requestBody).toRequestBody(jsonMediaType))
             .build()
+
         try {
             val timedClient = networkHelper.client.newBuilder()
                 .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
-                .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .readTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
                 .build()
-            timedClient.newCall(request).execute().use {
-                val bodyString = it.body.string()
-                if (!it.isSuccessful) return@withIOContext "Gemini Error ${it.code}: ${it.message}"
-                val geminiResponse = json.decodeFromString(GeminiResponse.serializer(), bodyString)
-                geminiResponse.candidates.firstOrNull()?.content?.parts?.firstOrNull()?.text?.trim() 
-                    ?: "Gemini returned no content. (Safety filters or empty response)"
+            
+            timedClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) {
+                    emit("Gemini Error ${response.code}")
+                    return@flow
+                }
+                val reader = response.body.source().inputStream().bufferedReader()
+                reader.forEachLine { line ->
+                    if (line.startsWith("data: ")) {
+                        val data = line.substring(6)
+                        if (data == "[DONE]") return@forEachLine
+                        try {
+                            val chunk = json.decodeFromString(GeminiResponse.serializer(), data)
+                            val text = chunk.candidates.firstOrNull()?.content?.parts?.firstOrNull()?.text
+                            if (text != null) emit(text)
+                        } catch (e: Exception) {
+                            // Skip partial or invalid JSON in stream
+                        }
+                    }
+                }
             }
-        } catch (e: Exception) { "Gemini Exception: ${e.message}" }
+        } catch (e: Exception) {
+            emit("Gemini Exception: ${e.message}")
+        }
     }
 
     private suspend fun callGroq(messages: List<ChatMessage>, apiKey: String, systemInstruction: String? = null): String? = withIOContext {
@@ -459,6 +483,23 @@ class AiManager(
                 answer
             }
         } catch (e: Exception) { "Groq Connection Exception: ${e.message}" }
+    }
+
+    private suspend fun callGroqWithTools(messages: List<ChatMessage>, apiKey: String, systemInstruction: String? = null): String? {
+        val lastQuery = messages.last().content.lowercase()
+        val toolContext = StringBuilder()
+        if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash""".toRegex())) {
+            if (aiPreferences.aiAssistantLogs().get()) {
+                toolContext.append("\n[DIAGNOSTICS_DATA]:\n${getSanitizedLogs()}\n")
+            }
+        }
+        if (lastQuery.contains("""library|anime|watch|collection|have|my|list|recommend""".toRegex())) {
+            if (aiPreferences.aiAssistantLibrary().get()) {
+                toolContext.append("\n[USER_LIBRARY_DATA]:\n${getLibrarySummary()}\n")
+            }
+        }
+        val finalMessages = messages.dropLast(1) + ChatMessage("user", messages.last().content + "\n\n" + toolContext.toString())
+        return callGroq(finalMessages, apiKey, systemInstruction)
     }
 
     @Serializable

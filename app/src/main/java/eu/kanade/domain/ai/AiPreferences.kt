@@ -25,6 +25,7 @@ class AiPreferences(
 
     // Statistics
     fun enableAiStatistics() = preferenceStore.getBoolean("enable_ai_statistics", true)
+    fun lastStatsAnalysis() = preferenceStore.getString("last_stats_analysis", "")
 
     // Profile
     fun profilePhotoUri() = preferenceStore.getString("profile_photo_uri", "")

@@ -81,6 +81,7 @@ fun StatsScreenContent(
     state: StatsScreenState.SuccessAnime,
     paddingValues: PaddingValues,
     onGenerateAiAnalysis: () -> Unit,
+    onRegenerateAiAnalysis: () -> Unit,
     onClickExtensionReport: () -> Unit,
 ) {
     val statListState = rememberLazyListState()
@@ -99,9 +100,10 @@ fun StatsScreenContent(
 
         item {
             AiIntelligenceSection(
-                analysis = state.aiAnalysis,
+                analysis = state.aiAnalysis ?: state.streamingAnalysis,
                 isLoading = state.isAiLoading,
-                onGenerate = onGenerateAiAnalysis
+                onGenerate = onGenerateAiAnalysis,
+                onRegenerate = onRegenerateAiAnalysis
             )
         }
 
@@ -202,8 +204,10 @@ private fun AiIntelligenceSection(
     analysis: String?,
     isLoading: Boolean,
     onGenerate: () -> Unit,
+    onRegenerate: () -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
+    val context = LocalContext.current
     
     // Auto-expand when analysis is received
     LaunchedEffect(analysis) {
@@ -233,7 +237,7 @@ private fun AiIntelligenceSection(
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = when {
-                            isLoading -> "Processing system data..."
+                            isLoading && analysis.isNullOrBlank() -> "Processing system data..."
                             analysis != null -> "Analytical Summary"
                             else -> "Generate behavioral insight"
                         },
@@ -249,31 +253,58 @@ private fun AiIntelligenceSection(
                     }
                 }
                 
-                if (analysis == null) {
+                if (analysis == null && isLoading) {
+                    androidx.compose.material3.CircularProgressIndicator(
+                        modifier = Modifier.size(16.dp),
+                        strokeWidth = 2.dp,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                } else if (analysis == null) {
                     androidx.compose.material3.TextButton(
                         onClick = onGenerate,
-                        enabled = !isLoading,
                         modifier = Modifier.padding(start = 8.dp)
                     ) {
-                        if (isLoading) {
-                            androidx.compose.material3.CircularProgressIndicator(
-                                modifier = Modifier.size(16.dp),
-                                strokeWidth = 2.dp,
-                                color = MaterialTheme.colorScheme.primary
+                        Text("Generate")
+                    }
+                } else {
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        IconButton(
+                            onClick = {
+                                context.copyToClipboard("AniZen AI Analysis", analysis)
+                            },
+                            modifier = Modifier.size(32.dp)
+                        ) {
+                            Icon(
+                                imageVector = androidx.compose.material.icons.outlined.ContentCopy,
+                                contentDescription = "Copy",
+                                modifier = Modifier.size(18.dp),
+                                tint = MaterialTheme.colorScheme.primary
                             )
-                        } else {
-                            Text("Generate")
+                        }
+                        IconButton(
+                            onClick = onRegenerate,
+                            enabled = !isLoading,
+                            modifier = Modifier.size(32.dp)
+                        ) {
+                            Icon(
+                                imageVector = androidx.compose.material.icons.outlined.Refresh,
+                                contentDescription = "Regenerate",
+                                modifier = Modifier.size(18.dp),
+                                tint = if (isLoading) MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f) else MaterialTheme.colorScheme.primary
+                            )
                         }
                     }
                 }
             }
             if (expanded && analysis != null) {
                 HorizontalDivider(modifier = Modifier.alpha(0.2f))
-                Box(modifier = Modifier.fillMaxWidth().padding(MaterialTheme.padding.small)) {
-                    MarkdownRender(
-                        content = analysis,
-                        modifier = Modifier.fillMaxWidth()
-                    )
+                Box(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                    androidx.compose.foundation.text.selection.SelectionContainer {
+                        MarkdownRender(
+                            content = analysis,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
                 }
             }
         }
