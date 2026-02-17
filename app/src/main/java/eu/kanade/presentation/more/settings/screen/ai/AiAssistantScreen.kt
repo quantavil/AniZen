@@ -467,7 +467,7 @@ class AiAssistantScreen : Screen() {
                 }
             }
             
-            Box(modifier = Modifier.fillMaxWidth().padding(end = 48.dp).padding(horizontal = 16.dp)) {
+            Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)) {
                 SelectionContainer {
                     MarkdownRender(content = content)
                 }
