@@ -407,13 +407,19 @@ class AiAssistantScreen : Screen() {
     @Composable
     private fun UserMessage(content: String) {
         Box(modifier = Modifier.fillMaxWidth().padding(start = 48.dp, bottom = 4.dp), contentAlignment = Alignment.CenterEnd) {
-            SelectionContainer {
-                Text(
-                    text = content,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-                    style = MaterialTheme.typography.bodyLarge
-                )
+            Surface(
+                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.8f),
+                shape = RoundedCornerShape(24.dp, 24.dp, 4.dp, 24.dp),
+                modifier = Modifier.widthIn(min = 40.dp)
+            ) {
+                SelectionContainer {
+                    Text(
+                        text = content,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
             }
         }
     }

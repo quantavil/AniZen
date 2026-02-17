@@ -7,6 +7,7 @@ import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import eu.kanade.core.util.fastCountNot
 import eu.kanade.core.util.fastFilterNot
+import eu.kanade.domain.ai.AiPreferences
 import eu.kanade.presentation.more.stats.StatsScreenState
 import eu.kanade.presentation.more.stats.data.*
 import eu.kanade.tachiyomi.network.model.*
@@ -45,6 +46,7 @@ class StatsScreenModel(
     private val trackerManager: TrackerManager = Injekt.get(),
     private val sourceManager: SourceManager = Injekt.get(),
     private val extensionManager: eu.kanade.tachiyomi.extension.ExtensionManager = Injekt.get(),
+    private val aiPreferences: AiPreferences = Injekt.get(),
 ) : StateScreenModel<StatsScreenState>(StatsScreenState.Loading) {
 
     private val aiManager: eu.kanade.tachiyomi.data.ai.AiManager by uy.kohesive.injekt.injectLazy()

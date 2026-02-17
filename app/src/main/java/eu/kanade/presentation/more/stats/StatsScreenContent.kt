@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Extension
@@ -28,17 +29,23 @@ import androidx.compose.material.icons.outlined.History
 import androidx.compose.material.icons.outlined.LocalLibrary
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material.icons.outlined.ContentCopy
+import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -64,6 +71,7 @@ import eu.kanade.presentation.anime.components.MarkdownRender
 import eu.kanade.presentation.more.stats.data.ExtensionInfo
 import eu.kanade.presentation.more.stats.data.StatsData
 import eu.kanade.presentation.util.toDurationString
+import eu.kanade.tachiyomi.util.system.copyToClipboard
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
@@ -254,13 +262,13 @@ private fun AiIntelligenceSection(
                 }
                 
                 if (analysis == null && isLoading) {
-                    androidx.compose.material3.CircularProgressIndicator(
+                    CircularProgressIndicator(
                         modifier = Modifier.size(16.dp),
                         strokeWidth = 2.dp,
                         color = MaterialTheme.colorScheme.primary
                     )
                 } else if (analysis == null) {
-                    androidx.compose.material3.TextButton(
+                    TextButton(
                         onClick = onGenerate,
                         modifier = Modifier.padding(start = 8.dp)
                     ) {
@@ -275,7 +283,7 @@ private fun AiIntelligenceSection(
                             modifier = Modifier.size(32.dp)
                         ) {
                             Icon(
-                                imageVector = androidx.compose.material.icons.outlined.ContentCopy,
+                                imageVector = Icons.Outlined.ContentCopy,
                                 contentDescription = "Copy",
                                 modifier = Modifier.size(18.dp),
                                 tint = MaterialTheme.colorScheme.primary
@@ -287,7 +295,7 @@ private fun AiIntelligenceSection(
                             modifier = Modifier.size(32.dp)
                         ) {
                             Icon(
-                                imageVector = androidx.compose.material.icons.outlined.Refresh,
+                                imageVector = Icons.Outlined.Refresh,
                                 contentDescription = "Regenerate",
                                 modifier = Modifier.size(18.dp),
                                 tint = if (isLoading) MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f) else MaterialTheme.colorScheme.primary
@@ -299,7 +307,7 @@ private fun AiIntelligenceSection(
             if (expanded && analysis != null) {
                 HorizontalDivider(modifier = Modifier.alpha(0.2f))
                 Box(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
-                    androidx.compose.foundation.text.selection.SelectionContainer {
+                    SelectionContainer {
                         MarkdownRender(
                             content = analysis,
                             modifier = Modifier.fillMaxWidth()

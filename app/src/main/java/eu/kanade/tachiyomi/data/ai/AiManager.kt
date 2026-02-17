@@ -430,10 +430,11 @@ class AiManager(
                     return@flow
                 }
                 val reader = response.body.source().inputStream().bufferedReader()
-                reader.forEachLine { line ->
+                while (true) {
+                    val line = reader.readLine() ?: break
                     if (line.startsWith("data: ")) {
                         val data = line.substring(6)
-                        if (data == "[DONE]") return@forEachLine
+                        if (data == "[DONE]") break
                         try {
                             val chunk = json.decodeFromString(GeminiResponse.serializer(), data)
                             val text = chunk.candidates.firstOrNull()?.content?.parts?.firstOrNull()?.text

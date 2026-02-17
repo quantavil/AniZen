@@ -19,6 +19,8 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import tachiyomi.core.common.util.lang.launchIO
+import tachiyomi.core.common.util.system.logcat
+import logcat.LogPriority
 import tachiyomi.domain.ai.model.ChatMessage
 import tachiyomi.domain.ai.model.ChatSession
 import tachiyomi.domain.ai.repository.ChatRepository
