@@ -47,6 +47,7 @@ object SettingsAiScreen : SearchableSettings {
         } else {
             listOf(
                 getMainGroup(aiPreferences, navigator),
+                getIdentityGroup(aiPreferences),
             )
         }
     }
