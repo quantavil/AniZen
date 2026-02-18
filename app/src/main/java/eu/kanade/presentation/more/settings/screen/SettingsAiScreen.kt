@@ -35,13 +35,20 @@ object SettingsAiScreen : SearchableSettings {
     override fun getPreferences(): List<Preference> {
         val aiPreferences = remember { Injekt.get<AiPreferences>() }
         val navigator = LocalNavigator.currentOrThrow
+        val enableAi by aiPreferences.enableAi().collectAsState()
 
-        return listOf(
-            getMainGroup(aiPreferences, navigator),
-            getIdentityGroup(aiPreferences),
-            getAssistantGroup(aiPreferences),
-            getStatisticsGroup(aiPreferences),
-        )
+        return if (enableAi) {
+            listOf(
+                getMainGroup(aiPreferences, navigator),
+                getIdentityGroup(aiPreferences),
+                getAssistantGroup(aiPreferences),
+                getStatisticsGroup(aiPreferences),
+            )
+        } else {
+            listOf(
+                getMainGroup(aiPreferences, navigator),
+            )
+        }
     }
 
     @Composable

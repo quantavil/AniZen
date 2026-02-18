@@ -93,6 +93,10 @@ fun StatsScreenContent(
     onClickExtensionReport: () -> Unit,
 ) {
     val statListState = rememberLazyListState()
+    val aiPreferences = remember { Injekt.get<AiPreferences>() }
+    val enableAi by aiPreferences.enableAi().collectAsState()
+    val enableAiStatistics by aiPreferences.enableAiStatistics().collectAsState()
+
     LazyColumn(
         state = statListState,
         contentPadding = paddingValues,
@@ -106,13 +110,15 @@ fun StatsScreenContent(
             ProfileHeaderSection(state)
         }
 
-        item {
-            AiIntelligenceSection(
-                analysis = state.aiAnalysis ?: state.streamingAnalysis,
-                isLoading = state.isAiLoading,
-                onGenerate = onGenerateAiAnalysis,
-                onRegenerate = onRegenerateAiAnalysis
-            )
+        if (enableAi && enableAiStatistics) {
+            item {
+                AiIntelligenceSection(
+                    analysis = state.aiAnalysis ?: state.streamingAnalysis,
+                    isLoading = state.isAiLoading,
+                    onGenerate = onGenerateAiAnalysis,
+                    onRegenerate = onRegenerateAiAnalysis
+                )
+            }
         }
 
         item {

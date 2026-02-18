@@ -197,12 +197,17 @@ fun MoreScreen(
                         icon = Icons.Outlined.DynamicForm,
                         onClick = { navigator.push(InfrastructureScreen) }
                     )
-                    MoreItem(
-                        title = "App Diagnostics",
-                        subtitle = "Automated troubleshooting and AI insights",
-                        icon = Icons.Default.Terminal,
-                        onClick = { navigator.push(AiAssistantScreen()) }
-                    )
+
+                    val enableAi by aiPreferences.enableAi().collectAsState()
+                    val enableAiAssistant by aiPreferences.enableAiAssistant().collectAsState()
+                    if (enableAi && enableAiAssistant) {
+                        MoreItem(
+                            title = "App Diagnostics",
+                            subtitle = "Automated troubleshooting and AI insights",
+                            icon = Icons.Default.Terminal,
+                            onClick = { navigator.push(AiAssistantScreen()) }
+                        )
+                    }
                 }
             }
 
