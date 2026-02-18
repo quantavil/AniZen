@@ -31,59 +31,59 @@ if (Config.includeTelemetry && file("google-services.json").exists()) {
 
 
 
-                signingConfigs {
+                        signingConfigs {
 
 
 
-                    create("release") {
+                            create("release") {
 
 
 
-                        val props = java.util.Properties()
+                                val props = java.util.Properties()
 
 
 
-                        val propFile = file("../signing.properties")
+                                val propFile = file("../signing.properties")
 
 
 
-                        if (propFile.exists()) {
+                                if (propFile.exists()) {
 
 
 
-                            propFile.inputStream().use { props.load(it) }
+                                    propFile.inputStream().use { props.load(it) }
+
+
+
+                                }
+
+
+
+                
+
+
+
+                                storeFile = file("anizen.jks")
+
+
+
+                                storePassword = props.getProperty("storePassword") ?: System.getenv("SIGNING_STORE_PASSWORD") ?: ""
+
+
+
+                                keyAlias = props.getProperty("keyAlias") ?: System.getenv("SIGNING_KEY_ALIAS") ?: ""
+
+
+
+                                keyPassword = props.getProperty("keyPassword") ?: System.getenv("SIGNING_KEY_PASSWORD") ?: ""
+
+
+
+                            }
 
 
 
                         }
-
-
-
-        
-
-
-
-                        storeFile = file("anizen.jks")
-
-
-
-                        storePassword = props.getProperty("storePassword") ?: System.getenv("SIGNING_STORE_PASSWORD") ?: ""
-
-
-
-                        keyAlias = props.getProperty("keyAlias") ?: System.getenv("SIGNING_KEY_ALIAS") ?: ""
-
-
-
-                        keyPassword = props.getProperty("keyPassword") ?: System.getenv("SIGNING_KEY_PASSWORD") ?: ""
-
-
-
-                    }
-
-
-
-                }
 
 
 
