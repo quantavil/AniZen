@@ -29,6 +29,9 @@ import androidx.compose.ui.unit.sp
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.network.model.NodeStatus
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flowOf
 import tachiyomi.domain.source.model.Source
 import tachiyomi.domain.source.service.SourceHealthCache
 import tachiyomi.presentation.core.components.material.padding
@@ -66,12 +69,12 @@ private val defaultIcon: @Composable RowScope.(Source) -> Unit = { source ->
 
 private val defaultContent: @Composable RowScope.(Source, String?) -> Unit = { source, sourceLangString ->
     val sourceStatus by remember(source.id) {
-        kotlinx.coroutines.flow.combine(
+        combine(
             SourceHealthCache.healthMap,
-            kotlinx.coroutines.flow.flowOf(source.id)
+            flowOf(source.id)
         ) { map, id -> map[id] ?: NodeStatus.OPERATIONAL }
         .distinctUntilChanged()
-    }.collectAsState(NodeStatus.OPERATIONAL)
+    }.collectAsState(initial = NodeStatus.OPERATIONAL)
 
     val extensionManager: ExtensionManager = Injekt.get()
     val extensionName = remember(source.id) { extensionManager.getExtensionNameForSource(source.id) }
