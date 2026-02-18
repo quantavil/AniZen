@@ -223,6 +223,7 @@ if (Config.includeTelemetry && file("google-services.json").exists()) {
                 "META-INF/LICENSE",
                 "META-INF/NOTICE",
                 "META-INF/README.md",
+                "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
             )
         }
     }
