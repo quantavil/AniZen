@@ -314,7 +314,7 @@ class EnhancedFilePrinter internal constructor(
             try {
                 bufferedWriter.write(flattenedLog)
                 bufferedWriter.newLine()
-                bufferedWriter.flush()
+                // Removed per-line flush to optimize disk I/O
             } catch (e: IOException) {
             }
         }

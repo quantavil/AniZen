@@ -131,6 +131,7 @@ class App : Application(), DefaultLifecycleObserver, SingletonImageLoader.Factor
 
             // Eagerly initialize expensive singletons on background thread
             Injekt.get<NetworkHelper>()
+            Injekt.get<eu.kanade.tachiyomi.extension.ExtensionManager>()
             Injekt.get<SourceManager>()
             Injekt.get<DownloadManager>()
             Injekt.get<CustomAnimeRepository>()

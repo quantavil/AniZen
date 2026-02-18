@@ -89,7 +89,11 @@ class AndroidSourceManager(
 
     override fun getOrStub(sourceKey: Long): Source {
         return sourcesMapFlow.value[sourceKey] ?: stubSourcesMap.getOrPut(sourceKey) {
-            runBlocking { createStubSource(sourceKey) }
+            // Return empty stub immediately to avoid runBlocking lag
+            scope.launch {
+                createStubSource(sourceKey)
+            }
+            StubSource(id = sourceKey, lang = "", name = "")
         }
     }
 

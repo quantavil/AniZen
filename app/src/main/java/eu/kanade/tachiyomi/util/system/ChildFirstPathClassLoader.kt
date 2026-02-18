@@ -23,6 +23,20 @@ class ChildFirstPathClassLoader(
     override fun loadClass(name: String?, resolve: Boolean): Class<*> {
         var c = findLoadedClass(name)
 
+        if (c == null && name != null) {
+            // Optimization: Prioritize system loader for core classes to avoid overhead
+            if (name.startsWith("android.") || 
+                name.startsWith("java.") || 
+                name.startsWith("kotlin.") || 
+                name.startsWith("dalvik.") || 
+                name.startsWith("sun.")
+            ) {
+                try {
+                    c = systemClassLoader?.loadClass(name)
+                } catch (_: ClassNotFoundException) {}
+            }
+        }
+
         if (c == null && systemClassLoader != null) {
             try {
                 c = systemClassLoader.loadClass(name)

@@ -75,7 +75,9 @@ class ExtensionManager(
     val untrustedExtensionsFlow = untrustedExtensionsMapFlow.mapExtensions(scope)
 
     init {
-        initAnimeExtensions()
+        scope.launch {
+            initAnimeExtensions()
+        }
         ExtensionInstallReceiver(InstallationListener()).register(context)
     }
 
@@ -117,7 +119,7 @@ class ExtensionManager(
     /**
      * Loads and registers the installed animeextensions.
      */
-    private fun initAnimeExtensions() {
+    private suspend fun initAnimeExtensions() {
         val animeextensions = ExtensionLoader.loadExtensions(context)
 
         installedExtensionsMapFlow.value = animeextensions
