@@ -65,8 +65,13 @@ private val defaultIcon: @Composable RowScope.(Source) -> Unit = { source ->
 }
 
 private val defaultContent: @Composable RowScope.(Source, String?) -> Unit = { source, sourceLangString ->
-    val healthMap by SourceHealthCache.healthMap.collectAsState()
-    val sourceStatus = healthMap[source.id] ?: NodeStatus.OPERATIONAL
+    val sourceStatus by remember(source.id) {
+        kotlinx.coroutines.flow.combine(
+            SourceHealthCache.healthMap,
+            kotlinx.coroutines.flow.flowOf(source.id)
+        ) { map, id -> map[id] ?: NodeStatus.OPERATIONAL }
+        .distinctUntilChanged()
+    }.collectAsState(NodeStatus.OPERATIONAL)
 
     val extensionManager: ExtensionManager = Injekt.get()
     val extensionName = remember(source.id) { extensionManager.getExtensionNameForSource(source.id) }

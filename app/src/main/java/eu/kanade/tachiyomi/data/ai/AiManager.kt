@@ -194,20 +194,27 @@ class AiManager(
         aiPreferences.lastAiRequestTime().set(System.currentTimeMillis())
     }
 
-    private fun getSanitizedLogs(): String {
-        return try {
+    private suspend fun getSanitizedLogs(): String = withIOContext {
+        try {
             val logLines = mutableListOf<String>()
             
-            // 1. Try Logcat (may fail on Android 13+)
-            val process = Runtime.getRuntime().exec("logcat -d -b main -t 500 *:W")
-            val reader = BufferedReader(InputStreamReader(process.inputStream))
-            while (true) {
-                val line = reader.readLine() ?: break
-                logLines.add(line)
+            // 1. Try Logcat with a hard timeout to prevent hanging
+            try {
+                val process = Runtime.getRuntime().exec("logcat -d -b main -t 500 *:W")
+                val reader = BufferedReader(InputStreamReader(process.inputStream))
+                var line: String?
+                while (true) {
+                    line = reader.readLine() ?: break
+                    logLines.add(line)
+                }
+                process.waitFor(2, java.util.concurrent.TimeUnit.SECONDS)
+                process.destroy()
+            } catch (e: Exception) {
+                logcat(LogPriority.WARN) { "Logcat retrieval timed out or failed: ${e.message}" }
             }
 
-            // 2. Fallback to internal XLog files
-            if (logLines.size < 5) {
+            // 2. Fallback to internal XLog files if logcat is restricted (Android 13+)
+            if (logLines.size < 10) {
                 val storageManager = Injekt.get<StorageManager>()
                 val internalLogDir = File(context.cacheDir, "logs")
                 val logDir = storageManager.getLogsDirectory() 
@@ -229,11 +236,7 @@ class AiManager(
             }
 
             if (logLines.isEmpty()) {
-                val storageManager = Injekt.get<StorageManager>()
-                val logDir = storageManager.getLogsDirectory()
-                val internalLogDir = File(context.cacheDir, "logs")
-                val dirInfo = "StorageDir: ${logDir?.uri}, InternalDir: ${internalLogDir.absolutePath}, InternalExists: ${internalLogDir.exists()}"
-                return "Diagnostic engine active. (No logs found. $dirInfo)"
+                return@withIOContext "Diagnostic engine active. No logs available for analysis in this environment."
             }
 
             val pinnedBlocks = mutableListOf<List<String>>()
@@ -377,7 +380,7 @@ class AiManager(
             val lastQuery = messages.last().content.lowercase()
             val toolContext = StringBuilder()
             
-            if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash|die|dead""".toRegex())) {
+            if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash|die|dead|bug|stuck|lag|hang|freeze""".toRegex())) {
                 if (aiPreferences.aiAssistantLogs().get()) {
                     toolContext.append("\n[DIAGNOSTICS_DATA]:\n${getSanitizedLogs()}\n")
                 }
@@ -492,7 +495,7 @@ class AiManager(
             val finalMessages = if (withTools) {
                 val lastQuery = messages.last().content.lowercase()
                 val toolContext = StringBuilder()
-                if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash""".toRegex())) {
+                if (lastQuery.contains("""log|error|fail|video|load|setting|where|how|device|black|broke|froze|slow|crash|die|dead|bug|stuck|lag|hang|freeze""".toRegex())) {
                     if (aiPreferences.aiAssistantLogs().get()) {
                         toolContext.append("\n[DIAGNOSTICS_DATA]:\n${getSanitizedLogs()}\n")
                     }
