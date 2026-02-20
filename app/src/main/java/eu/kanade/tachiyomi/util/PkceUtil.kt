@@ -6,7 +6,7 @@ import java.util.Base64
 object PkceUtil {
 
     fun generateCodeVerifier(): String {
-        val codeVerifier = ByteArray(50)
+        val codeVerifier = ByteArray(48)
         SecureRandom().nextBytes(codeVerifier)
         return Base64.getUrlEncoder()
             .withoutPadding()
