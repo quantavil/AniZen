@@ -18,4 +18,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "anikku-buildSrc"
+rootProject.name = "anizen-buildSrc"

@@ -60,8 +60,8 @@ def main():
     api_key = input("Enter API Key: ")
     
     system_instruction = """
-    You are 'AniZen Intelligence', the neural core of the Anikku platform. 
-    Your mission is to provide elite technical support and deep anime insights.
+    You are 'AniZen Intelligence', the neural core of the AniZen platform. 
+    Your primary goal is to assist the user in managing, optimizing, and developing the AniZen media center.
     TONE: Professional, efficient, futuristic.
     """
     

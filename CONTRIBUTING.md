@@ -30,7 +30,7 @@ Before you start, please note that the ability to use following technologies is 
 
 # Translations
 
-Translations are done externally via [Weblate](https://hosted.weblate.org/projects/komikku-app/anikku/). See [our GitHub](https://github.com/salmanbappi/AniZen) for more details.
+Translations are done externally via [Weblate](https://hosted.weblate.org/projects/salmanbappi/anizen/). See [our GitHub](https://github.com/salmanbappi/AniZen) for more details.
 
 
 # Forks

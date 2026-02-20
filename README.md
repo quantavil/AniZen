@@ -1,6 +1,6 @@
 # 🌌 AniZen (Pro Mod)
 
-**AniZen** is a high-performance, ultra-refined modification of Anikku. While the official app provides a baseline, AniZen transforms it into a professional-grade media center with a focus on **Extreme Performance**, **Audiophile-grade Video**, and **Premium Tactile Feedback**.
+**AniZen** is a high-performance, ultra-refined anime media center. It transforms the mobile viewing experience into a professional-grade environment with a focus on **Extreme Performance**, **Audiophile-grade Video**, and **Premium Tactile Feedback**.
 
 ---
 
@@ -69,7 +69,7 @@ AniZen uses the unique package ID `app.anizen`, allowing you to keep the officia
 ---
 
 ## 🤝 Credits
--   **Original Anikku:** [komikku-app/anikku](https://github.com/komikku-app/anikku)
+-   **AniZen GitHub:** [salmanbappi/AniZen](https://github.com/salmanbappi/AniZen)
 -   **Base Project:** [Aniyomi](https://github.com/aniyomiorg/aniyomi)
 -   **Filter Inspiration:** [mpvEx](https://github.com/marlboro-advance/mpvEx)
 -   **Shaders:** [Anime4K](https://github.com/bloc97/Anime4K)
