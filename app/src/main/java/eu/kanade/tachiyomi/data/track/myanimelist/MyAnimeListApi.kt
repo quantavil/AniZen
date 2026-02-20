@@ -256,6 +256,7 @@ class MyAnimeListApi(
             .appendQueryParameter("code_challenge", getPkceChallengeCode())
             .appendQueryParameter("code_challenge_method", "plain")
             .appendQueryParameter("response_type", "code")
+            .appendQueryParameter("redirect_uri", "anizen://myanimelist-auth")
             .build()
 
         fun animeUrl(id: Long): Uri = "$BASE_API_URL/anime".toUri().buildUpon()
