@@ -45,9 +45,10 @@ class MyAnimeListApi(
         return withIOContext {
             val formBody: RequestBody = FormBody.Builder()
                 .add("client_id", CLIENT_ID)
+                .add("client_secret", CLIENT_SECRET)
                 .add("code", authCode)
-                .add("code_verifier", codeVerifier)
                 .add("grant_type", "authorization_code")
+                .add("redirect_uri", "anizen://myanimelist-auth")
                 .build()
             with(json) {
                 client.newCall(POST("https://myanimelist.net/v1/oauth2/token", body = formBody))
@@ -242,19 +243,16 @@ class MyAnimeListApi(
     }
 
     companion object {
-        private const val CLIENT_ID = "aeba28135e9a1c1e2dc92113e75fa318"
+        private const val CLIENT_ID = "c463b4f9f25bf81580ba4d5a8a03a89f"
+        private const val CLIENT_SECRET = "00738f22c12792b1970d4917812530a844db5d15eb157201a9b586fe57a987a2"
 
         private const val BASE_OAUTH_URL = "https://myanimelist.net/v1/oauth2"
         private const val BASE_API_URL = "https://api.myanimelist.net/v2"
 
         private const val LIST_PAGINATION_AMOUNT = 250
 
-        private var codeVerifier: String = ""
-
-        fun authUrl(): Uri = "https://myanimelist.net/v1/oauth2/authorize".toUri().buildUpon()
+        fun authUrl(): Uri = "https://myanimelist.net/dialog/authorization".toUri().buildUpon()
             .appendQueryParameter("client_id", CLIENT_ID)
-            .appendQueryParameter("code_challenge", getPkceChallengeCode())
-            .appendQueryParameter("code_challenge_method", "plain")
             .appendQueryParameter("response_type", "code")
             .appendQueryParameter("redirect_uri", "anizen://myanimelist-auth")
             .build()
@@ -267,6 +265,7 @@ class MyAnimeListApi(
         fun refreshTokenRequest(oauth: MALOAuth): Request {
             val formBody: RequestBody = FormBody.Builder()
                 .add("client_id", CLIENT_ID)
+                .add("client_secret", CLIENT_SECRET)
                 .add("refresh_token", oauth.refreshToken)
                 .add("grant_type", "refresh_token")
                 .build()
@@ -276,11 +275,6 @@ class MyAnimeListApi(
                 .build()
 
             return POST("$BASE_OAUTH_URL/token", body = formBody, headers = headers)
-        }
-
-        private fun getPkceChallengeCode(): String {
-            codeVerifier = PkceUtil.generateCodeVerifier()
-            return codeVerifier
         }
     }
 }
