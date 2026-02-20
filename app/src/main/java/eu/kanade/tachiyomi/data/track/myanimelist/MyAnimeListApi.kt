@@ -251,9 +251,10 @@ class MyAnimeListApi(
 
         private var codeVerifier: String = ""
 
-        fun authUrl(): Uri = "$BASE_OAUTH_URL/authorize".toUri().buildUpon()
+        fun authUrl(): Uri = "https://myanimelist.net/dialog/authorization".toUri().buildUpon()
             .appendQueryParameter("client_id", CLIENT_ID)
             .appendQueryParameter("code_challenge", getPkceChallengeCode())
+            .appendQueryParameter("code_challenge_method", "plain")
             .appendQueryParameter("response_type", "code")
             .build()
 
