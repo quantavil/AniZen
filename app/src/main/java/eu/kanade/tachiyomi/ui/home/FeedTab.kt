@@ -21,6 +21,7 @@ import androidx.compose.material.icons.outlined.Settings
 
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import eu.kanade.tachiyomi.ui.browse.BrowseTab
+import kotlinx.coroutines.launch
 import androidx.compose.runtime.rememberCoroutineScope
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
