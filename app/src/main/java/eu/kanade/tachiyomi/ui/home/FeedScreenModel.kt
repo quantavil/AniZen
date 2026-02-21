@@ -48,10 +48,17 @@ class FeedScreenModel(
 
     init {
         screenModelScope.launchIO {
-            getFeedSavedSearchGlobal.subscribe()
-                .distinctUntilChanged()
-                .onEach { mutableState.update { it.copy(isLoading = true) } }
-                .collectLatest { feedSavedSearches ->
+            combine(
+                getFeedSavedSearchGlobal.subscribe(),
+                sourceManager.isInitialized,
+                ::Pair
+            )
+                .onEach { (_, isInitialized) -> 
+                    if (isInitialized) mutableState.update { it.copy(isLoading = true) } 
+                }
+                .collectLatest { (feedSavedSearches, isInitialized) ->
+                    if (!isInitialized) return@collectLatest
+                    
                     val savedSearches = getSavedSearchGlobalFeed.await()
                     val feedItems = coroutineScope {
                         feedSavedSearches.map { feed ->
