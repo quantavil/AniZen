@@ -246,11 +246,15 @@ class LibraryUpdateNotifier(
     private suspend fun createNewEpisodesNotification(anime: Anime, episodes: Array<Episode>): Notification {
         val icon = getAnimeIcon(anime)
         return context.notificationBuilder(Notifications.CHANNEL_NEW_CHAPTERS_EPISODES) {
-            setContentTitle(anime.title)
+            setContentTitle("🟢 NEW ${anime.title}")
 
             val description = getNewEpisodesDescription(episodes)
             setContentText(description)
-            setStyle(NotificationCompat.BigTextStyle().bigText(description))
+            setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigPicture(icon)
+                    .setSummaryText(description),
+            )
 
             setSmallIcon(R.mipmap.ic_launcher)
 
@@ -268,7 +272,18 @@ class LibraryUpdateNotifier(
             )
             setAutoCancel(true)
 
-            // Mark episodes as read action
+            // View episodes action (Primary)
+            addAction(
+                R.drawable.ic_book_24dp,
+                context.stringResource(MR.strings.action_view_episodes),
+                NotificationReceiver.openEpisodePendingActivity(
+                    context,
+                    anime,
+                    Notifications.ID_NEW_EPISODES,
+                ),
+            )
+
+            // Mark episodes as read action (Secondary)
             addAction(
                 R.drawable.ic_done_24dp,
                 context.stringResource(MR.strings.action_mark_as_seen),
@@ -279,30 +294,6 @@ class LibraryUpdateNotifier(
                     Notifications.ID_NEW_EPISODES,
                 ),
             )
-            // View episodes action
-            addAction(
-                R.drawable.ic_book_24dp,
-                context.stringResource(MR.strings.action_view_episodes),
-                NotificationReceiver.openEpisodePendingActivity(
-                    context,
-                    anime,
-                    Notifications.ID_NEW_EPISODES,
-                ),
-            )
-            // Download chapters action
-            // Only add the action when chapters is within threshold
-            if (episodes.size <= Downloader.EPISODES_PER_SOURCE_QUEUE_WARNING_THRESHOLD) {
-                addAction(
-                    android.R.drawable.stat_sys_download_done,
-                    context.stringResource(MR.strings.action_download),
-                    NotificationReceiver.downloadEpisodesPendingBroadcast(
-                        context,
-                        anime,
-                        episodes,
-                        Notifications.ID_NEW_CHAPTERS,
-                    ),
-                )
-            }
         }.build()
     }
 
@@ -316,7 +307,6 @@ class LibraryUpdateNotifier(
     private suspend fun getAnimeIcon(anime: Anime): Bitmap? {
         val request = ImageRequest.Builder(context)
             .data(anime)
-            .transformations(CircleCropTransformation())
             .size(NOTIF_ICON_SIZE)
             .build()
         val drawable = context.imageLoader.execute(request).image?.asDrawable(context.resources)
@@ -330,56 +320,17 @@ class LibraryUpdateNotifier(
             .map { formatEpisodeNumber(it.episodeNumber) }
             .toSet()
 
-        return when (displayableEpisodeNumbers.size) {
-            // No sensible episode numbers to show (i.e. no episodes have parsed episode number)
-            0 -> {
-                // "1 new episode" or "5 new episodes"
-                context.resources.getQuantityString(
-                    R.plurals.notification_episodes_generic,
-                    episodes.size,
-                    episodes.size,
-                )
-            }
-            // Only 1 episode has a parsed episode number
-            1 -> {
-                val remaining = episodes.size - displayableEpisodeNumbers.size
-                if (remaining == 0) {
-                    // "Episode 2.5"
-                    context.stringResource(
-                        MR.strings.notification_episodes_single,
-                        displayableEpisodeNumbers.first(),
-                    )
-                } else {
-                    // "Episode 2.5 and 10 more"
-                    context.stringResource(
-                        MR.strings.notification_episodes_single_and_more,
-                        displayableEpisodeNumbers.first(),
-                        remaining,
-                    )
-                }
-            }
-            // Everything else (i.e. multiple parsed episode numbers)
-            else -> {
-                val shouldTruncate = displayableEpisodeNumbers.size > NOTIF_MAX_EPISODES
-                if (shouldTruncate) {
-                    // "Episodes 1, 2.5, 3, 4, 5 and 10 more"
-                    val remaining = displayableEpisodeNumbers.size - NOTIF_MAX_EPISODES
-                    val joinedEpisodeNumbers = displayableEpisodeNumbers.take(NOTIF_MAX_EPISODES).joinToString(
-                        ", ",
-                    )
-                    context.resources.getQuantityString(
-                        R.plurals.notification_episodes_multiple_and_more,
-                        remaining,
-                        joinedEpisodeNumbers,
-                        remaining,
-                    )
-                } else {
-                    // "Episodes 1, 2.5, 3"
-                    context.stringResource(
-                        MR.strings.notification_episodes_multiple,
-                        displayableEpisodeNumbers.joinToString(", "),
-                    )
-                }
+        val count = episodes.size
+        
+        return if (displayableEpisodeNumbers.isEmpty()) {
+            context.resources.getQuantityString(R.plurals.notification_episodes_generic, count, count)
+        } else {
+            val first = displayableEpisodeNumbers.first()
+            val last = displayableEpisodeNumbers.last()
+            if (count == 1) {
+                "Episode $first available"
+            } else {
+                "Episodes $first–$last ($count new)"
             }
         }
     }
