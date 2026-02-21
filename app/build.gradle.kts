@@ -178,7 +178,8 @@ if (Config.includeTelemetry && file("google-services.json").exists()) {
             isEnable = true
             isUniversalApk = true
             reset()
-            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            val abis = (project.findProperty("abiList") as? String)?.split(",") ?: listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            include(*abis.toTypedArray())
         }
     }
 

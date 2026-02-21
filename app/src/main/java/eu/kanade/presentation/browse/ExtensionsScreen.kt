@@ -225,7 +225,7 @@ private fun ExtensionContent(
 
             items(
                 items = items,
-                key = { "extension-${it.extension.pkgName}" },
+                key = { "extension-${it.extension.pkgName}-${it.repoName}" },
                 contentType = { "extension_item" },
             ) { item ->
                 if (useContainer) {
