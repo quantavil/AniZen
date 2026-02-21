@@ -26,11 +26,13 @@ class ExtensionRepoRestorer(
         } else {
             animeHandler.await {
                 extension_reposQueries.insert(
-                    backupRepo.baseUrl,
-                    backupRepo.name,
-                    backupRepo.shortName,
-                    backupRepo.website,
-                    backupRepo.signingKeyFingerprint,
+                    baseUrl = backupRepo.baseUrl,
+                    name = backupRepo.name,
+                    short_name = backupRepo.shortName,
+                    website = backupRepo.website,
+                    fingerprint = backupRepo.signingKeyFingerprint,
+                    is_visible = backupRepo.isVisible,
+                    author = backupRepo.author,
                 )
             }
         }
