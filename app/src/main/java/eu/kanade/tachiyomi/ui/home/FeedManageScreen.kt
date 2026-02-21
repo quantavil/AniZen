@@ -124,7 +124,7 @@ class FeedManageScreen : Screen() {
                         itemsIndexed(
                             items = state.items,
                             key = { _, item -> "feed-${item.feed.id}" },
-                        ) { index, item ->
+                        ) { index: Int, item ->
                             FeedManageItem(
                                 title = item.title,
                                 type = item.subtitle,
@@ -135,7 +135,7 @@ class FeedManageScreen : Screen() {
                                 onDuplicate = { screenModel.duplicate(item.feed) },
                                 onDelete = { deleteDialogItem = item.feed },
                                 onClick = { editFeedItem = item },
-                                modifier = Modifier.animateItem(),
+                                modifier = Modifier.animateItemPlacement(),
                             )
                             if (index != state.items.lastIndex) {
                                 HorizontalDivider()
