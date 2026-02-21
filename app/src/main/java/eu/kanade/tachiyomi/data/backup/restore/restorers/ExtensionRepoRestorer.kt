@@ -26,7 +26,7 @@ class ExtensionRepoRestorer(
         } else {
             animeHandler.await {
                 extension_reposQueries.insert(
-                    baseUrl = backupRepo.baseUrl,
+                    base_url = backupRepo.baseUrl,
                     name = backupRepo.name,
                     short_name = backupRepo.shortName,
                     website = backupRepo.website,
