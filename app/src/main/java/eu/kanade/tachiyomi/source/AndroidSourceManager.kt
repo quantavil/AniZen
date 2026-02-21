@@ -50,26 +50,31 @@ class AndroidSourceManager(
 
     init {
         scope.launch {
-            extensionManager.installedExtensionsFlow
-                .collectLatest { extensions: List<eu.kanade.tachiyomi.extension.model.Extension.Installed> ->
-                    val mutableMap = ConcurrentHashMap<Long, Source>(
-                        mapOf(
-                            LocalSource.ID to LocalSource(
-                                context,
-                                Injekt.get(),
-                                Injekt.get(),
-                            ),
+            combine(
+                extensionManager.installedExtensionsFlow,
+                extensionManager.isInitialized,
+                ::Pair,
+            ).collectLatest { (extensions, isExtensionManagerInitialized) ->
+                if (!isExtensionManagerInitialized) return@collectLatest
+
+                val mutableMap = ConcurrentHashMap<Long, Source>(
+                    mapOf(
+                        LocalSource.ID to LocalSource(
+                            context,
+                            Injekt.get(),
+                            Injekt.get(),
                         ),
-                    )
-                    extensions.forEach { extension ->
-                        extension.sources.forEach {
-                            mutableMap[it.id] = it
-                            registerStubSource(StubSource.from(it))
-                        }
+                    ),
+                )
+                extensions.forEach { extension ->
+                    extension.sources.forEach {
+                        mutableMap[it.id] = it
+                        registerStubSource(StubSource.from(it))
                     }
-                    sourcesMapFlow.value = mutableMap
-                    _isInitialized.value = true
                 }
+                sourcesMapFlow.value = mutableMap
+                _isInitialized.value = true
+            }
         }
 
         scope.launch {
