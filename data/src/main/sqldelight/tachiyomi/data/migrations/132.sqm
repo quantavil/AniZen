@@ -1,0 +1,1 @@
+ALTER TABLE extension_repos ADD COLUMN author TEXT;

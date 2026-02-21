@@ -396,6 +396,7 @@ private fun ExtensionItem(
         ExtensionItemContent(
             extension = extension,
             installStep = installStep,
+            repoName = item.repoName,
             modifier = Modifier.weight(1f),
         )
     }
@@ -405,6 +406,7 @@ private fun ExtensionItem(
 private fun ExtensionItemContent(
     extension: Extension,
     installStep: InstallStep,
+    repoName: String?,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -437,6 +439,11 @@ private fun ExtensionItemContent(
                         text = extension.versionName,
                     )
                 }
+
+                Text(
+                    text = repoName ?: "@?",
+                    color = MaterialTheme.colorScheme.primary,
+                )
 
                 val warning = when {
                     extension is Extension.Untrusted -> MR.strings.ext_untrusted
