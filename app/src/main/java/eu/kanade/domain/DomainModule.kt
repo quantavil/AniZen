@@ -28,6 +28,7 @@ import mihon.domain.extensionrepo.interactor.DeleteExtensionRepo
 import mihon.domain.extensionrepo.interactor.GetExtensionRepo
 import mihon.domain.extensionrepo.interactor.GetExtensionRepoCount
 import mihon.domain.extensionrepo.interactor.ReplaceExtensionRepo
+import mihon.domain.extensionrepo.interactor.ToggleExtensionRepoVisibility
 import mihon.domain.extensionrepo.interactor.UpdateExtensionRepo
 import mihon.domain.extensionrepo.repository.ExtensionRepoRepository
 import mihon.domain.extensionrepo.service.ExtensionRepoService
