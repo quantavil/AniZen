@@ -107,7 +107,23 @@ class FeedManageScreenModel(
         }
     }
 
-    // ... (rest of methods)
+    suspend fun getSourceSavedSearches(sourceId: Long): List<SavedSearch> {
+        return getSavedSearchBySourceId.await(sourceId)
+    }
+
+    fun updateFeed(feed: FeedSavedSearch, type: FeedSavedSearch.Type, savedSearchId: Long?) {
+        screenModelScope.launchIO {
+            updateFeedSavedSearch.await(
+                FeedSavedSearchUpdate(
+                    id = feed.id,
+                    searchType = type.value.toLong(),
+                    savedSearch = savedSearchId,
+                    deleteSavedSearch = savedSearchId == null,
+                )
+            )
+            getFeed()
+        }
+    }
 
     fun duplicate(feed: FeedSavedSearch) {
         screenModelScope.launchIO {
@@ -123,7 +139,26 @@ class FeedManageScreenModel(
         }
     }
 
-    // ...
+    fun moveUp(feed: FeedSavedSearch) {
+        screenModelScope.launchIO {
+            reorderFeed.moveUp(feed)
+            getFeed()
+        }
+    }
+
+    fun moveDown(feed: FeedSavedSearch) {
+        screenModelScope.launchIO {
+            reorderFeed.moveDown(feed)
+            getFeed()
+        }
+    }
+
+    fun delete(feed: FeedSavedSearch) {
+        screenModelScope.launchIO {
+            deleteFeedSavedSearchById.await(feed.id)
+            getFeed()
+        }
+    }
 
     @Immutable
     data class State(
@@ -131,6 +166,12 @@ class FeedManageScreenModel(
         val categories: ImmutableList<FeedSavedSearchCategory> = persistentListOf(),
         val selectedCategoryId: Long = -1L,
     )
-    
-    // ...
+
+    @Immutable
+    data class FeedItem(
+        val feed: FeedSavedSearch,
+        val title: String,
+        val subtitle: String,
+        val source: eu.kanade.tachiyomi.source.Source?,
+    )
 }
