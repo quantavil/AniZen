@@ -39,9 +39,11 @@ class ExtensionRepoRepositoryImpl(
         shortName: String?,
         website: String,
         signingKeyFingerprint: String,
+        isVisible: Boolean,
+        author: String?,
     ) {
         try {
-            handler.await { extension_reposQueries.insert(baseUrl, name, shortName, website, signingKeyFingerprint) }
+            handler.await { extension_reposQueries.insert(baseUrl, name, shortName, website, signingKeyFingerprint, isVisible, author) }
         } catch (ex: SQLiteException) {
             throw SaveExtensionRepoException(ex)
         }
@@ -53,9 +55,11 @@ class ExtensionRepoRepositoryImpl(
         shortName: String?,
         website: String,
         signingKeyFingerprint: String,
+        isVisible: Boolean,
+        author: String?,
     ) {
         try {
-            handler.await { extension_reposQueries.upsert(baseUrl, name, shortName, website, signingKeyFingerprint) }
+            handler.await { extension_reposQueries.upsert(baseUrl, name, shortName, website, signingKeyFingerprint, isVisible, author) }
         } catch (ex: SQLiteException) {
             throw SaveExtensionRepoException(ex)
         }
@@ -69,6 +73,8 @@ class ExtensionRepoRepositoryImpl(
                 newRepo.shortName,
                 newRepo.website,
                 newRepo.signingKeyFingerprint,
+                newRepo.isVisible,
+                newRepo.author,
             )
         }
     }
@@ -77,17 +83,25 @@ class ExtensionRepoRepositoryImpl(
         return handler.await { extension_reposQueries.delete(baseUrl) }
     }
 
+    override suspend fun updateRepoVisibility(baseUrl: String, isVisible: Boolean) {
+        handler.await { extension_reposQueries.updateVisibility(isVisible, baseUrl) }
+    }
+
     private fun mapExtensionRepo(
         baseUrl: String,
         name: String,
         shortName: String?,
         website: String,
         signingKeyFingerprint: String,
+        isVisible: Boolean,
+        author: String?,
     ): ExtensionRepo = ExtensionRepo(
         baseUrl = baseUrl,
         name = name,
         shortName = shortName,
         website = website,
         signingKeyFingerprint = signingKeyFingerprint,
+        isVisible = isVisible,
+        author = author,
     )
 }

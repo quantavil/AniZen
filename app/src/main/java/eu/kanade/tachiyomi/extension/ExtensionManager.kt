@@ -234,18 +234,15 @@ class ExtensionManager(
                 }
             }
         }
-        if (changed) {
-            installedExtensionsMapFlow.value = installedExtensionsMap
-        }
-        updatePendingUpdatesCount()
-    }
-            installedExtensionsMapFlow.value = installedExtensionsMap
-        }
-        updatePendingUpdatesCount()
-    }
-
-    /**
-     * Returns a flow of the installation process for the given anime extension. It will complete
+                if (changed) {
+                    installedExtensionsMapFlow.value = installedExtensionsMap
+                }
+                updatePendingUpdatesCount()
+            }
+        
+            /**
+             * Returns a flow of the installation process for the given anime extension.
+         It will complete
      * once the anime extension is installed or throws an error. The process will be canceled if
      * unsubscribed before its completion.
      *

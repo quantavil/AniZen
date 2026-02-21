@@ -14,14 +14,20 @@ class CreateExtensionRepo(
 ) {
     private val repoRegex = """^https://.*/index\.min\.json$""".toRegex()
 
+    private val githubRepoRegex = """https://raw\.githubusercontent\.com/([^/]+)/.*""".toRegex()
+
     suspend fun await(indexUrl: String): Result {
         val formattedIndexUrl = indexUrl.toHttpUrlOrNull()
             ?.toString()
             ?.takeIf { it.matches(repoRegex) }
             ?: return Result.InvalidUrl
 
+        val author = githubRepoRegex.find(formattedIndexUrl)?.let {
+            "@${it.groupValues[1]}"
+        }
+
         val baseUrl = formattedIndexUrl.removeSuffix("/index.min.json")
-        return service.fetchRepoDetails(baseUrl)?.let { insert(it) } ?: Result.InvalidUrl
+        return service.fetchRepoDetails(baseUrl, author)?.let { insert(it) } ?: Result.InvalidUrl
     }
 
     private suspend fun insert(repo: ExtensionRepo): Result {
@@ -32,6 +38,8 @@ class CreateExtensionRepo(
                 repo.shortName,
                 repo.website,
                 repo.signingKeyFingerprint,
+                isVisible = true,
+                author = repo.author,
             )
             Result.Success
         } catch (e: SaveExtensionRepoException) {

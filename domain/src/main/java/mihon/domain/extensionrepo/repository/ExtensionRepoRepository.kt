@@ -21,6 +21,8 @@ interface ExtensionRepoRepository {
         shortName: String?,
         website: String,
         signingKeyFingerprint: String,
+        isVisible: Boolean,
+        author: String? = null,
     )
 
     suspend fun upsertRepo(
@@ -29,6 +31,8 @@ interface ExtensionRepoRepository {
         shortName: String?,
         website: String,
         signingKeyFingerprint: String,
+        isVisible: Boolean,
+        author: String? = null,
     )
 
     suspend fun upsertRepo(repo: ExtensionRepo) {
@@ -38,10 +42,14 @@ interface ExtensionRepoRepository {
             shortName = repo.shortName,
             website = repo.website,
             signingKeyFingerprint = repo.signingKeyFingerprint,
+            isVisible = repo.isVisible,
+            author = repo.author,
         )
     }
 
     suspend fun replaceRepo(newRepo: ExtensionRepo)
 
     suspend fun deleteRepo(baseUrl: String)
+
+    suspend fun updateRepoVisibility(baseUrl: String, isVisible: Boolean)
 }

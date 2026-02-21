@@ -1,1 +1,2 @@
+ALTER TABLE extension_repos ADD COLUMN is_visible INTEGER NOT NULL DEFAULT 1;
 ALTER TABLE extension_repos ADD COLUMN author TEXT;

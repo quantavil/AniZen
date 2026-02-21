@@ -18,6 +18,7 @@ class ExtensionRepoService(
 
     suspend fun fetchRepoDetails(
         repo: String,
+        author: String? = null,
     ): ExtensionRepo? {
         return withIOContext {
             try {
@@ -25,7 +26,7 @@ class ExtensionRepoService(
                     client.newCall(GET("$repo/repo.json"))
                         .awaitSuccess()
                         .parseAs<ExtensionRepoMetaDto>()
-                        .toExtensionRepo(baseUrl = repo)
+                        .toExtensionRepo(baseUrl = repo, author = author)
                 }
             } catch (e: Exception) {
                 logcat(LogPriority.ERROR, e) { "Failed to fetch repo details" }

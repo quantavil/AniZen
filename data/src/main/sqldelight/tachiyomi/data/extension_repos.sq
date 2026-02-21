@@ -1,9 +1,13 @@
+import kotlin.Boolean;
+
 CREATE TABLE extension_repos (
     base_url TEXT NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
     short_name TEXT,
     website TEXT NOT NULL,
-    signing_key_fingerprint TEXT UNIQUE NOT NULL
+    signing_key_fingerprint TEXT UNIQUE NOT NULL,
+    is_visible INTEGER AS Boolean NOT NULL DEFAULT 1,
+    author TEXT
 );
 
 findOne:
@@ -25,33 +29,42 @@ SELECT COUNT(*)
 FROM extension_repos;
 
 insert:
-INSERT INTO extension_repos(base_url, name, short_name, website, signing_key_fingerprint)
-VALUES (:base_url, :name, :short_name, :website, :fingerprint);
+INSERT INTO extension_repos(base_url, name, short_name, website, signing_key_fingerprint, is_visible, author)
+VALUES (:base_url, :name, :short_name, :website, :fingerprint, :is_visible, :author);
 
 upsert:
-INSERT INTO extension_repos(base_url, name, short_name, website, signing_key_fingerprint)
-VALUES (:base_url, :name, :short_name, :website, :fingerprint)
+INSERT INTO extension_repos(base_url, name, short_name, website, signing_key_fingerprint, is_visible, author)
+VALUES (:base_url, :name, :short_name, :website, :fingerprint, :is_visible, :author)
 ON CONFLICT(base_url)
 DO UPDATE
 SET
     name = :name,
     short_name = :short_name,
     website =: website,
-    signing_key_fingerprint = :fingerprint
+    signing_key_fingerprint = :fingerprint,
+    is_visible = :is_visible,
+    author = :author
 WHERE base_url = base_url;
 
 replace:
-INSERT INTO extension_repos(base_url, name, short_name, website, signing_key_fingerprint)
-VALUES (:base_url, :name, :short_name, :website, :fingerprint)
+INSERT INTO extension_repos(base_url, name, short_name, website, signing_key_fingerprint, is_visible, author)
+VALUES (:base_url, :name, :short_name, :website, :fingerprint, :is_visible, :author)
 ON CONFLICT(signing_key_fingerprint)
 DO UPDATE
 SET
     base_url = :base_url,
     name = :name,
     short_name = :short_name,
-    website =: website
+    website =: website,
+    is_visible = :is_visible,
+    author = :author
 WHERE signing_key_fingerprint = signing_key_fingerprint;
 
 delete:
 DELETE FROM extension_repos
+WHERE base_url = :base_url;
+
+updateVisibility:
+UPDATE extension_repos
+SET is_visible = :is_visible
 WHERE base_url = :base_url;

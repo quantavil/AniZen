@@ -206,6 +206,7 @@ class DomainModule : InjektModule {
         addFactory { DeleteExtensionRepo(get()) }
         addFactory { ReplaceExtensionRepo(get()) }
         addFactory { UpdateExtensionRepo(get(), get()) }
+        addFactory { ToggleExtensionRepoVisibility(get()) }
 
         addSingletonFactory<CustomButtonRepository> { CustomButtonRepositoryImpl(get()) }
         addFactory { CreateCustomButton(get()) }

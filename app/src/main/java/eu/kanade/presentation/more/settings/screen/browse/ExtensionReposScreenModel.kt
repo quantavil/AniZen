@@ -14,6 +14,7 @@ import mihon.domain.extensionrepo.interactor.CreateExtensionRepo
 import mihon.domain.extensionrepo.interactor.DeleteExtensionRepo
 import mihon.domain.extensionrepo.interactor.GetExtensionRepo
 import mihon.domain.extensionrepo.interactor.ReplaceExtensionRepo
+import mihon.domain.extensionrepo.interactor.ToggleExtensionRepoVisibility
 import mihon.domain.extensionrepo.interactor.UpdateExtensionRepo
 import mihon.domain.extensionrepo.model.ExtensionRepo
 import tachiyomi.core.common.util.lang.launchIO
@@ -27,6 +28,7 @@ class ExtensionReposScreenModel(
     private val deleteExtensionRepo: DeleteExtensionRepo = Injekt.get(),
     private val replaceExtensionRepo: ReplaceExtensionRepo = Injekt.get(),
     private val updateExtensionRepo: UpdateExtensionRepo = Injekt.get(),
+    private val toggleRepoVisibility: ToggleExtensionRepoVisibility = Injekt.get(),
 ) : StateScreenModel<RepoScreenState>(RepoScreenState.Loading) {
 
     private val _events: Channel<RepoEvent> = Channel(Int.MAX_VALUE)
@@ -93,6 +95,12 @@ class ExtensionReposScreenModel(
     fun deleteRepo(baseUrl: String) {
         screenModelScope.launchIO {
             deleteExtensionRepo.await(baseUrl)
+        }
+    }
+
+    fun onToggleRepoVisibility(baseUrl: String, isVisible: Boolean) {
+        screenModelScope.launchIO {
+            toggleRepoVisibility.await(baseUrl, isVisible)
         }
     }
 
