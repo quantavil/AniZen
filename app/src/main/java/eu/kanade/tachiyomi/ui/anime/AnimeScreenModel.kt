@@ -431,65 +431,95 @@ class AnimeScreenModel(
 
             // 0. Franchise & Sequels (Strict Verification)
             launchIO {
-                try {
-                    val rawVirtualSeasons = discoverSeasons.await(anime)
-                    if (rawVirtualSeasons.isNotEmpty()) {
-                        val validSeasons = rawVirtualSeasons
-                            .map { networkToLocalAnime.await(it) }
-                            .mapNotNull { getAnime.await(it.id) }
-                        
-                        if (validSeasons.isNotEmpty()) {
-                            updateSection(SuggestionSection.Type.Franchise, validSeasons)
+                kotlinx.coroutines.coroutineScope {
+                    try {
+                        val rawVirtualSeasons = discoverSeasons.await(anime)
+                        if (rawVirtualSeasons.isNotEmpty()) {
+                            val validSeasons = rawVirtualSeasons
+                                .map { async { networkToLocalAnime.await(it) } }
+                                .awaitAll()
+                                .mapNotNull { getAnime.await(it.id) }
+                            
+                            if (validSeasons.isNotEmpty()) {
+                                updateSection(SuggestionSection.Type.Franchise, validSeasons)
+                            }
                         }
-                    }
-                } catch (_: Exception) {}
+                    } catch (_: Exception) {}
+                }
             }
 
             // 1. Similar Media (Broad Search Probe)
             launchIO {
-                val keywords = eu.kanade.tachiyomi.util.lang.StringSimilarity.getSearchKeywords(anime.title)
-                try {
-                    val searchResult = source.getSearchAnime(1, keywords, source.getFilterList())
-                    val domainAnimes = searchResult.animes.map { networkToLocalAnime.await(it.toDomainAnime(anime.source)) }.mapNotNull { getAnime.await(it.id) }
-                    if (domainAnimes.isNotEmpty()) updateSection(SuggestionSection.Type.Similarity, domainAnimes)
-                } catch (_: Exception) {}
-            }
-
-            // 2. Author/Studio (Multi-part Split Search)
-            launchIO {
-                val authors = anime.author?.split(",")?.map { it.trim() }?.filter { it.length > 2 && it != "Unknown" } ?: emptyList()
-                val allResults = mutableListOf<Anime>()
-                for (author in authors.take(2)) {
+                kotlinx.coroutines.coroutineScope {
+                    val keywords = eu.kanade.tachiyomi.util.lang.StringSimilarity.getSearchKeywords(anime.title)
                     try {
-                        val searchResult = source.getSearchAnime(1, author, source.getFilterList())
-                        allResults.addAll(searchResult.animes.map { networkToLocalAnime.await(it.toDomainAnime(anime.source)) }.mapNotNull { getAnime.await(it.id) })
+                        val searchResult = source.getSearchAnime(1, keywords, source.getFilterList())
+                        val domainAnimes = searchResult.animes
+                            .map { async { networkToLocalAnime.await(it.toDomainAnime(anime.source)) } }
+                            .awaitAll()
+                            .mapNotNull { getAnime.await(it.id) }
+                        if (domainAnimes.isNotEmpty()) updateSection(SuggestionSection.Type.Similarity, domainAnimes)
                     } catch (_: Exception) {}
                 }
-                if (allResults.isNotEmpty()) updateSection(SuggestionSection.Type.Author, allResults)
+            }
+
+            // 2. Author/Studio (Parallel Split Search)
+            launchIO {
+                kotlinx.coroutines.coroutineScope {
+                    val authors = anime.author?.split(",")?.map { it.trim() }?.filter { it.length > 2 && it != "Unknown" } ?: emptyList()
+                    val results = authors.take(2).map { author ->
+                        async {
+                            try {
+                                val searchResult = source.getSearchAnime(1, author, source.getFilterList())
+                                searchResult.animes
+                                    .map { async { networkToLocalAnime.await(it.toDomainAnime(anime.source)) } }
+                                    .awaitAll()
+                                    .mapNotNull { getAnime.await(it.id) }
+                            } catch (_: Exception) {
+                                emptyList()
+                            }
+                        }
+                    }.awaitAll().flatten()
+                    
+                    if (results.isNotEmpty()) updateSection(SuggestionSection.Type.Author, results)
+                }
             }
 
             // 3. Official Related (Source Provided)
             launchIO {
                 getRelatedAnime.subscribe(anime).collect { (_, animes) ->
                     if (animes.isNotEmpty()) {
-                        val domainAnimes = animes.map { networkToLocalAnime.await(it.toDomainAnime(anime.source)) }.mapNotNull { getAnime.await(it.id) }
-                        updateSection(SuggestionSection.Type.Source, domainAnimes)
+                        kotlinx.coroutines.coroutineScope {
+                            val domainAnimes = animes
+                                .map { async { networkToLocalAnime.await(it.toDomainAnime(anime.source)) } }
+                                .awaitAll()
+                                .mapNotNull { getAnime.await(it.id) }
+                            updateSection(SuggestionSection.Type.Source, domainAnimes)
+                        }
                     }
                 }
             }
 
-            // 4. Smart Recommendations (Tag Parallel Search)
+            // 4. Smart Recommendations (Parallel Tag Search)
             launchIO {
-                val tags = anime.genre?.take(3) ?: emptyList()
-                val allResults = mutableListOf<Anime>()
-                for (tag in tags) {
-                    try {
-                        val searchResult = source.getSearchAnime(1, tag, source.getFilterList())
-                        allResults.addAll(searchResult.animes.map { networkToLocalAnime.await(it.toDomainAnime(anime.source)) }.mapNotNull { getAnime.await(it.id) })
-                        if (allResults.size > 20) break
-                    } catch (_: Exception) {}
+                kotlinx.coroutines.coroutineScope {
+                    val tags = anime.genre?.take(3) ?: emptyList()
+                    val results = tags.map { tag ->
+                        async {
+                            try {
+                                val searchResult = source.getSearchAnime(1, tag, source.getFilterList())
+                                searchResult.animes
+                                    .map { async { networkToLocalAnime.await(it.toDomainAnime(anime.source)) } }
+                                    .awaitAll()
+                                    .mapNotNull { getAnime.await(it.id) }
+                            } catch (_: Exception) {
+                                emptyList()
+                            }
+                        }
+                    }.awaitAll().flatten()
+                    
+                    if (results.isNotEmpty()) updateSection(SuggestionSection.Type.Tag, results)
                 }
-                if (allResults.isNotEmpty()) updateSection(SuggestionSection.Type.Tag, allResults)
             }
         }
     }
