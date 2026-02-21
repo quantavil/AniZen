@@ -183,7 +183,7 @@ class FeedManageScreen : Screen() {
                             if (!savedSearches.isNullOrEmpty()) {
                                 HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                                 Text(
-                                    text = stringResource(MR.strings.saved_searches),
+                                    text = stringResource(MR.strings.saved_searches_feeds),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.primary,
                                     modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
