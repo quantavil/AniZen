@@ -14,15 +14,27 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.anime.AnimeScreen
 import tachiyomi.i18n.sy.SYMR
 import tachiyomi.presentation.core.i18n.stringResource
+import tachiyomi.presentation.core.components.material.Scaffold
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Settings
 
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import eu.kanade.tachiyomi.ui.browse.BrowseTab
-import kotlinx.coroutines.launch
 import androidx.compose.runtime.rememberCoroutineScope
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
+import eu.kanade.domain.ui.UiPreferences
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 
 fun feedTab(): Tab = FeedTab
 
 data object FeedTab : Tab {
+
+    override fun isEnabled(): Boolean {
+        return Injekt.get<UiPreferences>().enableFeed().get()
+    }
 
     @OptIn(ExperimentalAnimationGraphicsApi::class)
     override val options: TabOptions
@@ -38,7 +50,24 @@ data object FeedTab : Tab {
 
     @Composable
     override fun Content() {
-        Content(PaddingValues(0.dp))
+        val navigator = LocalNavigator.currentOrThrow
+        Scaffold(
+            topBar = {
+                eu.kanade.presentation.components.AppBar(
+                    title = stringResource(SYMR.strings.feed),
+                    actions = {
+                        androidx.compose.material3.IconButton(onClick = { navigator.push(FeedManageScreen()) }) {
+                            Icon(
+                                imageVector = androidx.compose.material.icons.Icons.Outlined.Settings,
+                                contentDescription = "Edit Feed",
+                            )
+                        }
+                    }
+                )
+            }
+        ) { contentPadding ->
+            Content(contentPadding)
+        }
     }
 
     @Composable

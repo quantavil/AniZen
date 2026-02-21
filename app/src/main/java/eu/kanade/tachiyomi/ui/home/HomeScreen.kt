@@ -88,7 +88,9 @@ object HomeScreen : Screen() {
     private const val TAB_NAVIGATOR_KEY = "HomeTabs"
 
     private val uiPreferences: UiPreferences by injectLazy()
-    private val defaultTab = uiPreferences.startScreen().get().tab
+    private val defaultTab = uiPreferences.startScreen().get().tab.let { 
+        if (it.isEnabled()) it else LibraryTab
+    }
     private val moreTab = uiPreferences.navStyle().get().moreTab
 
     @Composable

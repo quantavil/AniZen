@@ -157,8 +157,11 @@ object SettingsAppearanceScreen : SearchableSettings {
                 Preference.PreferenceItem.ListPreference(
                     pref = uiPreferences.startScreen(),
                     title = stringResource(MR.strings.pref_start_screen),
-                    entries = StartScreen.entries
-                        .associateWith { stringResource(it.titleRes) }
+                    entries = remember(uiPreferences.enableFeed().collectAsState().value) {
+                        StartScreen.entries
+                            .filter { it != StartScreen.FEED || uiPreferences.enableFeed().get() }
+                            .associateWith { it.titleRes }
+                    }.mapValues { stringResource(it.value) }
                         .toImmutableMap(),
                     onValueChanged = {
                         context.toast(MR.strings.requires_app_restart)
