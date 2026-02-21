@@ -90,7 +90,11 @@ fun FeedScreen(
                     items = state.items,
                     key = { "feed-${it.feed.id}" },
                 ) { item ->
-                    val title = item.savedSearch?.name ?: "${item.source.name} (${tachiyomi.domain.source.model.FeedSavedSearch.Type.from(item.feed.type).name})"
+                    val title = if (item.savedSearch != null) {
+                        "${item.source.name} (${item.savedSearch.name})"
+                    } else {
+                        "${item.source.name} (${tachiyomi.domain.source.model.FeedSavedSearch.Type.from(item.feed.type).name})"
+                    }
                     FeedIsland(
                         title = title,
                         animeList = item.animeList,
