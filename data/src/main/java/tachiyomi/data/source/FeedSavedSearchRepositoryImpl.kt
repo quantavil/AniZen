@@ -52,27 +52,14 @@ class FeedSavedSearchRepositoryImpl(
 
     override suspend fun insert(feedSavedSearch: FeedSavedSearch): Long {
         // KMK -->
-        return handler.await(true) {
-            val currentFeeds = handler.awaitList {
-                feed_saved_searchQueries.selectAll(FeedSavedSearchMapper::map)
-            }
-            val existedFeedId = currentFeeds.find { currentFeed ->
-                currentFeed.source == feedSavedSearch.source &&
-                    currentFeed.savedSearch == feedSavedSearch.savedSearch &&
-                    currentFeed.global == feedSavedSearch.global
-            }?.id
-
-            existedFeedId
-                // KMK <--
-                ?: handler.awaitOneExecutable(true) {
-                    feed_saved_searchQueries.insert(
-                        feedSavedSearch.source,
-                        feedSavedSearch.savedSearch,
-                        feedSavedSearch.global,
-                        feedSavedSearch.type.toLong(),
-                    )
-                    feed_saved_searchQueries.selectLastInsertedRowId()
-                }
+        return handler.awaitOneExecutable(true) {
+            feed_saved_searchQueries.insert(
+                feedSavedSearch.source,
+                feedSavedSearch.savedSearch,
+                feedSavedSearch.global,
+                feedSavedSearch.type.toLong(),
+            )
+            feed_saved_searchQueries.selectLastInsertedRowId()
         }
     }
 
@@ -107,6 +94,7 @@ class FeedSavedSearchRepositoryImpl(
     private fun Database.updatePartialBlocking(update: FeedSavedSearchUpdate) {
         feed_saved_searchQueries.update(
             source = update.source,
+            delete_saved_search = update.deleteSavedSearch,
             saved_search = update.savedSearch,
             global = update.global,
             feed_order = update.feedOrder,

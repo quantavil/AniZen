@@ -42,9 +42,12 @@ class FeedManageScreenModel(
             
             val items = feedSavedSearches.map { feed ->
                 val source = sourceManager.get(feed.source)
+                val savedSearch = savedSearches.find { it.id == feed.savedSearch }
+                
                 FeedItem(
                     feed = feed,
-                    title = savedSearches.find { it.id == feed.savedSearch }?.name ?: source?.name ?: "Unknown",
+                    title = source?.name ?: "Unknown",
+                    subtitle = savedSearch?.name ?: FeedSavedSearch.Type.from(feed.type).name,
                     source = source,
                 )
             }
@@ -68,6 +71,7 @@ class FeedManageScreenModel(
                     id = feed.id,
                     searchType = type.value.toLong(),
                     savedSearch = savedSearchId,
+                    deleteSavedSearch = savedSearchId == null,
                 )
             )
             getFeed()
@@ -118,6 +122,7 @@ class FeedManageScreenModel(
     data class FeedItem(
         val feed: FeedSavedSearch,
         val title: String,
+        val subtitle: String,
         val source: eu.kanade.tachiyomi.source.Source?,
     )
 }

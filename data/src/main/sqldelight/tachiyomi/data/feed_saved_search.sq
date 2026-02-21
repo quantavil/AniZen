@@ -79,7 +79,7 @@ SELECT coalesce(f.source, s.source) source, f.global, f.saved_search, s.name, s.
 update:
 UPDATE feed_saved_search
 SET source = coalesce(:source, source),
-    saved_search = coalesce(:saved_search, saved_search),
+    saved_search = CASE WHEN :delete_saved_search THEN NULL ELSE coalesce(:saved_search, saved_search) END,
     global = coalesce(:global, global),
     feed_order = coalesce(:feed_order, feed_order),
     search_type = coalesce(:search_type, search_type)

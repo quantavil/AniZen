@@ -94,7 +94,7 @@ class FeedManageScreen : Screen() {
                 ) { index, item ->
                     FeedManageItem(
                         title = item.title,
-                        type = if (item.feed.savedSearch != null) "Saved Search" else FeedSavedSearch.Type.from(item.feed.type).name,
+                        type = item.subtitle,
                         canMoveUp = index != 0,
                         canMoveDown = index != state.items.lastIndex,
                         onMoveUp = { screenModel.moveUp(item.feed) },
