@@ -12,6 +12,8 @@ import androidx.compose.material.icons.automirrored.outlined.Label
 import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Visibility
+import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -21,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontStyle
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kotlinx.collections.immutable.ImmutableSet
 import mihon.domain.extensionrepo.model.ExtensionRepo
@@ -35,6 +38,7 @@ fun ExtensionReposContent(
     paddingValues: PaddingValues,
     onOpenWebsite: (ExtensionRepo) -> Unit,
     onClickDelete: (String) -> Unit,
+    onToggleVisibility: (String, Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -50,6 +54,7 @@ fun ExtensionReposContent(
                     repo = it,
                     onOpenWebsite = { onOpenWebsite(it) },
                     onDelete = { onClickDelete(it.baseUrl) },
+                    onToggleVisibility = { onToggleVisibility(it.baseUrl, !it.isVisible) },
                 )
             }
         }
@@ -61,6 +66,7 @@ private fun ExtensionRepoListItem(
     repo: ExtensionRepo,
     onOpenWebsite: () -> Unit,
     onDelete: () -> Unit,
+    onToggleVisibility: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -78,12 +84,29 @@ private fun ExtensionRepoListItem(
                 ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Icon(imageVector = Icons.AutoMirrored.Outlined.Label, contentDescription = null)
-            Text(
-                text = repo.name,
-                modifier = Modifier.padding(start = MaterialTheme.padding.medium),
-                style = MaterialTheme.typography.titleMedium,
+            Icon(
+                imageVector = if (repo.isVisible) Icons.Outlined.Visibility else Icons.Outlined.VisibilityOff,
+                contentDescription = null,
+                modifier = Modifier.clickable { onToggleVisibility() }
             )
+            Column(
+                modifier = Modifier
+                    .padding(start = MaterialTheme.padding.medium)
+                    .weight(1f)
+            ) {
+                Text(
+                    text = repo.name,
+                    style = MaterialTheme.typography.titleMedium,
+                )
+                repo.author?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
+            }
         }
 
         Row(
