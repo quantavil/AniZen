@@ -14,6 +14,7 @@ sealed class Extension {
     abstract val lang: String?
     abstract val isNsfw: Boolean
     abstract val isTorrent: Boolean
+    abstract val repoUrl: String?
 
     data class Installed(
         override val name: String,
@@ -30,7 +31,9 @@ sealed class Extension {
         val hasUpdate: Boolean = false,
         val isObsolete: Boolean = false,
         val isShared: Boolean,
-        val repoUrl: String? = null,
+        val signatureHash: String,
+        override val repoUrl: String? = null,
+        val author: String? = null,
     ) : Extension()
 
     data class Available(
@@ -45,7 +48,8 @@ sealed class Extension {
         val sources: List<AnimeSource>,
         val apkName: String,
         val iconUrl: String,
-        val repoUrl: String,
+        override val repoUrl: String,
+        val author: String? = null,
     ) : Extension() {
 
         data class AnimeSource(
@@ -74,5 +78,7 @@ sealed class Extension {
         override val lang: String? = null,
         override val isNsfw: Boolean = false,
         override val isTorrent: Boolean = false,
+        override val repoUrl: String? = null,
+        val author: String? = null,
     ) : Extension()
 }

@@ -47,7 +47,12 @@ class ExtensionsScreenModel(
         val context = Injekt.get<Application>()
         val extensionMapper: (Map<String, InstallStep>) -> ((Extension) -> ExtensionUiModel.Item) = { map ->
             {
-                ExtensionUiModel.Item(it, map[it.pkgName] ?: InstallStep.Idle)
+                val author = when (it) {
+                    is Extension.Available -> it.author
+                    is Extension.Installed -> it.author
+                    is Extension.Untrusted -> it.author
+                }
+                ExtensionUiModel.Item(it, map[it.pkgName] ?: InstallStep.Idle, author)
             }
         }
         val queryFilter: (String) -> ((Extension) -> Boolean) = { query ->
@@ -243,5 +248,6 @@ object ExtensionUiModel {
     data class Item(
         val extension: Extension,
         val installStep: InstallStep,
+        val repoName: String? = null,
     )
 }

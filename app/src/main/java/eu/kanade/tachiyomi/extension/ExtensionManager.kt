@@ -148,7 +148,7 @@ class ExtensionManager(
 
         enableAdditionalSubLanguages(extensions)
 
-        availableExtensionsMapFlow.value = extensions.associateBy { it.pkgName }
+        availableExtensionsMapFlow.value = extensions.associateBy { "${it.pkgName}-${it.author}" }
         updatedInstalledAnimeExtensionsStatuses(extensions)
         setupAvailableAnimeExtensionsSourcesDataMap(extensions)
     }
@@ -196,28 +196,45 @@ class ExtensionManager(
             return
         }
 
+        val getExtensionRepo = Injekt.get<mihon.domain.extensionrepo.interactor.GetExtensionRepo>()
+        val repos = runBlocking { getExtensionRepo.getAll() }
+
         val installedExtensionsMap = installedExtensionsMapFlow.value.toMutableMap()
         var changed = false
 
         for ((pkgName, extension) in installedExtensionsMap) {
-            val availableExt = availableExtensions.find { it.pkgName == pkgName }
+            val availableExt = availableExtensions.find { it.pkgName == pkgName && it.author == extension.author }
+                ?: availableExtensions.find { it.pkgName == pkgName }
 
             if (availableExt == null && !extension.isObsolete) {
                 installedExtensionsMap[pkgName] = extension.copy(isObsolete = true)
                 changed = true
             } else if (availableExt != null) {
                 val hasUpdate = extension.updateExists(availableExt)
-                if (extension.hasUpdate != hasUpdate) {
-                    installedExtensionsMap[pkgName] = extension.copy(
+                
+                val repo = repos.find { it.signingKeyFingerprint == extension.signatureHash }
+                val author = repo?.let {
+                    val regex = """https://raw.githubusercontent.com/(.+?)/.+""".toRegex()
+                    regex.find(it.baseUrl)?.let { match ->
+                        "@${match.groupValues[1]}"
+                    } ?: it.shortName ?: it.name
+                } ?: extension.author
+
+                val newExt = if (extension.hasUpdate != hasUpdate || extension.author != author) {
+                    extension.copy(
                         hasUpdate = hasUpdate,
                         repoUrl = availableExt.repoUrl,
+                        author = author,
                     )
                 } else {
-                    installedExtensionsMap[pkgName] = extension.copy(
+                    extension.copy(
                         repoUrl = availableExt.repoUrl,
                     )
                 }
-                changed = true
+                if (newExt != extension) {
+                    installedExtensionsMap[pkgName] = newExt
+                    changed = true
+                }
             }
         }
         if (changed) {
@@ -245,7 +262,9 @@ class ExtensionManager(
      * @param extension The anime extension to be updated.
      */
     fun updateExtension(extension: Extension.Installed): Flow<InstallStep> {
-        val availableExt = availableExtensionsMapFlow.value[extension.pkgName] ?: return emptyFlow()
+        val availableExt = availableExtensionsMapFlow.value["${extension.pkgName}-${extension.author}"]
+            ?: availableExtensionsMapFlow.value.values.find { it.pkgName == extension.pkgName }
+            ?: return emptyFlow()
         return installExtension(availableExt)
     }
 
