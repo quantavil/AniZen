@@ -362,7 +362,6 @@ class AnimeScreenModel(
                         SuggestionSection.Type.Author -> "More by Studio"
                         SuggestionSection.Type.Source -> "Recommended"
                         SuggestionSection.Type.Tag -> "You Might Like"
-                        SuggestionSection.Type.Community -> "Latest Discovery"
                     },
                     items = persistentListOf(),
                     type = type
@@ -491,15 +490,6 @@ class AnimeScreenModel(
                     } catch (_: Exception) {}
                 }
                 if (allResults.isNotEmpty()) updateSection(SuggestionSection.Type.Tag, allResults)
-            }
-
-            // 5. Community Discovery (Latest)
-            launchIO {
-                try {
-                    val searchResult = source.getLatestUpdates(1)
-                    val domainAnimes = searchResult.animes.map { networkToLocalAnime.await(it.toDomainAnime(anime.source)) }.mapNotNull { getAnime.await(it.id) }
-                    if (domainAnimes.isNotEmpty()) updateSection(SuggestionSection.Type.Community, domainAnimes)
-                } catch (_: Exception) {}
             }
         }
     }

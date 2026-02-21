@@ -17,6 +17,5 @@ data class SuggestionSection(
         Tag,
         Source,
         Author,
-        Community,
     }
 }

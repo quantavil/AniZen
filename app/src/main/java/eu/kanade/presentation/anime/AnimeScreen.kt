@@ -597,7 +597,6 @@ private fun AnimeScreenSmallImpl(
                                                                 SuggestionSection.Type.Author -> androidx.compose.material.icons.Icons.Outlined.Person
                                                                 SuggestionSection.Type.Source -> androidx.compose.material.icons.Icons.Outlined.Language
                                                                 SuggestionSection.Type.Tag -> androidx.compose.material.icons.Icons.Outlined.Label
-                                                                SuggestionSection.Type.Community -> androidx.compose.material.icons.Icons.Outlined.NewReleases
                                                             }
                                                             val label = when (section.type) {
                                                                 SuggestionSection.Type.Franchise -> stringResource(KMR.strings.related_mangas_website_suggestions)
@@ -605,7 +604,6 @@ private fun AnimeScreenSmallImpl(
                                                                 SuggestionSection.Type.Author -> section.title
                                                                 SuggestionSection.Type.Source -> section.title
                                                                 SuggestionSection.Type.Tag -> stringResource(SYMR.strings.az_recommends)
-                                                                SuggestionSection.Type.Community -> stringResource(MR.strings.latest)
                                                             }
                                                             Icon(
                                                                 imageVector = icon,
@@ -990,7 +988,6 @@ fun AnimeScreenLargeImpl(
                                                                 SuggestionSection.Type.Author -> androidx.compose.material.icons.Icons.Outlined.Person
                                                                 SuggestionSection.Type.Source -> androidx.compose.material.icons.Icons.Outlined.Language
                                                                 SuggestionSection.Type.Tag -> androidx.compose.material.icons.Icons.Outlined.Label
-                                                                SuggestionSection.Type.Community -> androidx.compose.material.icons.Icons.Outlined.NewReleases
                                                             }
                                                             val label = when (section.type) {
                                                                 SuggestionSection.Type.Franchise -> stringResource(KMR.strings.related_mangas_website_suggestions)
@@ -998,7 +995,6 @@ fun AnimeScreenLargeImpl(
                                                                 SuggestionSection.Type.Author -> section.title
                                                                 SuggestionSection.Type.Source -> section.title
                                                                 SuggestionSection.Type.Tag -> stringResource(SYMR.strings.az_recommends)
-                                                                SuggestionSection.Type.Community -> stringResource(MR.strings.latest)
                                                             }
                                                             Icon(
                                                                 imageVector = icon,
