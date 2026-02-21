@@ -27,6 +27,8 @@ class FeedManageScreenModel(
     private val reorderFeed: ReorderFeed = Injekt.get(),
     private val deleteFeedSavedSearchById: DeleteFeedSavedSearchById = Injekt.get(),
     private val updateFeedSavedSearch: UpdateFeedSavedSearch = Injekt.get(),
+    private val getSavedSearchBySourceId: tachiyomi.domain.source.interactor.GetSavedSearchBySourceId = Injekt.get(),
+    private val insertFeedSavedSearch: tachiyomi.domain.source.interactor.InsertFeedSavedSearch = Injekt.get(),
 ) : StateScreenModel<FeedManageScreenModel.State>(State()) {
 
     init {
@@ -43,6 +45,7 @@ class FeedManageScreenModel(
                 FeedItem(
                     feed = feed,
                     title = savedSearches.find { it.id == feed.savedSearch }?.name ?: source?.name ?: "Unknown",
+                    source = source,
                 )
             }
 
@@ -54,18 +57,31 @@ class FeedManageScreenModel(
         }
     }
 
-    fun toggleMethod(feed: FeedSavedSearch) {
-        if (feed.savedSearch != null) return
+    suspend fun getSourceSavedSearches(sourceId: Long): List<SavedSearch> {
+        return getSavedSearchBySourceId.await(sourceId)
+    }
+
+    fun updateFeed(feed: FeedSavedSearch, type: FeedSavedSearch.Type, savedSearchId: Long?) {
         screenModelScope.launchIO {
-            val newType = when (FeedSavedSearch.Type.from(feed.type)) {
-                FeedSavedSearch.Type.Latest -> FeedSavedSearch.Type.Popular
-                FeedSavedSearch.Type.Popular -> FeedSavedSearch.Type.Latest
-                else -> FeedSavedSearch.Type.Latest
-            }
             updateFeedSavedSearch.await(
                 FeedSavedSearchUpdate(
                     id = feed.id,
-                    searchType = newType.value.toLong(),
+                    searchType = type.value.toLong(),
+                    savedSearch = savedSearchId,
+                )
+            )
+            getFeed()
+        }
+    }
+
+    fun duplicate(feed: FeedSavedSearch) {
+        screenModelScope.launchIO {
+            val currentFeed = getFeedSavedSearchGlobal.await()
+            val nextOrder = (currentFeed.maxOfOrNull { it.feedOrder } ?: -1) + 1
+            insertFeedSavedSearch.await(
+                feed.copy(
+                    id = -1,
+                    feedOrder = nextOrder
                 )
             )
             getFeed()
@@ -102,5 +118,6 @@ class FeedManageScreenModel(
     data class FeedItem(
         val feed: FeedSavedSearch,
         val title: String,
+        val source: eu.kanade.tachiyomi.source.Source?,
     )
 }
