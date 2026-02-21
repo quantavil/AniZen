@@ -119,11 +119,12 @@ object HomeScreen : Screen() {
                             NavigationRail(
                                 containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
                             ) {
-                                navStyle.tabs()
-                                    .fastFilter { it.isEnabled() }
-                                    .fastForEach {
-                                        NavigationRailItem(it, alwaysShowLabel)
-                                    }
+                                val tabs = remember(navStyle, uiPreferences.enableFeed().collectAsState().value, uiPreferences.showFeedInNavigationBar().collectAsState().value) {
+                                    navStyle.tabs().fastFilter { it.isEnabled() }
+                                }
+                                tabs.fastForEach {
+                                    NavigationRailItem(it, alwaysShowLabel)
+                                }
                             }
                         }
                     },
@@ -143,11 +144,12 @@ object HomeScreen : Screen() {
                                     NavigationBar(
                                         containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
                                     ) {
-                                        navStyle.tabs()
-                                            .fastFilter { it.isEnabled() }
-                                            .fastForEach {
-                                                NavigationBarItem(it, alwaysShowLabel)
-                                            }
+                                        val tabs = remember(navStyle, uiPreferences.enableFeed().collectAsState().value, uiPreferences.showFeedInNavigationBar().collectAsState().value) {
+                                            navStyle.tabs().fastFilter { it.isEnabled() }
+                                        }
+                                        tabs.fastForEach {
+                                            NavigationBarItem(it, alwaysShowLabel)
+                                        }
                                     }
                                 }
                             }

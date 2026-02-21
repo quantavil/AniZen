@@ -37,12 +37,20 @@ enum class NavStyle(
         }
 
     fun tabs(): List<Tab> {
+        val uiPreferences: UiPreferences = Injekt.get()
         val tabs = mutableListOf<Tab>(
             LibraryTab,
-            UpdatesTab,
-            HistoryTab,
-            BrowseTab,
-            MoreTab,
+        )
+        if (uiPreferences.showFeedInNavigationBar().get()) {
+            tabs.add(FeedTab)
+        }
+        tabs.addAll(
+            listOf(
+                UpdatesTab,
+                HistoryTab,
+                BrowseTab,
+                MoreTab,
+            )
         )
         if (this != SHOW_ALL) {
             tabs.remove(this.moreTab)

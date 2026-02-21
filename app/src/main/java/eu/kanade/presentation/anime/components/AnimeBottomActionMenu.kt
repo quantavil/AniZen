@@ -341,15 +341,6 @@ fun LibraryBottomActionMenu(
                     onLongClick = { onLongClickItem(0) },
                     onClick = onChangeCategoryClicked,
                 )
-                if (onFavoriteClicked != null) {
-                    Button(
-                        title = stringResource(MR.strings.add_to_library),
-                        icon = Icons.Outlined.FavoriteBorder,
-                        toConfirm = confirm[5],
-                        onLongClick = { onLongClickItem(5) },
-                        onClick = onFavoriteClicked,
-                    )
-                }
                 Button(
                     title = stringResource(MR.strings.action_mark_as_seen),
                     icon = Icons.Outlined.DoneAll,

@@ -53,11 +53,18 @@ class FeedScreenModel(
                 sourceManager.isInitialized,
                 ::Pair
             )
-                .onEach { (_, isInitialized) -> 
-                    if (isInitialized) mutableState.update { it.copy(isLoading = true) } 
-                }
                 .collectLatest { (feedSavedSearches, isInitialized) ->
-                    if (!isInitialized) return@collectLatest
+                    if (!isInitialized) {
+                        mutableState.update { it.copy(isLoading = true) }
+                        return@collectLatest
+                    }
+                    
+                    if (feedSavedSearches.isEmpty()) {
+                        mutableState.update { it.copy(isLoading = false, items = persistentListOf()) }
+                        return@collectLatest
+                    }
+
+                    mutableState.update { it.copy(isLoading = true) }
                     
                     val savedSearches = getSavedSearchGlobalFeed.await()
                     val feedItems = coroutineScope {
@@ -121,7 +128,7 @@ class FeedScreenModel(
 
     @Immutable
     data class State(
-        val isLoading: Boolean = false,
+        val isLoading: Boolean = true,
         val items: ImmutableList<FeedItem> = persistentListOf(),
     )
 

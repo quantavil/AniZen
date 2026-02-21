@@ -253,8 +253,14 @@ object SettingsAppearanceScreen : SearchableSettings {
                 ),
                 Preference.PreferenceItem.SwitchPreference(
                     pref = uiPreferences.enableFeed(),
-                    title = "Enable Feed tab",
+                    title = "Enable Feed feature",
                     subtitle = "Show global search results in a dedicated tab",
+                ),
+                Preference.PreferenceItem.SwitchPreference(
+                    pref = uiPreferences.showFeedInNavigationBar(),
+                    title = "Show Feed in main navigation",
+                    subtitle = "Put the Feed tab next to Library in the bottom bar",
+                    enabled = uiPreferences.enableFeed().collectAsState().value,
                 ),
             ),
         )
