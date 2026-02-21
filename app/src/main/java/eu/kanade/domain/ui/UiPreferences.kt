@@ -46,6 +46,8 @@ class UiPreferences(
 
     fun showFeedInNavigationBar() = preferenceStore.getBoolean("show_feed_in_navigation_bar", true)
 
+    fun showFeedInBrowse() = preferenceStore.getBoolean("show_feed_in_browse", true)
+
     // SY -->
     fun bottomBarLabels() = preferenceStore.getBoolean("pref_show_bottom_bar_labels", true)
 

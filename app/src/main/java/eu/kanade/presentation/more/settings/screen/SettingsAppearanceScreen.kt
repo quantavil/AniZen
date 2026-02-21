@@ -262,6 +262,12 @@ object SettingsAppearanceScreen : SearchableSettings {
                     subtitle = "Put the Feed tab next to Library in the bottom bar",
                     enabled = uiPreferences.enableFeed().collectAsState().value,
                 ),
+                Preference.PreferenceItem.SwitchPreference(
+                    pref = uiPreferences.showFeedInBrowse(),
+                    title = "Show Feed in Browse",
+                    subtitle = "Show Feed tab in the Browse section",
+                    enabled = uiPreferences.enableFeed().collectAsState().value,
+                ),
             ),
         )
     }
