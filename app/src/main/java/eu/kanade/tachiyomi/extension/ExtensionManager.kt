@@ -48,6 +48,7 @@ class ExtensionManager(
     private val context: Context,
     private val preferences: SourcePreferences = Injekt.get(),
     private val trustExtension: TrustExtension = Injekt.get(),
+    private val extensionRepoRepository: mihon.domain.extensionrepo.repository.ExtensionRepoRepository = Injekt.get(),
 ) {
 
     val scope = CoroutineScope(SupervisorJob())
@@ -67,8 +68,24 @@ class ExtensionManager(
 
     private val iconMap = mutableMapOf<String, Drawable>()
 
+    private val githubRegex = """https://raw.githubusercontent.com/(.+?)/.+""".toRegex()
+
     private val installedExtensionsMapFlow = MutableStateFlow(emptyMap<String, Extension.Installed>())
-    val installedExtensionsFlow = installedExtensionsMapFlow.mapExtensions(scope)
+    val installedExtensionsFlow = combine(
+        installedExtensionsMapFlow,
+        extensionRepoRepository.subscribeAll(),
+    ) { installedMap, repos ->
+        installedMap.values.map { extension ->
+            val matchingRepo = repos.find { it.signingKeyFingerprint == extension.signatureHash }
+            val author = matchingRepo?.let { repo ->
+                githubRegex.find(repo.baseUrl)?.let { match ->
+                    "@${match.groupValues[1]}"
+                } ?: repo.shortName ?: repo.name
+            } ?: extension.author
+
+            extension.copy(author = author)
+        }
+    }.mapExtensions(scope)
 
     private val availableExtensionsMapFlow = MutableStateFlow(emptyMap<String, Extension.Available>())
     val availableExtensionsFlow = availableExtensionsMapFlow.mapExtensions(scope)
@@ -197,13 +214,8 @@ class ExtensionManager(
             return
         }
 
-        val getExtensionRepo = Injekt.get<mihon.domain.extensionrepo.interactor.GetExtensionRepo>()
-        val repos = runBlocking { getExtensionRepo.getAll() }
-
         val installedExtensionsMap = installedExtensionsMapFlow.value.toMutableMap()
         var changed = false
-
-        val githubRegex = """https://raw.githubusercontent.com/(.+?)/.+""".toRegex()
 
         for ((pkgName, extension) in installedExtensionsMap) {
             val availableExt = availableExtensions.find { it.pkgName == pkgName && it.author == extension.author }
@@ -215,17 +227,9 @@ class ExtensionManager(
             } else if (availableExt != null) {
                 val hasUpdate = extension.updateExists(availableExt)
                 
-                val matchingRepo = repos.find { it.signingKeyFingerprint == extension.signatureHash }
-                val author = matchingRepo?.let { repo ->
-                    githubRegex.find(repo.baseUrl)?.let { match ->
-                        "@${match.groupValues[1]}"
-                    } ?: repo.shortName ?: repo.name
-                } ?: extension.author
-
                 val newExt = extension.copy(
                     hasUpdate = hasUpdate,
                     repoUrl = availableExt.repoUrl,
-                    author = author,
                 )
                 
                 if (newExt != extension) {

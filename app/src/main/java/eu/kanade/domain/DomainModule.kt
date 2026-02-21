@@ -178,7 +178,7 @@ class DomainModule : InjektModule {
 
         addFactory { DeleteDownload(get(), get()) }
 
-        addFactory { GetExtensionsByType(get(), get()) }
+        addFactory { GetExtensionsByType(get(), get(), get()) }
         addFactory { GetExtensionSources(get()) }
         addFactory { GetExtensionLanguages(get(), get()) }
 

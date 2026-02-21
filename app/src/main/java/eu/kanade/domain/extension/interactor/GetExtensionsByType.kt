@@ -6,10 +6,12 @@ import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.Extension
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import mihon.domain.extensionrepo.repository.ExtensionRepoRepository
 
 class GetExtensionsByType(
     private val preferences: SourcePreferences,
     private val extensionManager: ExtensionManager,
+    private val extensionRepoRepository: ExtensionRepoRepository,
 ) {
 
     fun subscribe(): Flow<Extensions> {
@@ -20,7 +22,8 @@ class GetExtensionsByType(
             extensionManager.installedExtensionsFlow,
             extensionManager.untrustedExtensionsFlow,
             extensionManager.availableExtensionsFlow,
-        ) { enabledLanguages, _installed, _untrusted, _available ->
+            extensionRepoRepository.subscribeAll(),
+        ) { enabledLanguages, _installed, _untrusted, _available, repos ->
             val (updates, installed) = _installed
                 .filter { (showNsfwSources || !it.isNsfw) }
                 .sortedWith(
@@ -32,11 +35,14 @@ class GetExtensionsByType(
             val untrusted = _untrusted
                 .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.name })
 
+            val hiddenRepos = repos.filter { !it.isVisible }.map { it.baseUrl.removeSuffix("/") }
+
             val available = _available
                 .filter { extension ->
                     _installed.none { it.pkgName == extension.pkgName && it.author == extension.author } &&
                         _untrusted.none { it.pkgName == extension.pkgName && it.author == extension.author } &&
-                        (showNsfwSources || !extension.isNsfw)
+                        (showNsfwSources || !extension.isNsfw) &&
+                        hiddenRepos.none { extension.repoUrl.startsWith(it) }
                 }
                 .flatMap { ext ->
                     if (ext.sources.isEmpty()) {
