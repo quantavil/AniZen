@@ -27,6 +27,8 @@ import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 import java.util.concurrent.ConcurrentHashMap
 
+import kotlinx.coroutines.flow.combine
+
 class AndroidSourceManager(
     private val context: Context,
     private val extensionManager: ExtensionManager,
@@ -53,8 +55,9 @@ class AndroidSourceManager(
             combine(
                 extensionManager.installedExtensionsFlow,
                 extensionManager.isInitialized,
-                ::Pair,
-            ).collectLatest { (extensions, isExtensionManagerInitialized) ->
+            ) { extensions, isExtensionManagerInitialized ->
+                extensions to isExtensionManagerInitialized
+            }.collectLatest { (extensions, isExtensionManagerInitialized) ->
                 if (!isExtensionManagerInitialized) return@collectLatest
 
                 val mutableMap = ConcurrentHashMap<Long, Source>(
@@ -66,7 +69,7 @@ class AndroidSourceManager(
                         ),
                     ),
                 )
-                extensions.forEach { extension ->
+                extensions.forEach { extension: eu.kanade.tachiyomi.extension.model.Extension.Installed ->
                     extension.sources.forEach {
                         mutableMap[it.id] = it
                         registerStubSource(StubSource.from(it))
