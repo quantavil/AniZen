@@ -320,7 +320,7 @@ class AiManager(
     }
 
     private fun getExtensionStatusSummary(): String {
-        val installed = extensionManager.installedExtensionsFlow.value
+        val installed: List<eu.kanade.tachiyomi.extension.model.Extension.Installed> = extensionManager.installedExtensionsFlow.value
         return if (installed.isEmpty()) "No extensions installed."
         else installed.joinToString("\n") { "- ${it.name} (${it.pkgName}) v${it.versionName} [Obsolete: ${it.isObsolete}, Update: ${it.hasUpdate}]" }
     }

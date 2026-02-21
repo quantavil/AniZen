@@ -45,8 +45,8 @@ class ExtensionDetailsScreenModel(
         screenModelScope.launch {
             launch {
                 extensionManager.installedExtensionsFlow
-                    .map { it.firstOrNull { extension -> extension.pkgName == pkgName } }
-                    .collectLatest { extension ->
+                    .map { it: List<eu.kanade.tachiyomi.extension.model.Extension.Installed> -> it.firstOrNull { extension -> extension.pkgName == pkgName } }
+                    .collectLatest { extension: eu.kanade.tachiyomi.extension.model.Extension.Installed? ->
                         if (extension == null) {
                             _events.send(ExtensionDetailsEvent.Uninstalled)
                             return@collectLatest

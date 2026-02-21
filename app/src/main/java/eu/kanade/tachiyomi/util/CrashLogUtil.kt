@@ -58,11 +58,11 @@ class CrashLogUtil(
     }
 
     private fun getAnimeExtensionsInfo(): String? {
-        val availableExtensions = extensionManager.availableExtensionsFlow.value.associateBy { it.pkgName }
+        val availableExtensions: Map<String, eu.kanade.tachiyomi.extension.model.Extension.Available> = extensionManager.availableExtensionsFlow.value.associateBy { it.pkgName }
 
-        val extensionInfoList = extensionManager.installedExtensionsFlow.value
+        val extensionInfoList: List<String> = extensionManager.installedExtensionsFlow.value
             .sortedBy { it.name }
-            .mapNotNull {
+            .mapNotNull { it: eu.kanade.tachiyomi.extension.model.Extension.Installed ->
                 val availableExtension = availableExtensions[it.pkgName]
                 val hasUpdate = (availableExtension?.versionCode ?: 0) > it.versionCode
 

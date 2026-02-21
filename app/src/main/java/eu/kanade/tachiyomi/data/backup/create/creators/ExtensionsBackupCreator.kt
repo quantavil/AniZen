@@ -15,7 +15,7 @@ class ExtensionsBackupCreator(
 
     operator fun invoke(): List<BackupExtension> {
         val installedExtensions = mutableListOf<BackupExtension>()
-        extensionManager.installedExtensionsFlow.value.forEach {
+        extensionManager.installedExtensionsFlow.value.forEach { it: eu.kanade.tachiyomi.extension.model.Extension.Installed ->
             val packageName = it.pkgName
             val apk = File(
                 context.packageManager

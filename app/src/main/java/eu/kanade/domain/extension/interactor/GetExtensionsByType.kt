@@ -23,7 +23,7 @@ class GetExtensionsByType(
             extensionManager.untrustedExtensionsFlow,
             extensionManager.availableExtensionsFlow,
             extensionRepoRepository.subscribeAll(),
-        ) { enabledLanguages, _installed, _untrusted, _available, repos ->
+        ) { enabledLanguages: Set<String>, _installed: List<Extension.Installed>, _untrusted: List<Extension.Untrusted>, _available: List<Extension.Available>, repos: List<mihon.domain.extensionrepo.model.ExtensionRepo> ->
             val (updates, installed) = _installed
                 .filter { (showNsfwSources || !it.isNsfw) }
                 .sortedWith(

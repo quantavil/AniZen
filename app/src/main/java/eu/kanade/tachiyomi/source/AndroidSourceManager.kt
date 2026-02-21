@@ -51,7 +51,7 @@ class AndroidSourceManager(
     init {
         scope.launch {
             extensionManager.installedExtensionsFlow
-                .collectLatest { extensions ->
+                .collectLatest { extensions: List<eu.kanade.tachiyomi.extension.model.Extension.Installed> ->
                     val mutableMap = ConcurrentHashMap<Long, Source>(
                         mapOf(
                             LocalSource.ID to LocalSource(

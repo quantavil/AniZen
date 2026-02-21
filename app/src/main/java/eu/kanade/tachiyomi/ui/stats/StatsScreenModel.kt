@@ -92,7 +92,7 @@ class StatsScreenModel(
             )
 
             // Extension Usage with Repo mapping
-            val installedExtensions = extensionManager.installedExtensionsFlow.first()
+            val installedExtensions: List<eu.kanade.tachiyomi.extension.model.Extension.Installed> = extensionManager.installedExtensionsFlow.first()
             val extensionUsage = StatsData.ExtensionUsage(
                 topExtensions = distinctLibraryAnime
                     .map { it.anime.source }
@@ -100,7 +100,7 @@ class StatsScreenModel(
                     .sortedByDescending { it.value }.take(5)
                     .map { entry ->
                         val source = sourceManager.getOrStub(entry.key)
-                        val ext = installedExtensions.find { it.sources.any { s -> s.id == entry.key } }
+                        val ext = installedExtensions.find { it: eu.kanade.tachiyomi.extension.model.Extension.Installed -> it.sources.any { s -> s.id == entry.key } }
                         
                         // Robust repo parsing
                         val repoName = when {
