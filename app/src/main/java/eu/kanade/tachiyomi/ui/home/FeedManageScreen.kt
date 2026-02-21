@@ -49,6 +49,7 @@ import eu.kanade.tachiyomi.animesource.AnimeCatalogueSource
 import tachiyomi.domain.source.model.FeedSavedSearch
 import tachiyomi.domain.source.model.SavedSearch
 import tachiyomi.i18n.MR
+import tachiyomi.i18n.sy.SYMR
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
@@ -183,7 +184,7 @@ class FeedManageScreen : Screen() {
                             if (!savedSearches.isNullOrEmpty()) {
                                 HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                                 Text(
-                                    text = stringResource(MR.strings.saved_searches_feeds),
+                                    text = stringResource(SYMR.strings.saved_searches),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.primary,
                                     modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
