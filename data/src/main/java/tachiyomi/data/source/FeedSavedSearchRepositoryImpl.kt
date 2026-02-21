@@ -12,20 +12,20 @@ class FeedSavedSearchRepositoryImpl(
     private val handler: DatabaseHandler,
 ) : FeedSavedSearchRepository {
 
-    override suspend fun getGlobal(): List<FeedSavedSearch> {
-        return handler.awaitList { feed_saved_searchQueries.selectAllGlobal(FeedSavedSearchMapper::map) }
+    override suspend fun getGlobal(categoryId: Long): List<FeedSavedSearch> {
+        return handler.awaitList { feed_saved_searchQueries.selectGlobalByCategory(categoryId, FeedSavedSearchMapper::map) }
     }
 
-    override fun getGlobalAsFlow(): Flow<List<FeedSavedSearch>> {
-        return handler.subscribeToList { feed_saved_searchQueries.selectAllGlobal(FeedSavedSearchMapper::map) }
+    override fun getGlobalAsFlow(categoryId: Long): Flow<List<FeedSavedSearch>> {
+        return handler.subscribeToList { feed_saved_searchQueries.selectGlobalByCategory(categoryId, FeedSavedSearchMapper::map) }
     }
 
-    override suspend fun getGlobalFeedSavedSearch(): List<SavedSearch> {
-        return handler.awaitList { feed_saved_searchQueries.selectGlobalFeedSavedSearch(SavedSearchMapper::map) }
+    override suspend fun getGlobalFeedSavedSearch(categoryId: Long): List<SavedSearch> {
+        return handler.awaitList { feed_saved_searchQueries.selectGlobalFeedSavedSearchByCategory(categoryId, SavedSearchMapper::map) }
     }
 
-    override suspend fun countGlobal(): Long {
-        return handler.awaitOne { feed_saved_searchQueries.countGlobal() }
+    override suspend fun countGlobal(categoryId: Long): Long {
+        return handler.awaitOne { feed_saved_searchQueries.countGlobalByCategory(categoryId) }
     }
 
     override suspend fun getBySourceId(sourceId: Long): List<FeedSavedSearch> {
@@ -58,6 +58,7 @@ class FeedSavedSearchRepositoryImpl(
                 feedSavedSearch.savedSearch,
                 feedSavedSearch.global,
                 feedSavedSearch.type.toLong(),
+                feedSavedSearch.category,
             )
             feed_saved_searchQueries.selectLastInsertedRowId()
         }
@@ -71,6 +72,7 @@ class FeedSavedSearchRepositoryImpl(
                     it.savedSearch,
                     it.global,
                     it.type.toLong(),
+                    it.category,
                 )
             }
         }
@@ -99,6 +101,7 @@ class FeedSavedSearchRepositoryImpl(
             global = update.global,
             feed_order = update.feedOrder,
             search_type = update.searchType,
+            category = update.category,
             id = update.id,
         )
     }

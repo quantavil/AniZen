@@ -16,4 +16,5 @@ data class FeedSavedSearchUpdate(
     val global: Boolean? = null,
     val feedOrder: Long? = null,
     val searchType: Long? = null,
+    val category: Long? = null,
 )

@@ -14,6 +14,7 @@ data class FeedSavedSearch(
     val global: Boolean,
     val feedOrder: Long,
     val type: Int,
+    val category: Long = 1,
 ) {
     enum class Type(val value: Int) {
         Popular(0),

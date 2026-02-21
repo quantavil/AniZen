@@ -1,32 +1,32 @@
 package eu.kanade.tachiyomi.ui.home
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.ArrowDropDown
 import androidx.compose.material.icons.outlined.ArrowDropUp
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -54,7 +54,6 @@ import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.util.plus
 
 class FeedManageScreen : Screen() {
 
@@ -67,48 +66,176 @@ class FeedManageScreen : Screen() {
         var deleteDialogItem by remember { mutableStateOf<FeedSavedSearch?>(null) }
         var editFeedItem by remember { mutableStateOf<FeedManageScreenModel.FeedItem?>(null) }
 
+        // Category Management States
+        var showAddCategoryDialog by remember { mutableStateOf(false) }
+        var showRenameCategoryDialog by remember { mutableStateOf(false) }
+        var categoryToDelete by remember { mutableStateOf<Long?>(null) }
+
         Scaffold(
             topBar = { scrollBehavior ->
                 AppBar(
                     title = "Manage Feed",
                     navigateUp = { navigator.pop() },
+                    actions = {
+                        IconButton(onClick = { showAddCategoryDialog = true }) {
+                            Icon(imageVector = Icons.Outlined.Add, contentDescription = "Add Category")
+                        }
+                        if (state.selectedCategoryId != 1L && state.selectedCategoryId != -1L) {
+                            IconButton(onClick = { showRenameCategoryDialog = true }) {
+                                Icon(imageVector = Icons.Outlined.Edit, contentDescription = "Rename Category")
+                            }
+                            IconButton(onClick = { categoryToDelete = state.selectedCategoryId }) {
+                                Icon(imageVector = Icons.Outlined.Delete, contentDescription = "Delete Category")
+                            }
+                        }
+                    },
                     scrollBehavior = scrollBehavior,
                 )
             },
         ) { paddingValues ->
-            if (state.items.isEmpty()) {
-                EmptyScreen(
-                    stringRes = MR.strings.information_empty_category, // reuse for now
-                    modifier = Modifier.padding(paddingValues),
-                )
-                return@Scaffold
-            }
-
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = paddingValues,
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
             ) {
-                itemsIndexed(
-                    items = state.items,
-                    key = { _, item -> "feed-${item.feed.id}" },
-                ) { index, item ->
-                    FeedManageItem(
-                        title = item.title,
-                        type = item.subtitle,
-                        canMoveUp = index != 0,
-                        canMoveDown = index != state.items.lastIndex,
-                        onMoveUp = { screenModel.moveUp(item.feed) },
-                        onMoveDown = { screenModel.moveDown(item.feed) },
-                        onDuplicate = { screenModel.duplicate(item.feed) },
-                        onDelete = { deleteDialogItem = item.feed },
-                        onClick = { editFeedItem = item },
-                        modifier = Modifier.animateItem(),
+                if (state.categories.isNotEmpty()) {
+                    ScrollableTabRow(
+                        selectedTabIndex = state.categories.indexOfFirst { it.id == state.selectedCategoryId }.takeIf { it >= 0 } ?: 0,
+                        edgePadding = 0.dp,
+                    ) {
+                        state.categories.forEach { category ->
+                            Tab(
+                                selected = state.selectedCategoryId == category.id,
+                                onClick = { screenModel.selectCategory(category.id) },
+                                text = { Text(text = category.name) },
+                            )
+                        }
+                    }
+                }
+
+                if (state.items.isEmpty()) {
+                    EmptyScreen(
+                        stringRes = MR.strings.information_empty_category,
                     )
-                    if (index != state.items.lastIndex) {
-                        HorizontalDivider()
+                } else {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                    ) {
+                        itemsIndexed(
+                            items = state.items,
+                            key = { _, item -> "feed-${item.feed.id}" },
+                        ) { index, item ->
+                            FeedManageItem(
+                                title = item.title,
+                                type = item.subtitle,
+                                canMoveUp = index != 0,
+                                canMoveDown = index != state.items.lastIndex,
+                                onMoveUp = { screenModel.moveUp(item.feed) },
+                                onMoveDown = { screenModel.moveDown(item.feed) },
+                                onDuplicate = { screenModel.duplicate(item.feed) },
+                                onDelete = { deleteDialogItem = item.feed },
+                                onClick = { editFeedItem = item },
+                                modifier = Modifier.animateItem(),
+                            )
+                            if (index != state.items.lastIndex) {
+                                HorizontalDivider()
+                            }
+                        }
                     }
                 }
             }
+        }
+
+        // Add Category Dialog
+        if (showAddCategoryDialog) {
+            var name by remember { mutableStateOf("") }
+            AlertDialog(
+                onDismissRequest = { showAddCategoryDialog = false },
+                title = { Text(text = "New Category") },
+                text = {
+                    OutlinedTextField(
+                        value = name,
+                        onValueChange = { name = it },
+                        label = { Text("Name") },
+                        singleLine = true
+                    )
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            screenModel.createCategory(name)
+                            showAddCategoryDialog = false
+                        },
+                        enabled = name.isNotBlank()
+                    ) {
+                        Text(text = stringResource(MR.strings.action_add))
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { showAddCategoryDialog = false }) {
+                        Text(text = stringResource(MR.strings.action_cancel))
+                    }
+                }
+            )
+        }
+
+        // Rename Category Dialog
+        if (showRenameCategoryDialog) {
+            val currentCategory = state.categories.find { it.id == state.selectedCategoryId }
+            var name by remember { mutableStateOf(currentCategory?.name ?: "") }
+            AlertDialog(
+                onDismissRequest = { showRenameCategoryDialog = false },
+                title = { Text(text = "Rename Category") },
+                text = {
+                    OutlinedTextField(
+                        value = name,
+                        onValueChange = { name = it },
+                        label = { Text("Name") },
+                        singleLine = true
+                    )
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            screenModel.renameCategory(state.selectedCategoryId, name)
+                            showRenameCategoryDialog = false
+                        },
+                        enabled = name.isNotBlank()
+                    ) {
+                        Text(text = stringResource(MR.strings.action_ok))
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { showRenameCategoryDialog = false }) {
+                        Text(text = stringResource(MR.strings.action_cancel))
+                    }
+                }
+            )
+        }
+
+        // Delete Category Dialog
+        if (categoryToDelete != null) {
+            val category = state.categories.find { it.id == categoryToDelete }
+            AlertDialog(
+                onDismissRequest = { categoryToDelete = null },
+                title = { Text(text = "Delete Category?") },
+                text = { Text(text = "Are you sure you want to delete '${category?.name}'? Items in this category will also be deleted.") },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            screenModel.deleteCategory(categoryToDelete!!)
+                            categoryToDelete = null
+                        },
+                    ) {
+                        Text(text = stringResource(MR.strings.action_delete))
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { categoryToDelete = null }) {
+                        Text(text = stringResource(MR.strings.action_cancel))
+                    }
+                },
+            )
         }
 
         if (deleteDialogItem != null) {

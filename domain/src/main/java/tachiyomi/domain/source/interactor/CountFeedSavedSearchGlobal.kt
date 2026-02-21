@@ -6,7 +6,7 @@ class CountFeedSavedSearchGlobal(
     private val feedSavedSearchRepository: FeedSavedSearchRepository,
 ) {
 
-    suspend fun await(): Long {
-        return feedSavedSearchRepository.countGlobal()
+    suspend fun await(categoryId: Long = 1): Long {
+        return feedSavedSearchRepository.countGlobal(categoryId)
     }
 }

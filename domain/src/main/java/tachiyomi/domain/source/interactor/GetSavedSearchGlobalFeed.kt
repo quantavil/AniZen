@@ -7,7 +7,7 @@ class GetSavedSearchGlobalFeed(
     private val feedSavedSearchRepository: FeedSavedSearchRepository,
 ) {
 
-    suspend fun await(): List<SavedSearch> {
-        return feedSavedSearchRepository.getGlobalFeedSavedSearch()
+    suspend fun await(categoryId: Long = 1): List<SavedSearch> {
+        return feedSavedSearchRepository.getGlobalFeedSavedSearch(categoryId)
     }
 }

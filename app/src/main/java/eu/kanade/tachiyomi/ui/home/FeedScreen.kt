@@ -43,6 +43,9 @@ import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
 import tachiyomi.presentation.core.screens.LoadingScreen
 
+import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.Tab
+
 @Composable
 fun FeedScreen(
     screenModel: FeedScreenModel,
@@ -52,54 +55,83 @@ fun FeedScreen(
 ) {
     val state by screenModel.state.collectAsState()
 
-    when {
-        state.isLoading -> LoadingScreen(Modifier.padding(contentPadding))
-        state.items.isEmpty() -> {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(contentPadding),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
+    Column(modifier = Modifier.fillMaxSize()) {
+        if (state.categories.size > 1) {
+            ScrollableTabRow(
+                selectedTabIndex = state.categories.indexOfFirst { it.id == state.selectedCategoryId }.takeIf { it >= 0 } ?: 0,
+                modifier = Modifier.padding(top = contentPadding.calculateTopPadding()),
+                edgePadding = 0.dp,
             ) {
-                EmptyScreen(
-                    stringRes = SYMR.strings.feed_tab_empty,
-                )
-                Button(
-                    onClick = onAddSourceClick,
-                    modifier = Modifier.padding(top = 16.dp),
-                ) {
-                    Icon(imageVector = Icons.Outlined.Add, contentDescription = null)
-                    Spacer(Modifier.width(8.dp))
-                    Text(text = "Add Sources")
+                state.categories.forEach { category ->
+                    Tab(
+                        selected = state.selectedCategoryId == category.id,
+                        onClick = { screenModel.onCategorySelected(category.id) },
+                        text = { Text(text = category.name) },
+                    )
                 }
             }
         }
-        else -> {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(
-                    start = 16.dp,
-                    end = 16.dp,
-                    top = contentPadding.calculateTopPadding() + 8.dp,
-                    bottom = contentPadding.calculateBottomPadding() + 8.dp
-                ),
-                verticalArrangement = Arrangement.spacedBy(24.dp) // More space between islands
-            ) {
-                items(
-                    items = state.items,
-                    key = { "feed-${it.feed.id}" },
-                ) { item ->
-                    val title = if (item.savedSearch != null) {
-                        "${item.source.name} (${item.savedSearch.name})"
-                    } else {
-                        "${item.source.name} (${tachiyomi.domain.source.model.FeedSavedSearch.Type.from(item.feed.type).name})"
-                    }
-                    FeedIsland(
-                        title = title,
-                        animeList = item.animeList,
-                        onAnimeClick = onAnimeClick,
+
+        val listPadding = if (state.categories.size > 1) {
+             PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                top = 8.dp,
+                bottom = contentPadding.calculateBottomPadding() + 8.dp
+            )
+        } else {
+             PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                top = contentPadding.calculateTopPadding() + 8.dp,
+                bottom = contentPadding.calculateBottomPadding() + 8.dp
+            )
+        }
+
+        when {
+            state.isLoading -> LoadingScreen(Modifier.padding(top = if (state.categories.size > 1) 0.dp else contentPadding.calculateTopPadding()))
+            state.items.isEmpty() -> {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(bottom = contentPadding.calculateBottomPadding()),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    EmptyScreen(
+                        stringRes = SYMR.strings.feed_tab_empty,
                     )
+                    Button(
+                        onClick = onAddSourceClick,
+                        modifier = Modifier.padding(top = 16.dp),
+                    ) {
+                        Icon(imageVector = Icons.Outlined.Add, contentDescription = null)
+                        Spacer(Modifier.width(8.dp))
+                        Text(text = "Add Sources")
+                    }
+                }
+            }
+            else -> {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = listPadding,
+                    verticalArrangement = Arrangement.spacedBy(24.dp)
+                ) {
+                    items(
+                        items = state.items,
+                        key = { "feed-${it.feed.id}" },
+                    ) { item ->
+                        val title = if (item.savedSearch != null) {
+                            "${item.source.name} (${item.savedSearch.name})"
+                        } else {
+                            "${item.source.name} (${tachiyomi.domain.source.model.FeedSavedSearch.Type.from(item.feed.type).name})"
+                        }
+                        FeedIsland(
+                            title = title,
+                            animeList = item.animeList,
+                            onAnimeClick = onAnimeClick,
+                        )
+                    }
                 }
             }
         }

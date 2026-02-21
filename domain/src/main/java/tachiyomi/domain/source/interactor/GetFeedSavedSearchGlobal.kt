@@ -8,11 +8,11 @@ class GetFeedSavedSearchGlobal(
     private val feedSavedSearchRepository: FeedSavedSearchRepository,
 ) {
 
-    suspend fun await(): List<FeedSavedSearch> {
-        return feedSavedSearchRepository.getGlobal()
+    suspend fun await(categoryId: Long = 1): List<FeedSavedSearch> {
+        return feedSavedSearchRepository.getGlobal(categoryId)
     }
 
-    fun subscribe(): Flow<List<FeedSavedSearch>> {
-        return feedSavedSearchRepository.getGlobalAsFlow()
+    fun subscribe(categoryId: Long = 1): Flow<List<FeedSavedSearch>> {
+        return feedSavedSearchRepository.getGlobalAsFlow(categoryId)
     }
 }
