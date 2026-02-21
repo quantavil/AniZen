@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import logcat.LogPriority
 import tachiyomi.core.common.util.lang.withUIContext
 import tachiyomi.core.common.util.system.logcat
@@ -202,6 +203,8 @@ class ExtensionManager(
         val installedExtensionsMap = installedExtensionsMapFlow.value.toMutableMap()
         var changed = false
 
+        val githubRegex = """https://raw.githubusercontent.com/(.+?)/.+""".toRegex()
+
         for ((pkgName, extension) in installedExtensionsMap) {
             val availableExt = availableExtensions.find { it.pkgName == pkgName && it.author == extension.author }
                 ?: availableExtensions.find { it.pkgName == pkgName }
@@ -212,25 +215,19 @@ class ExtensionManager(
             } else if (availableExt != null) {
                 val hasUpdate = extension.updateExists(availableExt)
                 
-                val repo = repos.find { it.signingKeyFingerprint == extension.signatureHash }
-                val author = repo?.let {
-                    val regex = """https://raw.githubusercontent.com/(.+?)/.+""".toRegex()
-                    regex.find(it.baseUrl)?.let { match ->
+                val matchingRepo = repos.find { it.signingKeyFingerprint == extension.signatureHash }
+                val author = matchingRepo?.let { repo ->
+                    githubRegex.find(repo.baseUrl)?.let { match ->
                         "@${match.groupValues[1]}"
-                    } ?: it.shortName ?: it.name
+                    } ?: repo.shortName ?: repo.name
                 } ?: extension.author
 
-                val newExt = if (extension.hasUpdate != hasUpdate || extension.author != author) {
-                    extension.copy(
-                        hasUpdate = hasUpdate,
-                        repoUrl = availableExt.repoUrl,
-                        author = author,
-                    )
-                } else {
-                    extension.copy(
-                        repoUrl = availableExt.repoUrl,
-                    )
-                }
+                val newExt = extension.copy(
+                    hasUpdate = hasUpdate,
+                    repoUrl = availableExt.repoUrl,
+                    author = author,
+                )
+                
                 if (newExt != extension) {
                     installedExtensionsMap[pkgName] = newExt
                     changed = true
@@ -238,6 +235,10 @@ class ExtensionManager(
             }
         }
         if (changed) {
+            installedExtensionsMapFlow.value = installedExtensionsMap
+        }
+        updatePendingUpdatesCount()
+    }
             installedExtensionsMapFlow.value = installedExtensionsMap
         }
         updatePendingUpdatesCount()
