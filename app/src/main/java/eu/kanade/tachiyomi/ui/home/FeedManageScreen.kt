@@ -134,11 +134,9 @@ class FeedManageScreen : Screen() {
                                 onMoveDown = { screenModel.moveDown(item.feed) },
                                 onDuplicate = { screenModel.duplicate(item.feed) },
                                 onDelete = { deleteDialogItem = item.feed },
-                                onClick = { editFeedItem = item },
-                                modifier = Modifier.animateItemPlacement(),
-                            )
-                            if (index != state.items.lastIndex) {
-                                HorizontalDivider()
+                                                        onClick = { editFeedItem = item },
+                                                    )
+                                                    if (index != state.items.lastIndex) {                                HorizontalDivider()
                             }
                         }
                     }
