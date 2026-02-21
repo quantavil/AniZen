@@ -4,6 +4,7 @@ import android.app.Application
 import eu.kanade.tachiyomi.ui.browse.source.browse.FilterSerializer
 import tachiyomi.data.anime.AnimeMergeRepositoryImpl
 import tachiyomi.data.anime.CustomAnimeRepositoryImpl
+import tachiyomi.data.source.FeedSavedSearchCategoryRepositoryImpl
 import tachiyomi.data.source.FeedSavedSearchRepositoryImpl
 import tachiyomi.data.source.SavedSearchRepositoryImpl
 import tachiyomi.domain.anime.interactor.DeleteAnimeById
@@ -31,17 +32,22 @@ import tachiyomi.domain.history.interactor.GetHistoryByAnimeId
 import tachiyomi.domain.source.interactor.CountFeedSavedSearchBySourceId
 import tachiyomi.domain.source.interactor.CountFeedSavedSearchGlobal
 import tachiyomi.domain.source.interactor.DeleteFeedSavedSearchById
+import tachiyomi.domain.source.interactor.DeleteFeedSavedSearchCategory
 import tachiyomi.domain.source.interactor.DeleteSavedSearchById
 import tachiyomi.domain.source.interactor.GetFeedSavedSearchBySourceId
+import tachiyomi.domain.source.interactor.GetFeedSavedSearchCategories
 import tachiyomi.domain.source.interactor.GetFeedSavedSearchGlobal
-import tachiyomi.domain.source.interactor.UpdateFeedSavedSearch
 import tachiyomi.domain.source.interactor.GetSavedSearchById
 import tachiyomi.domain.source.interactor.GetSavedSearchBySourceId
 import tachiyomi.domain.source.interactor.GetSavedSearchBySourceIdFeed
 import tachiyomi.domain.source.interactor.GetSavedSearchGlobalFeed
 import tachiyomi.domain.source.interactor.InsertFeedSavedSearch
+import tachiyomi.domain.source.interactor.InsertFeedSavedSearchCategory
 import tachiyomi.domain.source.interactor.InsertSavedSearch
 import tachiyomi.domain.source.interactor.ReorderFeed
+import tachiyomi.domain.source.interactor.UpdateFeedSavedSearch
+import tachiyomi.domain.source.interactor.UpdateFeedSavedSearchCategory
+import tachiyomi.domain.source.repository.FeedSavedSearchCategoryRepository
 import tachiyomi.domain.source.repository.FeedSavedSearchRepository
 import tachiyomi.domain.source.repository.SavedSearchRepository
 import uy.kohesive.injekt.api.InjektModule
@@ -118,6 +124,12 @@ class SYDomainModule : InjektModule {
         // KMK -->
         addFactory { ReorderFeed(get()) }
         // KMK <--
+
+        addSingletonFactory<FeedSavedSearchCategoryRepository> { FeedSavedSearchCategoryRepositoryImpl(get()) }
+        addFactory { GetFeedSavedSearchCategories(get()) }
+        addFactory { InsertFeedSavedSearchCategory(get()) }
+        addFactory { UpdateFeedSavedSearchCategory(get()) }
+        addFactory { DeleteFeedSavedSearchCategory(get()) }
 
         addSingletonFactory<CustomAnimeRepository> { CustomAnimeRepositoryImpl(get<Application>()) }
         addFactory { GetCustomAnimeInfo(get()) }
