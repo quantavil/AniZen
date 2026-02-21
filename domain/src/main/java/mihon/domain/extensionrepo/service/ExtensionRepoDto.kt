@@ -14,14 +14,20 @@ data class ExtensionRepoDto(
     val shortName: String?,
     val website: String,
     val signingKeyFingerprint: String,
+    val author: String? = null,
 )
 
-fun ExtensionRepoMetaDto.toExtensionRepo(baseUrl: String): ExtensionRepo {
+fun ExtensionRepoMetaDto.toExtensionRepo(
+    baseUrl: String,
+    author: String? = null,
+): ExtensionRepo {
     return ExtensionRepo(
         baseUrl = baseUrl,
         name = meta.name,
         shortName = meta.shortName,
         website = meta.website,
         signingKeyFingerprint = meta.signingKeyFingerprint,
+        isVisible = true,
+        author = author ?: meta.author,
     )
 }
