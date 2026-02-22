@@ -27,6 +27,7 @@ import tachiyomi.domain.anime.model.toDomainAnime
 import tachiyomi.domain.source.interactor.GetFeedSavedSearchCategories
 import tachiyomi.domain.source.interactor.GetFeedSavedSearchGlobal
 import tachiyomi.domain.source.interactor.GetSavedSearchGlobalFeed
+import tachiyomi.domain.source.interactor.InsertFeedSavedSearchCategory
 import tachiyomi.domain.source.model.FeedSavedSearch
 import tachiyomi.domain.source.model.FeedSavedSearchCategory
 import tachiyomi.domain.source.model.SavedSearch
@@ -41,11 +42,16 @@ class FeedScreenModel(
     private val networkToLocalAnime: NetworkToLocalAnime = Injekt.get(),
     private val getAnime: GetAnime = Injekt.get(),
     private val getFeedSavedSearchCategories: GetFeedSavedSearchCategories = Injekt.get(),
+    private val insertFeedSavedSearchCategory: InsertFeedSavedSearchCategory = Injekt.get(),
 ) : StateScreenModel<FeedScreenModel.State>(State()) {
 
     init {
         screenModelScope.launchIO {
-            val categories = getFeedSavedSearchCategories.await()
+            var categories = getFeedSavedSearchCategories.await()
+            if (categories.isEmpty()) {
+                insertFeedSavedSearchCategory.await("Global")
+                categories = getFeedSavedSearchCategories.await()
+            }
             mutableState.update { it.copy(categories = categories.toImmutableList()) }
             setupFeedSubscriptions(categories)
 
