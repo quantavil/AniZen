@@ -90,6 +90,7 @@ class BrowseSourceScreenModel(
     private val deleteSavedSearchById: DeleteSavedSearchById = Injekt.get(),
     private val filterSerializer: FilterSerializer = Injekt.get(),
     private val getFavorites: tachiyomi.domain.anime.interactor.GetFavorites = Injekt.get(),
+    private val trackPreferences: eu.kanade.domain.track.service.TrackPreferences = Injekt.get(),
 ) : StateScreenModel<BrowseSourceScreenModel.State>(State(Listing.valueOf(listingQuery))) {
 
     var displayMode by sourcePreferences.sourceDisplayMode().asState(screenModelScope)
@@ -327,7 +328,9 @@ class BrowseSourceScreenModel(
                 new = new.removeCovers(coverCache)
             } else {
                 setAnimeDefaultEpisodeFlags.await(anime)
-                addTracks.bindEnhancedTrackers(anime, source)
+                if (trackPreferences.autoAddTrack().get()) {
+                    addTracks.bindEnhancedTrackers(anime, source)
+                }
             }
 
             updateAnime.await(new.toAnimeUpdate())

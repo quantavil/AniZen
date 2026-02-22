@@ -42,11 +42,11 @@ class UiPreferences(
 
     fun navStyle() = preferenceStore.getEnum("bottom_rail_nav_style", NavStyle.SHOW_ALL)
 
-    fun enableFeed() = preferenceStore.getBoolean("enable_feed", true)
+    fun enableFeed() = preferenceStore.getBoolean("enable_feed", false)
 
-    fun showFeedInNavigationBar() = preferenceStore.getBoolean("show_feed_in_navigation_bar", true)
+    fun showFeedInNavigationBar() = preferenceStore.getBoolean("show_feed_in_navigation_bar", false)
 
-    fun showFeedInBrowse() = preferenceStore.getBoolean("show_feed_in_browse", true)
+    fun showFeedInBrowse() = preferenceStore.getBoolean("show_feed_in_browse", false)
 
     // SY -->
     fun bottomBarLabels() = preferenceStore.getBoolean("pref_show_bottom_bar_labels", true)
