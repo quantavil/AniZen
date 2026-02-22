@@ -1,0 +1,1354 @@
+Build & Preview Artifacts	Set up job	﻿2026-02-22T08:30:24.9459649Z Current runner version: '2.331.0'
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9487360Z ##[group]Runner Image Provisioner
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9488191Z Hosted Compute Agent
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9488719Z Version: 20260123.484
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9489815Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9490655Z Build Date: 2026-01-23T19:41:17Z
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9491304Z Worker ID: {f84aeb55-3888-4464-adc4-c62383212169}
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9492120Z Azure Region: northcentralus
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9492711Z ##[endgroup]
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9494245Z ##[group]Operating System
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9494839Z Ubuntu
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9495309Z 24.04.3
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9495839Z LTS
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9496327Z ##[endgroup]
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9496871Z ##[group]Runner Image
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9497473Z Image: ubuntu-24.04
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9497975Z Version: 20260201.15.1
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9499114Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260201.15/images/ubuntu/Ubuntu2404-Readme.md
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9500909Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260201.15
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9501845Z ##[endgroup]
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9502995Z ##[group]GITHUB_TOKEN Permissions
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9505176Z Contents: read
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9505857Z Metadata: read
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9506412Z ##[endgroup]
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9508467Z Secret source: Actions
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9510047Z Prepare workflow directory
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9868656Z Prepare all required actions
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:24.9923452Z Getting action download info
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:25.3358946Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:25.4474597Z Download action repository 'actions/setup-java@v4' (SHA:c1e323688fd81a25caa38c78aa6df2d33d3e20d9)
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:25.9594996Z Download action repository 'gradle/actions@v4' (SHA:ed408507eac070d1f99cc633dbcf757c94c7933a)
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:26.8859779Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Build & Preview Artifacts	Set up job	2026-02-22T08:30:27.1668461Z Complete job name: Build & Preview Artifacts
+Build & Preview Artifacts	Clone repo	﻿2026-02-22T08:30:27.2371014Z ##[group]Run actions/checkout@v4
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2371821Z with:
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2372131Z   fetch-depth: 0
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2372620Z   repository: salmanbappi/AniZen
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2373332Z   token: ***
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2373635Z   ssh-strict: true
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2373946Z   ssh-user: git
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2374262Z   persist-credentials: true
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2374607Z   clean: true
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2374925Z   sparse-checkout-cone-mode: true
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2375302Z   fetch-tags: false
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2375607Z   show-progress: true
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2375923Z   lfs: false
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2376229Z   submodules: false
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2376536Z   set-safe-directory: true
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.2377116Z ##[endgroup]
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3449621Z Syncing repository: salmanbappi/AniZen
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3451430Z ##[group]Getting Git version info
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3452043Z Working directory is '/home/runner/work/AniZen/AniZen'
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3452826Z [command]/usr/bin/git version
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3536956Z git version 2.52.0
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3563911Z ##[endgroup]
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3579278Z Temporarily overriding HOME='/home/runner/work/_temp/8f512c33-bdbc-46b7-b6d1-401f20c624a7' before making global git config changes
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3580392Z Adding repository directory to the temporary git global config as a safe directory
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3592889Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AniZen/AniZen
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3635538Z Deleting the contents of '/home/runner/work/AniZen/AniZen'
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3639446Z ##[group]Initializing the repository
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3643550Z [command]/usr/bin/git init /home/runner/work/AniZen/AniZen
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3754917Z hint: Using 'master' as the name for the initial branch. This default branch name
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3756113Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3756837Z hint: to use in all of your new repositories, which will suppress this warning,
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3757446Z hint: call:
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3757928Z hint:
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3758902Z hint: 	git config --global init.defaultBranch <name>
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3759931Z hint:
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3760718Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3762060Z hint: 'development'. The just-created branch can be renamed via this command:
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3763054Z hint:
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3763562Z hint: 	git branch -m <name>
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3763986Z hint:
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3764500Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3765317Z Initialized empty Git repository in /home/runner/work/AniZen/AniZen/.git/
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3773430Z [command]/usr/bin/git remote add origin https://github.com/salmanbappi/AniZen
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3809330Z ##[endgroup]
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3810011Z ##[group]Disabling automatic garbage collection
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3813542Z [command]/usr/bin/git config --local gc.auto 0
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3841839Z ##[endgroup]
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3842452Z ##[group]Setting up auth
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3848250Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.3877503Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.4239833Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.4268592Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.4485605Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.4515324Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.4747579Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.4781279Z ##[endgroup]
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.4782003Z ##[group]Fetching the repository
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:27.4789618Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9819667Z From https://github.com/salmanbappi/AniZen
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9820810Z  * [new branch]          feat/extension-repo-upgrade -> origin/feat/extension-repo-upgrade
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9821705Z  * [new branch]          master          -> origin/master
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9822376Z  * [new branch]          preview         -> origin/preview
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9825195Z  * [new tag]             v0.1.10-MOD     -> v0.1.10-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9826332Z  * [new tag]             v0.1.101-MOD    -> v0.1.101-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9828956Z  * [new tag]             v0.1.103-MOD    -> v0.1.103-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9829896Z  * [new tag]             v0.1.105-MOD    -> v0.1.105-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9830580Z  * [new tag]             v0.1.109-MOD    -> v0.1.109-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9831266Z  * [new tag]             v0.1.112-MOD    -> v0.1.112-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9831944Z  * [new tag]             v0.1.116-MOD    -> v0.1.116-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9832685Z  * [new tag]             v0.1.118-MOD    -> v0.1.118-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9833383Z  * [new tag]             v0.1.129-MOD    -> v0.1.129-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9834097Z  * [new tag]             v0.1.131-MOD    -> v0.1.131-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9834835Z  * [new tag]             v0.1.133-MOD    -> v0.1.133-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9840323Z  * [new tag]             v0.1.136-MOD    -> v0.1.136-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9841440Z  * [new tag]             v0.1.137-MOD    -> v0.1.137-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9842134Z  * [new tag]             v0.1.144-MOD    -> v0.1.144-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9842842Z  * [new tag]             v0.1.147-MOD    -> v0.1.147-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9843527Z  * [new tag]             v0.1.148-MOD    -> v0.1.148-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9844207Z  * [new tag]             v0.1.15-MOD     -> v0.1.15-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9844886Z  * [new tag]             v0.1.151-MOD    -> v0.1.151-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9845613Z  * [new tag]             v0.1.155-MOD    -> v0.1.155-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9846306Z  * [new tag]             v0.1.162-MOD    -> v0.1.162-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9846989Z  * [new tag]             v0.1.166-MOD    -> v0.1.166-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9847650Z  * [new tag]             v0.1.170-MOD    -> v0.1.170-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9848334Z  * [new tag]             v0.1.172-MOD    -> v0.1.172-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9849215Z  * [new tag]             v0.1.173-MOD    -> v0.1.173-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9849946Z  * [new tag]             v0.1.174-MOD    -> v0.1.174-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9850730Z  * [new tag]             v0.1.175-MOD    -> v0.1.175-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9851470Z  * [new tag]             v0.1.176-MOD    -> v0.1.176-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9852135Z  * [new tag]             v0.1.180-MOD    -> v0.1.180-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9852791Z  * [new tag]             v0.1.186-MOD    -> v0.1.186-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9853454Z  * [new tag]             v0.1.188-MOD    -> v0.1.188-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9854098Z  * [new tag]             v0.1.194-MOD    -> v0.1.194-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9854757Z  * [new tag]             v0.1.197-MOD    -> v0.1.197-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9855399Z  * [new tag]             v0.1.199-MOD    -> v0.1.199-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9856046Z  * [new tag]             v0.1.2          -> v0.1.2
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9856698Z  * [new tag]             v0.1.202-MOD    -> v0.1.202-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9857352Z  * [new tag]             v0.1.205-MOD    -> v0.1.205-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9858034Z  * [new tag]             v0.1.207-MOD    -> v0.1.207-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9858694Z  * [new tag]             v0.1.213-MOD    -> v0.1.213-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9860108Z  * [new tag]             v0.1.217-MOD    -> v0.1.217-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9860836Z  * [new tag]             v0.1.225-MOD    -> v0.1.225-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9861566Z  * [new tag]             v0.1.226-MOD    -> v0.1.226-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9862299Z  * [new tag]             v0.1.24-MOD     -> v0.1.24-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9862988Z  * [new tag]             v0.1.25-MOD     -> v0.1.25-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9863666Z  * [new tag]             v0.1.26-MOD     -> v0.1.26-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9864380Z  * [new tag]             v0.1.293-MOD    -> v0.1.293-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9865232Z  * [new tag]             v0.1.294-MOD    -> v0.1.294-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9929649Z  * [new tag]             v0.1.295-MOD    -> v0.1.295-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9930401Z  * [new tag]             v0.1.298-MOD    -> v0.1.298-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9931088Z  * [new tag]             v0.1.299        -> v0.1.299
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9931723Z  * [new tag]             v0.1.3          -> v0.1.3
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9932467Z  * [new tag]             v0.1.300        -> v0.1.300
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9933206Z  * [new tag]             v0.1.301        -> v0.1.301
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9933938Z  * [new tag]             v0.1.302        -> v0.1.302
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9934534Z  * [new tag]             v0.1.303        -> v0.1.303
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9935137Z  * [new tag]             v0.1.305        -> v0.1.305
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9935785Z  * [new tag]             v0.1.306        -> v0.1.306
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9936462Z  * [new tag]             v0.1.315        -> v0.1.315
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9937077Z  * [new tag]             v0.1.316        -> v0.1.316
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9937669Z  * [new tag]             v0.1.317        -> v0.1.317
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9938298Z  * [new tag]             v0.1.318        -> v0.1.318
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9939455Z  * [new tag]             v0.1.319        -> v0.1.319
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9940097Z  * [new tag]             v0.1.320        -> v0.1.320
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9940766Z  * [new tag]             v0.1.321        -> v0.1.321
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9941372Z  * [new tag]             v0.1.339        -> v0.1.339
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9941975Z  * [new tag]             v0.1.340        -> v0.1.340
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9942573Z  * [new tag]             v0.1.343        -> v0.1.343
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9943162Z  * [new tag]             v0.1.344        -> v0.1.344
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9943770Z  * [new tag]             v0.1.348        -> v0.1.348
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9944397Z  * [new tag]             v0.1.35-MOD     -> v0.1.35-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9945028Z  * [new tag]             v0.1.352        -> v0.1.352
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9945635Z  * [new tag]             v0.1.353        -> v0.1.353
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9946292Z  * [new tag]             v0.1.354        -> v0.1.354
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9946943Z  * [new tag]             v0.1.356        -> v0.1.356
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9947600Z  * [new tag]             v0.1.358        -> v0.1.358
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9948172Z  * [new tag]             v0.1.361        -> v0.1.361
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9948670Z  * [new tag]             v0.1.362        -> v0.1.362
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9949343Z  * [new tag]             v0.1.363        -> v0.1.363
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9949748Z  * [new tag]             v0.1.364        -> v0.1.364
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9950120Z  * [new tag]             v0.1.365        -> v0.1.365
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9950481Z  * [new tag]             v0.1.366        -> v0.1.366
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9950836Z  * [new tag]             v0.1.368        -> v0.1.368
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9951193Z  * [new tag]             v0.1.369        -> v0.1.369
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9951554Z  * [new tag]             v0.1.372        -> v0.1.372
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9951905Z  * [new tag]             v0.1.373        -> v0.1.373
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9952250Z  * [new tag]             v0.1.374        -> v0.1.374
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9952608Z  * [new tag]             v0.1.375        -> v0.1.375
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9952954Z  * [new tag]             v0.1.376        -> v0.1.376
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9953515Z  * [new tag]             v0.1.377        -> v0.1.377
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9953883Z  * [new tag]             v0.1.38-MOD     -> v0.1.38-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9954260Z  * [new tag]             v0.1.39-MOD     -> v0.1.39-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9954618Z  * [new tag]             v0.1.4          -> v0.1.4
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9954987Z  * [new tag]             v0.1.41-MOD     -> v0.1.41-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9955374Z  * [new tag]             v0.1.42-MOD     -> v0.1.42-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9955735Z  * [new tag]             v0.1.43-MOD     -> v0.1.43-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9956101Z  * [new tag]             v0.1.44-MOD     -> v0.1.44-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9956467Z  * [new tag]             v0.1.46-MOD     -> v0.1.46-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9956828Z  * [new tag]             v0.1.48-MOD     -> v0.1.48-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9957188Z  * [new tag]             v0.1.49-MOD     -> v0.1.49-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9957559Z  * [new tag]             v0.1.5-b18      -> v0.1.5-b18
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9957933Z  * [new tag]             v0.1.5-b20      -> v0.1.5-b20
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9958299Z  * [new tag]             v0.1.5-b8       -> v0.1.5-b8
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9958660Z  * [new tag]             v0.1.5-b9       -> v0.1.5-b9
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9959242Z  * [new tag]             v0.1.59-MOD     -> v0.1.59-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9959635Z  * [new tag]             v0.1.6-MOD-b30  -> v0.1.6-MOD-b30
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9960020Z  * [new tag]             v0.1.6-MOD-b31  -> v0.1.6-MOD-b31
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9960420Z  * [new tag]             v0.1.6-MOD-b33  -> v0.1.6-MOD-b33
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9960781Z  * [new tag]             v0.1.6-MOD-b38  -> v0.1.6-MOD-b38
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9961154Z  * [new tag]             v0.1.6-MOD-b43  -> v0.1.6-MOD-b43
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9961524Z  * [new tag]             v0.1.6-MOD-b44  -> v0.1.6-MOD-b44
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9962044Z  * [new tag]             v0.1.6-MOD-b47  -> v0.1.6-MOD-b47
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9962409Z  * [new tag]             v0.1.6-MOD-b51  -> v0.1.6-MOD-b51
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9962784Z  * [new tag]             v0.1.6-MOD-b52  -> v0.1.6-MOD-b52
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9963153Z  * [new tag]             v0.1.6-MOD-b55  -> v0.1.6-MOD-b55
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9963516Z  * [new tag]             v0.1.6-MOD-b57  -> v0.1.6-MOD-b57
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9963886Z  * [new tag]             v0.1.68-MOD     -> v0.1.68-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9964272Z  * [new tag]             v0.1.7-MOD-b102 -> v0.1.7-MOD-b102
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9964655Z  * [new tag]             v0.1.7-MOD-b103 -> v0.1.7-MOD-b103
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9965036Z  * [new tag]             v0.1.7-MOD-b105 -> v0.1.7-MOD-b105
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9965412Z  * [new tag]             v0.1.7-MOD-b106 -> v0.1.7-MOD-b106
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9965782Z  * [new tag]             v0.1.7-MOD-b107 -> v0.1.7-MOD-b107
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9966158Z  * [new tag]             v0.1.7-MOD-b108 -> v0.1.7-MOD-b108
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9966542Z  * [new tag]             v0.1.7-MOD-b11  -> v0.1.7-MOD-b11
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9966924Z  * [new tag]             v0.1.7-MOD-b110 -> v0.1.7-MOD-b110
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9967300Z  * [new tag]             v0.1.7-MOD-b113 -> v0.1.7-MOD-b113
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9967675Z  * [new tag]             v0.1.7-MOD-b114 -> v0.1.7-MOD-b114
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9968049Z  * [new tag]             v0.1.7-MOD-b115 -> v0.1.7-MOD-b115
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9968418Z  * [new tag]             v0.1.7-MOD-b117 -> v0.1.7-MOD-b117
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9968796Z  * [new tag]             v0.1.7-MOD-b118 -> v0.1.7-MOD-b118
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9969371Z  * [new tag]             v0.1.7-MOD-b120 -> v0.1.7-MOD-b120
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9969751Z  * [new tag]             v0.1.7-MOD-b121 -> v0.1.7-MOD-b121
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9970127Z  * [new tag]             v0.1.7-MOD-b124 -> v0.1.7-MOD-b124
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9970499Z  * [new tag]             v0.1.7-MOD-b129 -> v0.1.7-MOD-b129
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9970880Z  * [new tag]             v0.1.7-MOD-b130 -> v0.1.7-MOD-b130
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9971251Z  * [new tag]             v0.1.7-MOD-b131 -> v0.1.7-MOD-b131
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9971759Z  * [new tag]             v0.1.7-MOD-b132 -> v0.1.7-MOD-b132
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9972132Z  * [new tag]             v0.1.7-MOD-b133 -> v0.1.7-MOD-b133
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9972506Z  * [new tag]             v0.1.7-MOD-b136 -> v0.1.7-MOD-b136
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9972882Z  * [new tag]             v0.1.7-MOD-b137 -> v0.1.7-MOD-b137
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9973254Z  * [new tag]             v0.1.7-MOD-b138 -> v0.1.7-MOD-b138
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9973623Z  * [new tag]             v0.1.7-MOD-b139 -> v0.1.7-MOD-b139
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9974002Z  * [new tag]             v0.1.7-MOD-b141 -> v0.1.7-MOD-b141
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9974378Z  * [new tag]             v0.1.7-MOD-b142 -> v0.1.7-MOD-b142
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9974752Z  * [new tag]             v0.1.7-MOD-b143 -> v0.1.7-MOD-b143
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9975127Z  * [new tag]             v0.1.7-MOD-b144 -> v0.1.7-MOD-b144
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9975507Z  * [new tag]             v0.1.7-MOD-b145 -> v0.1.7-MOD-b145
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9975883Z  * [new tag]             v0.1.7-MOD-b146 -> v0.1.7-MOD-b146
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9976255Z  * [new tag]             v0.1.7-MOD-b152 -> v0.1.7-MOD-b152
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9976629Z  * [new tag]             v0.1.7-MOD-b153 -> v0.1.7-MOD-b153
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9977006Z  * [new tag]             v0.1.7-MOD-b16  -> v0.1.7-MOD-b16
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9977374Z  * [new tag]             v0.1.7-MOD-b24  -> v0.1.7-MOD-b24
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9977743Z  * [new tag]             v0.1.7-MOD-b25  -> v0.1.7-MOD-b25
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9978110Z  * [new tag]             v0.1.7-MOD-b59  -> v0.1.7-MOD-b59
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9978468Z  * [new tag]             v0.1.7-MOD-b61  -> v0.1.7-MOD-b61
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9978834Z  * [new tag]             v0.1.7-MOD-b62  -> v0.1.7-MOD-b62
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9979410Z  * [new tag]             v0.1.7-MOD-b63  -> v0.1.7-MOD-b63
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9979919Z  * [new tag]             v0.1.7-MOD-b64  -> v0.1.7-MOD-b64
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9980283Z  * [new tag]             v0.1.7-MOD-b66  -> v0.1.7-MOD-b66
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9980658Z  * [new tag]             v0.1.7-MOD-b67  -> v0.1.7-MOD-b67
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9981023Z  * [new tag]             v0.1.7-MOD-b70  -> v0.1.7-MOD-b70
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9981380Z  * [new tag]             v0.1.7-MOD-b72  -> v0.1.7-MOD-b72
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9981743Z  * [new tag]             v0.1.7-MOD-b73  -> v0.1.7-MOD-b73
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9982109Z  * [new tag]             v0.1.7-MOD-b76  -> v0.1.7-MOD-b76
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9982467Z  * [new tag]             v0.1.7-MOD-b80  -> v0.1.7-MOD-b80
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9982830Z  * [new tag]             v0.1.7-MOD-b81  -> v0.1.7-MOD-b81
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9983193Z  * [new tag]             v0.1.7-MOD-b83  -> v0.1.7-MOD-b83
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9983551Z  * [new tag]             v0.1.7-MOD-b84  -> v0.1.7-MOD-b84
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9983915Z  * [new tag]             v0.1.7-MOD-b86  -> v0.1.7-MOD-b86
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9984284Z  * [new tag]             v0.1.7-MOD-b90  -> v0.1.7-MOD-b90
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9984650Z  * [new tag]             v0.1.7-MOD-b91  -> v0.1.7-MOD-b91
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9985010Z  * [new tag]             v0.1.7-MOD-b92  -> v0.1.7-MOD-b92
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9985378Z  * [new tag]             v0.1.7-MOD-b93  -> v0.1.7-MOD-b93
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9985743Z  * [new tag]             v0.1.7-MOD-b94  -> v0.1.7-MOD-b94
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9986099Z  * [new tag]             v0.1.7-MOD-b96  -> v0.1.7-MOD-b96
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9986464Z  * [new tag]             v0.1.77-MOD     -> v0.1.77-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9986836Z  * [new tag]             v0.1.8-MOD-b102 -> v0.1.8-MOD-b102
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9987207Z  * [new tag]             v0.1.8-MOD-b11  -> v0.1.8-MOD-b11
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9987573Z  * [new tag]             v0.1.8-MOD-b13  -> v0.1.8-MOD-b13
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9987936Z  * [new tag]             v0.1.8-MOD-b14  -> v0.1.8-MOD-b14
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9988296Z  * [new tag]             v0.1.8-MOD-b15  -> v0.1.8-MOD-b15
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9988671Z  * [new tag]             v0.1.8-MOD-b155 -> v0.1.8-MOD-b155
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9989251Z  * [new tag]             v0.1.8-MOD-b156 -> v0.1.8-MOD-b156
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9989805Z  * [new tag]             v0.1.8-MOD-b16  -> v0.1.8-MOD-b16
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9990177Z  * [new tag]             v0.1.8-MOD-b17  -> v0.1.8-MOD-b17
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9990544Z  * [new tag]             v0.1.8-MOD-b19  -> v0.1.8-MOD-b19
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9990918Z  * [new tag]             v0.1.8-MOD-b2   -> v0.1.8-MOD-b2
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9991284Z  * [new tag]             v0.1.8-MOD-b21  -> v0.1.8-MOD-b21
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9991658Z  * [new tag]             v0.1.8-MOD-b22  -> v0.1.8-MOD-b22
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9992031Z  * [new tag]             v0.1.8-MOD-b23  -> v0.1.8-MOD-b23
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9992391Z  * [new tag]             v0.1.8-MOD-b24  -> v0.1.8-MOD-b24
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9992784Z  * [new tag]             v0.1.8-MOD-b3   -> v0.1.8-MOD-b3
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9993152Z  * [new tag]             v0.1.8-MOD-b30  -> v0.1.8-MOD-b30
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9993519Z  * [new tag]             v0.1.8-MOD-b32  -> v0.1.8-MOD-b32
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9993886Z  * [new tag]             v0.1.8-MOD-b33  -> v0.1.8-MOD-b33
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9994245Z  * [new tag]             v0.1.8-MOD-b35  -> v0.1.8-MOD-b35
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9994610Z  * [new tag]             v0.1.8-MOD-b36  -> v0.1.8-MOD-b36
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9994977Z  * [new tag]             v0.1.8-MOD-b39  -> v0.1.8-MOD-b39
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9995345Z  * [new tag]             v0.1.8-MOD-b40  -> v0.1.8-MOD-b40
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9995703Z  * [new tag]             v0.1.8-MOD-b42  -> v0.1.8-MOD-b42
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9996067Z  * [new tag]             v0.1.8-MOD-b44  -> v0.1.8-MOD-b44
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9996437Z  * [new tag]             v0.1.8-MOD-b47  -> v0.1.8-MOD-b47
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9996795Z  * [new tag]             v0.1.8-MOD-b5   -> v0.1.8-MOD-b5
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9997230Z  * [new tag]             v0.1.8-MOD-b51  -> v0.1.8-MOD-b51
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9997723Z  * [new tag]             v0.1.8-MOD-b52  -> v0.1.8-MOD-b52
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9998086Z  * [new tag]             v0.1.8-MOD-b53  -> v0.1.8-MOD-b53
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9998450Z  * [new tag]             v0.1.8-MOD-b54  -> v0.1.8-MOD-b54
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9998816Z  * [new tag]             v0.1.8-MOD-b56  -> v0.1.8-MOD-b56
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9999394Z  * [new tag]             v0.1.8-MOD-b57  -> v0.1.8-MOD-b57
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:34.9999762Z  * [new tag]             v0.1.8-MOD-b59  -> v0.1.8-MOD-b59
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0000128Z  * [new tag]             v0.1.8-MOD-b60  -> v0.1.8-MOD-b60
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0000494Z  * [new tag]             v0.1.8-MOD-b63  -> v0.1.8-MOD-b63
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0000859Z  * [new tag]             v0.1.8-MOD-b64  -> v0.1.8-MOD-b64
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0001222Z  * [new tag]             v0.1.8-MOD-b72  -> v0.1.8-MOD-b72
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0001590Z  * [new tag]             v0.1.8-MOD-b77  -> v0.1.8-MOD-b77
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0001945Z  * [new tag]             v0.1.8-MOD-b80  -> v0.1.8-MOD-b80
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0002314Z  * [new tag]             v0.1.8-MOD-b81  -> v0.1.8-MOD-b81
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0002683Z  * [new tag]             v0.1.8-MOD-b85  -> v0.1.8-MOD-b85
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0003043Z  * [new tag]             v0.1.8-MOD-b86  -> v0.1.8-MOD-b86
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0003402Z  * [new tag]             v0.1.8-MOD-b88  -> v0.1.8-MOD-b88
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0003769Z  * [new tag]             v0.1.8-MOD-b89  -> v0.1.8-MOD-b89
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0004141Z  * [new tag]             v0.1.8-MOD-b9   -> v0.1.8-MOD-b9
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0004499Z  * [new tag]             v0.1.8-MOD-b95  -> v0.1.8-MOD-b95
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0004864Z  * [new tag]             v0.1.8-MOD-b98  -> v0.1.8-MOD-b98
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0005226Z  * [new tag]             v0.1.85-MOD     -> v0.1.85-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0005582Z  * [new tag]             v0.1.9-MOD      -> v0.1.9-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0005942Z  * [new tag]             v0.1.95-MOD     -> v0.1.95-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0006305Z  * [new tag]             v0.1.96-MOD     -> v0.1.96-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0006652Z  * [new tag]             v0.1.98-MOD     -> v0.1.98-MOD
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0007139Z  * [new tag]             v0.5.1          -> v0.5.1
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0007487Z  * [new tag]             v0.5.10         -> v0.5.10
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0007833Z  * [new tag]             v0.5.11         -> v0.5.11
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0008170Z  * [new tag]             v0.5.12         -> v0.5.12
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0008507Z  * [new tag]             v0.5.14         -> v0.5.14
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0008841Z  * [new tag]             v0.5.15         -> v0.5.15
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0009408Z  * [new tag]             v0.5.16         -> v0.5.16
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0009760Z  * [new tag]             v0.5.18         -> v0.5.18
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0010107Z  * [new tag]             v0.5.19         -> v0.5.19
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0010441Z  * [new tag]             v0.5.21         -> v0.5.21
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0010779Z  * [new tag]             v0.5.22         -> v0.5.22
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0011125Z  * [new tag]             v0.5.24         -> v0.5.24
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0011456Z  * [new tag]             v0.5.26         -> v0.5.26
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0011832Z  * [new tag]             v0.5.28         -> v0.5.28
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0012169Z  * [new tag]             v0.5.30         -> v0.5.30
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0012509Z  * [new tag]             v0.5.31         -> v0.5.31
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0012841Z  * [new tag]             v0.5.32         -> v0.5.32
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0013183Z  * [new tag]             v0.5.33         -> v0.5.33
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0013522Z  * [new tag]             v0.5.34         -> v0.5.34
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0013855Z  * [new tag]             v0.5.35         -> v0.5.35
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0014196Z  * [new tag]             v0.5.36         -> v0.5.36
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0014536Z  * [new tag]             v0.5.39         -> v0.5.39
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0014869Z  * [new tag]             v0.5.4          -> v0.5.4
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0015209Z  * [new tag]             v0.5.41         -> v0.5.41
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0015683Z  * [new tag]             v0.5.43         -> v0.5.43
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0016026Z  * [new tag]             v0.5.45         -> v0.5.45
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0016372Z  * [new tag]             v0.5.46         -> v0.5.46
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0016718Z  * [new tag]             v0.5.49         -> v0.5.49
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0017058Z  * [new tag]             v0.5.50         -> v0.5.50
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0017389Z  * [new tag]             v0.5.51         -> v0.5.51
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0017724Z  * [new tag]             v0.5.55         -> v0.5.55
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0018061Z  * [new tag]             v0.5.56         -> v0.5.56
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0018389Z  * [new tag]             v0.5.58         -> v0.5.58
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0018725Z  * [new tag]             v0.5.7          -> v0.5.7
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0019239Z  * [new tag]             v0.5.9          -> v0.5.9
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0092031Z [command]/usr/bin/git branch --list --remote origin/preview
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0137937Z   origin/preview
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0146420Z [command]/usr/bin/git rev-parse refs/remotes/origin/preview
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0165659Z de9a6701d5cea66437d9e3722ca9b3bc11d9edf7
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0170289Z ##[endgroup]
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0170780Z ##[group]Determining the checkout info
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0171546Z ##[endgroup]
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0175491Z [command]/usr/bin/git sparse-checkout disable
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0214428Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0239637Z ##[group]Checking out the ref
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.0243943Z [command]/usr/bin/git checkout --progress --force -B preview refs/remotes/origin/preview
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.1947658Z Switched to a new branch 'preview'
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.1950215Z branch 'preview' set up to track 'origin/preview'.
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.1967746Z ##[endgroup]
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.2006733Z [command]/usr/bin/git log -1 --format=%H
+Build & Preview Artifacts	Clone repo	2026-02-22T08:30:35.2027873Z de9a6701d5cea66437d9e3722ca9b3bc11d9edf7
+Build & Preview Artifacts	Set up JDK	﻿2026-02-22T08:30:35.2274432Z ##[group]Run actions/setup-java@v4
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2274767Z with:
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2275003Z   java-version: 17
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2275243Z   distribution: temurin
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2275491Z   java-package: jdk
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2275727Z   check-latest: false
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2275957Z   server-id: github
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2276194Z   server-username: GITHUB_ACTOR
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2276476Z   server-password: GITHUB_TOKEN
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2276748Z   overwrite-settings: true
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2277007Z   job-status: success
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2277375Z   token: ***
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.2277608Z ##[endgroup]
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4308643Z ##[group]Installed distributions
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4572789Z Resolved Java 17.0.18+8 from tool-cache
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4573952Z Setting Java 17.0.18+8 as the default
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4586691Z Creating toolchains.xml for JDK version 17 from temurin
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4663199Z Writing to /home/runner/.m2/toolchains.xml
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4663646Z 
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4664626Z Java configuration:
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4665837Z   Distribution: temurin
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4666255Z   Version: 17.0.18+8
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4667233Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4667755Z 
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4668210Z ##[endgroup]
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4683141Z Creating settings.xml with server-id: github
+Build & Preview Artifacts	Set up JDK	2026-02-22T08:30:35.4688694Z Writing to /home/runner/.m2/settings.xml
+Build & Preview Artifacts	Set up Gradle	﻿2026-02-22T08:30:35.4920932Z ##[group]Run gradle/actions/setup-gradle@v4
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4921246Z with:
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4921437Z   cache-disabled: false
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4921659Z   cache-read-only: true
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4921870Z   cache-write-only: false
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4922094Z   cache-overwrite-existing: false
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4922347Z   cache-cleanup: on-success
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4922627Z   gradle-home-cache-includes: caches
+Build & Preview Artifacts	Set up Gradle	notifications
+Build & Preview Artifacts	Set up Gradle	
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4922946Z   add-job-summary: always
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4923342Z   add-job-summary-as-pr-comment: never
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4923610Z   dependency-graph: disabled
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4923896Z   dependency-graph-report-dir: dependency-graph-reports
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4924233Z   dependency-graph-continue-on-failure: true
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4924514Z   build-scan-publish: false
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4924742Z   validate-wrappers: true
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4924959Z   allow-snapshot-wrappers: false
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4925215Z   gradle-home-cache-strict-match: false
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4925511Z   workflow-job-context: null
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4925878Z   github-token: ***
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4926067Z env:
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4926344Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4926800Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:35.4927155Z ##[endgroup]
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:37.3900091Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:37.3902557Z ##[group]Restore Gradle state from cache
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:37.5296166Z Cache hit for restore-key: gradle-home-v1|Linux-X64|build-release[16cd6cc2a04430ca045959c87cb8ce3a]-5a54aba83a43ef4233bc4e9b3c1b3ae6f9ad5491
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:38.7400163Z Received 134217728 of 295945322 (45.4%), 123.7 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:39.7307682Z Received 295945322 of 295945322 (100.0%), 139.2 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:39.7311729Z Cache Size: ~282 MB (295945322 B)
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:39.7460474Z [command]/usr/bin/tar -xf /home/runner/work/_temp/0e893e2a-0de2-49e3-9c6b-9b7b3884bd39/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.5562135Z Cache restored successfully
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.6114039Z Restored cache entry with key gradle-home-v1|Linux-X64|build-preview[1f26e767dcf8a2c4c6ee67c88ab883df]-de9a6701d5cea66437d9e3722ca9b3bc11d9edf7 to /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 3220ms
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.7357258Z Cache hit for: gradle-transforms-v1-b7a565b6dffb5dfa65925ee0f4411628
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.7368592Z Cache hit for: gradle-instrumented-jars-v1-ad70e7ec1969b4a26b8de9ef044f9c35
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.7376115Z Cache hit for: gradle-generated-gradle-jars-v1-4434c59050703a48bf14168622b59891
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.7465142Z Cache hit for: gradle-groovy-dsl-v1-010eb84e7123aa9384a0ccea49302216
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.7468849Z Cache hit for: gradle-kotlin-dsl-v1-86b2bc15ce27f67be33c8016d566035f
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.7917683Z Cache hit for: gradle-wrapper-zips-v1-5ae5d3da5e8e0c748d04bcdd9bc97bdb
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.7961570Z Cache hit for: gradle-dependencies-v1-8f1f3952eeb02c12aa52dd6ec468be89
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.9797115Z Received 121789 of 121789 (100.0%), 1.2 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:40.9798455Z Cache Size: ~0 MB (121789 B)
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.0792179Z [command]/usr/bin/tar -xf /home/runner/work/_temp/bbc6e8c1-a6e1-4dec-a503-9db794078bd2/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.0957890Z Cache restored successfully
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.0961912Z Restored cache entry with key gradle-instrumented-jars-v1-ad70e7ec1969b4a26b8de9ef044f9c35 to /home/runner/.gradle/caches/jars-*/*/ in 482ms
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.1023908Z Received 188412 of 188412 (100.0%), 0.8 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.1024610Z Cache Size: ~0 MB (188412 B)
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.1089330Z [command]/usr/bin/tar -xf /home/runner/work/_temp/111dc224-d2a2-4e0c-bed8-413734d403e8/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.1475224Z Cache restored successfully
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.1512397Z Restored cache entry with key gradle-groovy-dsl-v1-010eb84e7123aa9384a0ccea49302216 to /home/runner/.gradle/caches/*/groovy-dsl/*/ in 536ms
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.2641572Z Received 4155377 of 4155377 (100.0%), 10.6 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.2643141Z Cache Size: ~4 MB (4155377 B)
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.5257370Z Received 41092997 of 41092997 (100.0%), 59.1 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.5258942Z Cache Size: ~39 MB (41092997 B)
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.8050328Z [command]/usr/bin/tar -xf /home/runner/work/_temp/a4058970-7f64-4b23-b2fd-78e4e83cabc1/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.8692637Z Received 67108864 of 1042417358 (6.4%), 62.5 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.9088760Z Received 79691776 of 136706942 (58.3%), 75.5 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.9618776Z Received 83886080 of 710138004 (11.8%), 77.5 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:41.9620521Z [command]/usr/bin/tar -xf /home/runner/work/_temp/40632fc2-8bdc-4b15-90c0-f9710f4b93ae/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:42.5990505Z Cache restored successfully
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:42.6338944Z Restored cache entry with key gradle-generated-gradle-jars-v1-4434c59050703a48bf14168622b59891 to /home/runner/.gradle/caches/8.14.3/generated-gradle-jars/gradle-api-8.14.3.jar in 2021ms
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:42.7973359Z Received 136706942 of 136706942 (100.0%), 68.9 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:42.7974958Z Cache Size: ~130 MB (136706942 B)
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:42.8083641Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e35c6873-07f8-43b0-894a-2f05b08c17fe/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:42.8864635Z Received 134217728 of 1042417358 (12.9%), 62.7 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:43.0010668Z Received 176160768 of 710138004 (24.8%), 81.1 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:43.2362069Z Cache restored successfully
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:43.3066974Z Restored cache entry with key gradle-wrapper-zips-v1-5ae5d3da5e8e0c748d04bcdd9bc97bdb to /home/runner/.gradle/wrapper/dists/gradle-8.14.3-bin/cv11ve7ro1n3o1j4so8xd9n66 in 2693ms
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:43.7500191Z Cache restored successfully
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:43.7550543Z Restored cache entry with key gradle-kotlin-dsl-v1-86b2bc15ce27f67be33c8016d566035f to /home/runner/.gradle/caches/*/kotlin-dsl/accessors/*/,/home/runner/.gradle/caches/*/kotlin-dsl/scripts/*/ in 3140ms
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:43.9350584Z Received 268435456 of 1042417358 (25.8%), 82.9 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:44.0260245Z Received 268435456 of 710138004 (37.8%), 82.7 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:44.9536187Z Received 402653184 of 1042417358 (38.6%), 93.5 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:45.0272625Z Received 436207616 of 710138004 (61.4%), 101.5 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:45.9533987Z Received 532676608 of 1042417358 (51.1%), 99.4 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:46.0275484Z Received 637534208 of 710138004 (89.8%), 119.3 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:46.6084746Z Received 710138004 of 710138004 (100.0%), 119.3 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:46.6088380Z Cache Size: ~677 MB (710138004 B)
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:46.6182501Z [command]/usr/bin/tar -xf /home/runner/work/_temp/1b7d7e7c-c8a7-45c1-89b2-5c79ee8f91ee/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:46.9551771Z Received 650117120 of 1042417358 (62.4%), 101.5 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:48.0234202Z Received 805306368 of 1042417358 (77.3%), 107.0 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:48.0562282Z Cache restored successfully
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:48.2246087Z Restored cache entry with key gradle-dependencies-v1-8f1f3952eeb02c12aa52dd6ec468be89 to /home/runner/.gradle/caches/modules-*/files-*/*/*/*/* in 7610ms
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:49.0234279Z Received 939524096 of 1042417358 (90.1%), 109.5 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:49.8749414Z Received 1042417358 of 1042417358 (100.0%), 110.1 MBs/sec
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:49.8752419Z Cache Size: ~994 MB (1042417358 B)
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:30:49.8892816Z [command]/usr/bin/tar -xf /home/runner/work/_temp/7ab48d31-1cd9-48fb-a576-46647baa58c4/cache.tzst -P -C /home/runner/work/AniZen/AniZen --use-compress-program unzstd
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:31:00.4440622Z Cache restored successfully
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:31:00.6157631Z Restored cache entry with key gradle-transforms-v1-b7a565b6dffb5dfa65925ee0f4411628 to /home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/ in 20000ms
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:31:00.6245730Z ##[endgroup]
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:31:00.6824163Z ##[group]All Gradle Wrapper jars are valid
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:31:00.6825571Z ✓ Found known Gradle Wrapper JAR files:
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:31:00.6826228Z   7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172 gradle/wrapper/gradle-wrapper.jar
+Build & Preview Artifacts	Set up Gradle	2026-02-22T08:31:00.6827032Z ##[endgroup]
+Build & Preview Artifacts	Run Code Analysis (Detekt)	﻿2026-02-22T08:31:00.6988202Z ##[group]Run ./gradlew detekt --no-daemon
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.6988671Z [36;1m./gradlew detekt --no-daemon[0m
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7023741Z shell: /usr/bin/bash -e {0}
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7024046Z env:
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7024403Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7024955Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7025420Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7025782Z   GRADLE_USER_HOME: /home/runner/.gradle
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7026117Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7026448Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7026921Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7027462Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7027816Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:00.7028114Z ##[endgroup]
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:02.2323127Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:03.7324559Z Daemon will be stopped at the end of the build 
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:04.1321873Z Configuration on demand is an incubating feature.
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:10.0320222Z Type-safe project accessors is an incubating feature.
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:13.1330901Z > Task :buildSrc:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:13.3350606Z > Task :buildSrc:generateExternalPluginSpecBuilders FROM-CACHE
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:13.3352035Z > Task :buildSrc:extractPrecompiledScriptPluginPlugins FROM-CACHE
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:13.5315681Z > Task :buildSrc:compilePluginsBlocks FROM-CACHE
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:13.9313697Z > Task :buildSrc:generatePrecompiledScriptPluginAccessors FROM-CACHE
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:13.9318195Z > Task :buildSrc:generateScriptPluginAdapters FROM-CACHE
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:14.4317017Z > Task :buildSrc:compileKotlin FROM-CACHE
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:14.4323975Z > Task :buildSrc:compileJava NO-SOURCE
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:14.4324801Z > Task :buildSrc:compileGroovy NO-SOURCE
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:14.4325663Z > Task :buildSrc:pluginDescriptors
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:14.4326579Z > Task :buildSrc:processResources
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:14.4332383Z > Task :buildSrc:classes
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:14.8329377Z > Task :buildSrc:jar
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:22.9325117Z > Task :detekt NO-SOURCE
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0344366Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1771749068148.json
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0347817Z 
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0348816Z [Incubating] Problems report is available at: file:///home/runner/work/AniZen/AniZen/build/reports/problems/problems-report.html
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0350221Z 
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0350866Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0351686Z 
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0352752Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0353954Z 
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0355182Z For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0356445Z 
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0356889Z BUILD SUCCESSFUL in 22s
+Build & Preview Artifacts	Run Code Analysis (Detekt)	2026-02-22T08:31:23.0357551Z 9 actionable tasks: 3 executed, 6 from cache
+Build & Preview Artifacts	Get Current Version	﻿2026-02-22T08:31:23.2162621Z ##[group]Run GRADLE_FILE="app/build.gradle.kts"
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2163103Z [36;1mGRADLE_FILE="app/build.gradle.kts"[0m
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2163583Z [36;1mCURRENT_VN=$(grep "versionName =" $GRADLE_FILE | sed 's/.*"\(.*\)".*/\1/')[0m
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2164256Z [36;1mecho "VERSION=$CURRENT_VN" >> $GITHUB_ENV[0m
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2164595Z [36;1mecho "CURRENT_VN=$CURRENT_VN"[0m
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2196925Z shell: /usr/bin/bash -e {0}
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2197223Z env:
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2197569Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2198147Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2198618Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2198968Z   GRADLE_USER_HOME: /home/runner/.gradle
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2199508Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2199847Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2200326Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2200885Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2201237Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2201546Z ##[endgroup]
+Build & Preview Artifacts	Get Current Version	2026-02-22T08:31:23.2273792Z CURRENT_VN=0.5.57
+Build & Preview Artifacts	Build Release APK	﻿2026-02-22T08:31:23.2308532Z ##[group]Run ./gradlew assembleRelease -Pinclude-telemetry=false -Penable-updater=false -PabiList=arm64-v8a --no-daemon
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2309777Z [36;1m./gradlew assembleRelease -Pinclude-telemetry=false -Penable-updater=false -PabiList=arm64-v8a --no-daemon[0m
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2338287Z shell: /usr/bin/bash -e {0}
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2338575Z env:
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2338926Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2339717Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2340214Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2340564Z   GRADLE_USER_HOME: /home/runner/.gradle
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2340896Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2341233Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2341726Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2342247Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2342626Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2342931Z   VERSION: 0.5.57
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2343291Z   SIGNING_STORE_PASSWORD: ***
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2343596Z   SIGNING_KEY_ALIAS: ***
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2343874Z   SIGNING_KEY_PASSWORD: ***
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.2344138Z ##[endgroup]
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:23.9135326Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:24.9129460Z Daemon will be stopped at the end of the build 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:25.3126359Z Configuration on demand is an incubating feature.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:28.3182258Z Type-safe project accessors is an incubating feature.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:31.2182125Z > Task :buildSrc:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:31.4150878Z > Task :buildSrc:generateExternalPluginSpecBuilders UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:31.4152377Z > Task :buildSrc:extractPrecompiledScriptPluginPlugins UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:31.6126039Z > Task :buildSrc:compilePluginsBlocks UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:31.9124005Z > Task :buildSrc:generatePrecompiledScriptPluginAccessors UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:31.9125280Z > Task :buildSrc:generateScriptPluginAdapters UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:32.2128694Z > Task :buildSrc:compileKotlin UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:32.2143075Z > Task :buildSrc:compileJava NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:32.2143762Z > Task :buildSrc:compileGroovy NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:32.2145085Z > Task :buildSrc:pluginDescriptors UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:32.2145774Z > Task :buildSrc:processResources UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:32.2146403Z > Task :buildSrc:classes UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:32.2146960Z > Task :buildSrc:jar UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.8123153Z > Task :core-metadata:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.8125294Z > Task :core-metadata:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.8125964Z > Task :domain:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.8127244Z > Task :domain:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.8127837Z > Task :data:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.8128767Z > Task :data:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.8129527Z > Task :app:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.8130060Z > Task :app:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9122141Z > Task :domain:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9139750Z > Task :core-metadata:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9141051Z > Task :app:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9141907Z > Task :flagkit:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9142591Z > Task :flagkit:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9143526Z > Task :data:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9144234Z > Task :core-metadata:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9145008Z > Task :data:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9145698Z > Task :domain:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9146909Z > Task :flagkit:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9147589Z > Task :flagkit:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9148332Z > Task :core-metadata:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:41.9149367Z > Task :data:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.0175037Z > Task :domain:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.0176026Z > Task :i18n:generateLocalesConfig UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.0176847Z > Task :flagkit:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1154527Z > Task :i18n-sy:generateMRcommonMain FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1180852Z > Task :i18n-sy:generateMRandroidDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1181600Z > Task :i18n-kmk:generateMRcommonMain FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1182291Z > Task :i18n-ank:generateMRcommonMain FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1182962Z > Task :i18n-kmk:generateMRandroidDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1183590Z > Task :i18n-ank:generateMRandroidDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1184346Z > Task :i18n-ank:generateMRandroidInstrumentedTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1185214Z > Task :i18n-ank:generateMRandroidInstrumentedTestDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1186070Z > Task :i18n-sy:generateMRandroidInstrumentedTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1186893Z > Task :i18n-kmk:generateMRandroidInstrumentedTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1187734Z > Task :i18n-kmk:generateMRandroidInstrumentedTestDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.1188602Z > Task :i18n-sy:generateMRandroidInstrumentedTestDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2191143Z > Task :i18n:generateMRcommonMain FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2192405Z > Task :i18n:generateMRandroidDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2193081Z > Task :i18n-ank:generateMRandroidMain FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2193757Z > Task :i18n-ank:generateMRandroidRelease SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2194714Z > Task :i18n:generateMRandroidInstrumentedTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2195688Z > Task :i18n:generateMRandroidInstrumentedTestDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2196546Z > Task :i18n-ank:generateMRcommonTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2197303Z > Task :i18n-kmk:generateMRandroidMain FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2198062Z > Task :i18n-kmk:generateMRandroidRelease SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2198853Z > Task :i18n-ank:generateMRandroidUnitTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2199885Z > Task :i18n-ank:generateMRandroidUnitTestDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2200684Z > Task :i18n-kmk:generateMRcommonTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2201480Z > Task :i18n-ank:generateMRandroidUnitTestRelease SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2215575Z > Task :i18n-ank:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2216223Z > Task :i18n-ank:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.2217197Z > Task :i18n-sy:generateMRandroidMain FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3147268Z > Task :i18n-sy:generateMRandroidRelease SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3149234Z > Task :i18n-kmk:generateMRandroidUnitTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3150307Z > Task :i18n-kmk:generateMRandroidUnitTestDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3151457Z > Task :i18n-kmk:generateMRandroidUnitTestRelease SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3152371Z > Task :i18n-kmk:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3153213Z > Task :i18n-kmk:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3154041Z > Task :i18n-ank:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3154989Z > Task :i18n-ank:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3155716Z > Task :i18n-sy:generateMRcommonTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3156338Z > Task :i18n-kmk:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3156994Z > Task :i18n-ank:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3157735Z > Task :i18n-sy:generateMRandroidUnitTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3158510Z > Task :i18n-sy:generateMRandroidUnitTestDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3159610Z > Task :i18n-sy:generateMRandroidUnitTestRelease SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3160378Z > Task :presentation-core:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3161153Z > Task :presentation-core:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3162085Z > Task :i18n-sy:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3162652Z > Task :i18n-sy:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3163290Z > Task :i18n-kmk:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3163941Z > Task :i18n-kmk:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3164621Z > Task :presentation-core:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3165271Z > Task :i18n-sy:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3165894Z > Task :presentation-widget:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3166580Z > Task :presentation-widget:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3167338Z > Task :presentation-core:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3168253Z > Task :i18n-sy:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3169749Z > Task :presentation-core:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3171019Z > Task :source-api:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3171857Z > Task :source-api:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3172914Z > Task :presentation-widget:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3173899Z > Task :i18n-sy:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3187805Z > Task :source-local:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3188516Z > Task :source-local:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3189518Z > Task :presentation-widget:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3190380Z > Task :presentation-widget:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3191106Z > Task :telemetry:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.3191670Z > Task :telemetry:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4225373Z > Task :source-api:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4226198Z > Task :source-local:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4226905Z > Task :source-api:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4227648Z > Task :source-local:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4228360Z > Task :telemetry:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4229207Z > Task :source-local:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4229906Z > Task :source-api:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4230570Z > Task :telemetry:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4231227Z > Task :core:common:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4231815Z > Task :core:archive:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4232424Z > Task :core:common:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4233077Z > Task :core:archive:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4233812Z > Task :telemetry:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4234501Z > Task :core-metadata:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4235123Z > Task :core:common:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4252632Z > Task :core:archive:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4253372Z > Task :core:common:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4254347Z > Task :data:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4255003Z > Task :core:archive:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4255670Z > Task :domain:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4256303Z > Task :core:common:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4256960Z > Task :flagkit:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4257544Z > Task :i18n-ank:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4258188Z > Task :core:archive:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4258887Z > Task :presentation-core:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4259823Z > Task :i18n-kmk:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4260435Z > Task :i18n-sy:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4260984Z > Task :source-api:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4261602Z > Task :presentation-widget:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4262211Z > Task :source-local:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4262755Z > Task :telemetry:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4263577Z > Task :core-metadata:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4264414Z > Task :core:common:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.4265311Z > Task :core:archive:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5169221Z > Task :i18n-sy:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5170083Z > Task :source-api:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5170843Z > Task :core-metadata:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5171529Z > Task :i18n-sy:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5172232Z > Task :core-metadata:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5173022Z > Task :source-api:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5173704Z > Task :i18n:generateMRandroidMain FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5174308Z > Task :i18n:generateMRandroidRelease SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5174979Z > Task :core-metadata:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5175668Z > Task :source-api:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5176325Z > Task :i18n:generateMRcommonTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5176943Z > Task :i18n:generateMRandroidUnitTest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5177594Z > Task :i18n:generateMRandroidUnitTestDebug SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5178291Z > Task :i18n:generateMRandroidUnitTestRelease SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5178905Z > Task :i18n:preBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.5179562Z > Task :i18n:preReleaseBuild UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:42.6122755Z > Task :i18n-sy:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.1145736Z > Task :core-metadata:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.1146611Z > Task :i18n:mergeReleaseJniLibFolders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.1147320Z > Task :source-api:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.1148024Z > Task :i18n-sy:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.1148686Z > Task :i18n:mergeReleaseNativeLibs NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.1149543Z > Task :source-api:kmpPartiallyResolvedDependenciesChecker
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.1150310Z > Task :core:common:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.1151140Z > Task :source-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2137710Z > Task :core:common:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2147571Z > Task :source-api:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2148295Z > Task :i18n:copyReleaseJniLibsProjectOnly
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2148890Z > Task :i18n:prepareReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2149769Z > Task :core-metadata:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2150524Z > Task :core:common:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2151208Z > Task :i18n:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2151958Z > Task :core:common:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2152868Z > Task :core:common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2153753Z > Task :core:common:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2154914Z > Task :domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2155721Z > Task :i18n:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2156375Z > Task :domain:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2157041Z > Task :domain:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2157709Z > Task :domain:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2158429Z > Task :domain:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.2159353Z > Task :i18n-ank:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.3140808Z > Task :i18n-sy:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.3148769Z > Task :i18n-sy:kmpPartiallyResolvedDependenciesChecker
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.3167274Z > Task :i18n-sy:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.3172511Z > Task :i18n-ank:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.3173752Z > Task :i18n-ank:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.3251202Z > Task :i18n-ank:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.4155389Z > Task :i18n-ank:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.4177391Z > Task :i18n-ank:kmpPartiallyResolvedDependenciesChecker
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.4178601Z > Task :i18n-ank:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.5122628Z > Task :i18n:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.5132002Z > Task :i18n:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.5136983Z > Task :i18n-sy:compileReleaseKotlinAndroid FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.5138157Z > Task :i18n-ank:compileReleaseKotlinAndroid FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.5139187Z > Task :i18n-ank:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.5140018Z > Task :i18n-sy:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.5140856Z > Task :i18n-ank:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.5141728Z > Task :i18n-sy:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.5142551Z > Task :i18n:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6182217Z > Task :i18n-ank:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6183541Z > Task :i18n-sy:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6184445Z > Task :i18n:kmpPartiallyResolvedDependenciesChecker
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6185419Z > Task :i18n:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6186454Z > Task :domain:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6187453Z > Task :source-local:kmpPartiallyResolvedDependenciesChecker
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6188627Z > Task :source-local:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6190014Z > Task :source-local:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6191040Z > Task :source-local:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6192028Z > Task :source-local:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6192982Z > Task :source-local:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6193921Z > Task :core:archive:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6194910Z > Task :core:archive:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.6195939Z > Task :core:archive:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.7122327Z > Task :core:archive:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.7123320Z > Task :core:archive:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.7124173Z > Task :core:archive:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.7124919Z > Task :source-local:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.7126089Z > Task :data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.7126904Z > Task :i18n:compileReleaseKotlinAndroid FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.7129245Z > Task :i18n:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:43.7130025Z > Task :i18n:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.5125508Z > Task :i18n:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.5129880Z > Task :presentation-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.5131203Z > Task :core:common:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.5132042Z > Task :presentation-core:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.5132883Z > Task :data:generateReleaseDatabaseInterface FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.6127377Z > Task :core:archive:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.7152481Z > Task :source-api:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.8122701Z > Task :core-metadata:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.8123859Z > Task :app:mergeReleaseArtProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:44.9122581Z > Task :domain:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.0124599Z > Task :core:common:compileReleaseKotlin FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.0128808Z > Task :core:common:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.0132954Z > Task :source-local:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.0136798Z > Task :data:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.0140995Z > Task :data:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.0141909Z > Task :core:common:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.1163798Z > Task :data:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.6150614Z > Task :app:mergeReleaseNativeLibs
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.6158647Z > Task :data:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.7124580Z > Task :core:archive:compileReleaseKotlin FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.7125839Z > Task :data:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8152150Z > Task :core:archive:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8156902Z > Task :data:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8161639Z > Task :core:archive:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8165995Z > Task :presentation-core:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8172971Z > Task :core:archive:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8177388Z > Task :source-api:compileReleaseKotlinAndroid FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8181899Z > Task :presentation-core:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8186433Z > Task :source-api:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8187582Z > Task :core:archive:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8188511Z > Task :presentation-core:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8189656Z > Task :presentation-widget:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8190710Z > Task :presentation-widget:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.8191467Z > Task :source-api:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:45.9170421Z > Task :presentation-widget:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.0122921Z > Task :core-metadata:compileReleaseKotlin FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.0128338Z > Task :core-metadata:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.1163362Z > Task :core-metadata:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.1168019Z > Task :core-metadata:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.1172834Z > Task :presentation-core:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.1177563Z > Task :core-metadata:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.2122946Z > Task :presentation-widget:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.2127648Z > Task :presentation-widget:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.2132408Z > Task :app:expandReleaseL8ArtProfileWildcards FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.3123192Z > Task :domain:compileReleaseKotlin FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.3131240Z > Task :domain:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.4128784Z > Task :presentation-core:compileReleaseKotlin FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5130792Z > Task :presentation-core:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5140288Z > Task :presentation-core:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5141518Z > Task :presentation-widget:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5144704Z > Task :presentation-widget:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5147706Z > Task :domain:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5148686Z > Task :presentation-core:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5150910Z > Task :source-api:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5151901Z > Task :domain:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5153779Z > Task :presentation-core:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5155689Z > Task :source-api:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5157553Z > Task :flagkit:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5159661Z > Task :flagkit:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.5160643Z > Task :presentation-core:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.6132191Z > Task :domain:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.6133028Z > Task :core:common:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.6135551Z > Task :source-local:compileReleaseKotlinAndroid FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.6136680Z > Task :source-local:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.6142733Z > Task :source-local:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.6143397Z > Task :source-local:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.9135609Z > Task :app:stripReleaseDebugSymbols
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.9138621Z > Task :app:extractReleaseNativeSymbolTables FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.9139616Z > Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.9140381Z > Task :core:common:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.9141091Z > Task :i18n:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.9141763Z > Task :i18n:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.9142492Z > Task :i18n-kmk:kmpPartiallyResolvedDependenciesChecker
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:46.9143326Z > Task :i18n-kmk:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.0124329Z > Task :i18n-kmk:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.0125634Z > Task :i18n-kmk:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.0126577Z > Task :i18n-kmk:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.0128333Z > Task :i18n-kmk:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.0129348Z > Task :i18n-kmk:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.0130408Z > Task :flagkit:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.0131384Z > Task :i18n-kmk:compileReleaseKotlinAndroid FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.0133187Z > Task :i18n-kmk:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.0133936Z > Task :i18n-kmk:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1124017Z > Task :i18n-kmk:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1131505Z > Task :i18n-kmk:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1135953Z > Task :i18n-ank:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1140182Z > Task :flagkit:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1145760Z > Task :i18n-ank:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1160023Z > Task :i18n-sy:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1183027Z > Task :flagkit:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1185194Z > Task :i18n-sy:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1187665Z > Task :telemetry:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1192249Z > Task :telemetry:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1194429Z > Task :telemetry:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1195537Z > Task :telemetry:packageReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1197520Z > Task :presentation-widget:compileReleaseKotlin FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.1198760Z > Task :presentation-widget:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.2138685Z > Task :presentation-widget:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.2140244Z > Task :telemetry:parseReleaseLocalResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.2141857Z > Task :presentation-widget:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.2143403Z > Task :flagkit:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.2144354Z > Task :telemetry:generateReleaseRFile FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3124926Z > Task :app:buildKotlinToolingMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3126121Z > Task :flagkit:compileReleaseKotlin FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3127151Z > Task :telemetry:compileReleaseKotlin FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3128058Z > Task :flagkit:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3131008Z > Task :flagkit:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3131731Z > Task :telemetry:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3132421Z > Task :flagkit:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3133110Z > Task :data:compileReleaseKotlin FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3137961Z > Task :telemetry:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3139624Z > Task :data:compileReleaseJavaWithJavac NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3140400Z > Task :data:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3141130Z > Task :telemetry:mergeReleaseGeneratedProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3149682Z > Task :flagkit:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3150807Z > Task :data:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3151563Z > Task :telemetry:exportReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.3152257Z > Task :core-metadata:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.4132183Z > Task :domain:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.4132893Z > Task :flagkit:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.4133487Z > Task :i18n-ank:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.4134072Z > Task :data:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.4134623Z > Task :i18n:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.5160227Z > Task :i18n-kmk:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.5173103Z > Task :presentation-core:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.5174138Z > Task :i18n-sy:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.5175076Z > Task :presentation-widget:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.5175984Z > Task :source-api:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.5176883Z > Task :source-local:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.5177907Z > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.5178923Z > Task :core:archive:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.5180033Z > Task :telemetry:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6132572Z > Task :core-metadata:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6142296Z > Task :core:common:writeReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6143427Z > Task :data:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6144457Z > Task :data:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6145469Z > Task :core-metadata:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6146353Z > Task :flagkit:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6148051Z > Task :domain:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6149266Z > Task :domain:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6150261Z > Task :flagkit:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6150975Z > Task :i18n-ank:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6151639Z > Task :i18n:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6152301Z > Task :i18n:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6152980Z > Task :i18n-ank:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6169710Z > Task :i18n-kmk:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6170777Z > Task :i18n-sy:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6171799Z > Task :i18n-sy:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6172653Z > Task :i18n-kmk:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6173562Z > Task :presentation-core:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6174550Z > Task :presentation-widget:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6175529Z > Task :presentation-widget:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.6176789Z > Task :presentation-core:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7129576Z > Task :source-api:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7130427Z > Task :source-local:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7131826Z > Task :source-api:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7132597Z > Task :source-local:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7151413Z > Task :core:archive:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7153691Z > Task :telemetry:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7155747Z > Task :telemetry:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7158205Z > Task :core:archive:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7160961Z > Task :core:common:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.7163441Z > Task :core:common:processReleaseManifest FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8195058Z > Task :app:checkReleaseDuplicateClasses
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8229520Z > Task :flagkit:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8230426Z > Task :i18n-kmk:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8231528Z > Task :data:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8232333Z > Task :telemetry:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8233206Z > Task :presentation-widget:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8234060Z > Task :source-local:bundleLibCompileToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8234859Z > Task :core-metadata:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8235657Z > Task :flagkit:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.8236374Z > Task :i18n:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9128106Z > Task :app:dataBindingMergeDependencyArtifactsRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9131527Z > Task :i18n-ank:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9133628Z > Task :app:generateReleaseResValues FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9135800Z > Task :i18n-kmk:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9137841Z > Task :i18n-sy:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9140131Z > Task :presentation-core:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9142310Z > Task :app:generateReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9144351Z > Task :domain:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9146392Z > Task :data:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9148760Z > Task :presentation-widget:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9155444Z > Task :app:prepareLibraryDefinitionsRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9156217Z > Task :telemetry:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9156879Z > Task :source-api:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:47.9157581Z > Task :source-local:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.0123293Z > Task :core:archive:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.0127741Z > Task :core:common:bundleLibRuntimeToJarRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.0132531Z > Task :core-metadata:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.0137109Z > Task :data:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.0141492Z > Task :flagkit:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.0143099Z > Task :domain:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.0144958Z > Task :i18n:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.0150201Z > Task :i18n-ank:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1127876Z > Task :i18n-kmk:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1137453Z > Task :presentation-core:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1138174Z > Task :i18n-sy:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1138858Z > Task :presentation-widget:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1139810Z > Task :source-local:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1140478Z > Task :source-api:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1141110Z > Task :telemetry:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1141738Z > Task :core:archive:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1142372Z > Task :core-metadata:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1143081Z > Task :core-metadata:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1144257Z > Task :core-metadata:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1144969Z > Task :data:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1145584Z > Task :core-metadata:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1146220Z > Task :data:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1146893Z > Task :data:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1147527Z > Task :domain:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1148179Z > Task :domain:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1148908Z > Task :domain:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1149818Z > Task :core:common:processReleaseJavaRes
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1150445Z > Task :data:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1151040Z > Task :domain:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1151584Z > Task :flagkit:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1152164Z > Task :i18n:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1152743Z > Task :i18n:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1153428Z > Task :flagkit:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1154160Z > Task :flagkit:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1155178Z > Task :i18n:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1155878Z > Task :i18n:releaseAssetsCopyForAGP NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1156514Z > Task :i18n-ank:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1157159Z > Task :i18n-ank:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1157879Z > Task :i18n-ank:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1158537Z > Task :flagkit:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1162641Z > Task :i18n-ank:releaseAssetsCopyForAGP NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1163426Z > Task :i18n:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1163982Z > Task :i18n-kmk:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1164564Z > Task :i18n-ank:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1165172Z > Task :i18n-kmk:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1165901Z > Task :i18n-kmk:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1166674Z > Task :i18n-kmk:releaseAssetsCopyForAGP NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1167331Z > Task :i18n-sy:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1167946Z > Task :i18n-sy:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1168619Z > Task :i18n-sy:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1169496Z > Task :presentation-core:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.1170200Z > Task :i18n-sy:releaseAssetsCopyForAGP NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2129703Z > Task :presentation-core:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2131949Z > Task :presentation-core:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2133929Z > Task :i18n-kmk:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2137128Z > Task :i18n-sy:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2137772Z > Task :presentation-core:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2138409Z > Task :source-local:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2139356Z > Task :presentation-widget:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2141722Z > Task :source-api:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2145866Z > Task :source-local:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2146637Z > Task :source-local:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2147409Z > Task :presentation-widget:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2148231Z > Task :presentation-widget:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2148933Z > Task :source-api:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2149839Z > Task :source-api:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2150506Z > Task :source-local:releaseAssetsCopyForAGP NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2151158Z > Task :source-api:releaseAssetsCopyForAGP NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2151751Z > Task :source-local:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2152278Z > Task :source-api:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2152843Z > Task :presentation-widget:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2153401Z > Task :core:archive:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2153915Z > Task :telemetry:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2154982Z > Task :telemetry:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2155609Z > Task :core:archive:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2156253Z > Task :core:archive:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2156876Z > Task :telemetry:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2157434Z > Task :core:common:mergeReleaseShaders
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2157994Z > Task :core:common:compileReleaseShaders NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2158632Z > Task :core:common:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2159358Z > Task :telemetry:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2159857Z > Task :core:archive:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2160443Z > Task :core-metadata:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2161112Z > Task :i18n:compileReleaseLibraryResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2161705Z > Task :core:common:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2162330Z > Task :core-metadata:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2163088Z > Task :source-api:compileReleaseLibraryResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2163807Z > Task :i18n-sy:compileReleaseLibraryResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2164661Z > Task :data:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2165335Z > Task :core-metadata:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2166085Z > Task :core:common:compileReleaseLibraryResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2166776Z > Task :data:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2167430Z > Task :data:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2168096Z > Task :domain:compileReleaseLibraryResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2168782Z > Task :i18n-ank:compileReleaseLibraryResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2170124Z > Task :domain:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.2170759Z > Task :domain:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.3174942Z > Task :domain:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:48.8122163Z > Task :app:prepareReleaseShortcutXML
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.7127193Z > Task :core-metadata:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.7128124Z > Task :core-metadata:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.7128810Z > Task :core-metadata:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.9121334Z > Task :core-metadata:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.9127632Z > Task :core-metadata:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.9132521Z > Task :data:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.9136863Z > Task :domain:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.9141485Z > Task :data:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.9145844Z > Task :domain:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.9150265Z > Task :domain:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:49.9153996Z > Task :data:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.0133752Z > Task :domain:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.0159965Z > Task :data:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.0160654Z > Task :core-metadata:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.0161253Z > Task :domain:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.1122602Z > Task :data:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.1123351Z > Task :core-metadata:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.1124023Z > Task :data:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.1124624Z > Task :domain:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.2131425Z > Task :domain:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.2132523Z > Task :data:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.2133345Z > Task :flagkit:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.3120977Z > Task :flagkit:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.3125534Z > Task :flagkit:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.3126641Z > Task :flagkit:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.3127511Z > Task :flagkit:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.3128359Z > Task :flagkit:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.3129594Z > Task :flagkit:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.3130317Z > Task :flagkit:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.5121500Z > Task :flagkit:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.5122538Z > Task :flagkit:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.6122393Z > Task :i18n:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.6123573Z > Task :i18n:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.6124665Z > Task :i18n:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.6127303Z > Task :i18n:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.6128224Z > Task :i18n:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.6129434Z > Task :i18n:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.6133547Z > Task :i18n:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.6134543Z > Task :i18n:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.8122022Z > Task :core-metadata:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.8126399Z > Task :i18n:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.9121603Z > Task :domain:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:50.9125849Z > Task :app:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.0121563Z > Task :app:dataBindingGenBaseClassesRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.0150349Z > Task :i18n:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.1121829Z > Task :core-metadata:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.1122952Z > Task :core-metadata:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.2121352Z > Task :data:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.2122460Z > Task :app:generateReleaseBuildConfig
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.4121813Z > Task :domain:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.4126310Z > Task :app:checkReleaseAarMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.4131015Z > Task :domain:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.5123908Z > Task :app:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.5128257Z > Task :app:createReleaseCompatibleScreenManifests
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.5129364Z > Task :app:extractDeepLinksRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.6121806Z > Task :data:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.6125191Z > Task :data:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.6126024Z > Task :i18n-ank:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.7129314Z > Task :flagkit:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.7131496Z > Task :i18n-ank:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.7134760Z > Task :i18n-ank:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.7137677Z > Task :i18n-ank:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.7139962Z > Task :i18n-ank:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.8140594Z > Task :i18n:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.8141826Z > Task :i18n-ank:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.8142745Z > Task :i18n-ank:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.9128243Z > Task :i18n-ank:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.9129127Z > Task :i18n-ank:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.9129996Z > Task :i18n-ank:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.9130708Z > Task :flagkit:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.9131342Z > Task :flagkit:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.9131969Z > Task :i18n-kmk:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.9132730Z > Task :i18n-kmk:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:51.9133504Z > Task :i18n-kmk:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0158544Z > Task :i18n:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0159689Z > Task :i18n:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0160449Z > Task :i18n-sy:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0161377Z > Task :i18n-sy:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0162331Z > Task :i18n-sy:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0163195Z > Task :i18n-kmk:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0164057Z > Task :i18n-kmk:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0164883Z > Task :i18n-ank:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0166149Z > Task :i18n-sy:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0166969Z > Task :i18n-kmk:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0167808Z > Task :i18n-sy:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0168643Z > Task :i18n-kmk:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0169882Z > Task :i18n-ank:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0170807Z > Task :i18n-ank:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0171580Z > Task :i18n-sy:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0172475Z > Task :presentation-core:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0173376Z > Task :i18n-kmk:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0174309Z > Task :presentation-core:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0175259Z > Task :i18n-kmk:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.0176254Z > Task :presentation-core:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.1121600Z > Task :i18n-sy:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.1127983Z > Task :i18n-sy:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.1133041Z > Task :i18n-sy:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.1149732Z > Task :i18n-kmk:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.2121151Z > Task :presentation-core:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.2126062Z > Task :presentation-core:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.2132784Z > Task :i18n-sy:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.2144393Z > Task :presentation-core:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.2148730Z > Task :presentation-core:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.3152880Z > Task :i18n-kmk:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.3179849Z > Task :presentation-core:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.3180902Z > Task :i18n-kmk:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.3181706Z > Task :i18n-kmk:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.3182562Z > Task :presentation-widget:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.3183660Z > Task :presentation-widget:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.3184761Z > Task :presentation-widget:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.3185731Z > Task :presentation-core:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.4122018Z > Task :i18n-sy:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.4124271Z > Task :presentation-core:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.4126385Z > Task :i18n-sy:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.4130563Z > Task :i18n-sy:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.4133826Z > Task :source-api:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.4134851Z > Task :source-api:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.4139475Z > Task :presentation-widget:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.4140572Z > Task :source-api:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.4141416Z > Task :presentation-widget:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.5121934Z > Task :presentation-widget:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.5122788Z > Task :presentation-widget:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.5123586Z > Task :presentation-widget:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.5124368Z > Task :source-api:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.6127782Z > Task :presentation-widget:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.6136584Z > Task :source-api:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.6137584Z > Task :source-api:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.6138592Z > Task :source-api:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.6139727Z > Task :presentation-widget:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.6140626Z > Task :source-api:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.7137744Z > Task :source-api:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.7138818Z > Task :source-api:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:52.8122769Z > Task :presentation-core:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.2123092Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.2125345Z > Task :app:processReleaseMainManifest
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.2126294Z /home/runner/work/AniZen/AniZen/app/src/main/AndroidManifest.xml:44:5-46:31 Warning:
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.2127966Z 	uses-permission#com.google.android.gms.permission.AD_ID was tagged at AndroidManifest.xml:44 to remove other declarations but no other declaration present
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.2129264Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.2129614Z > Task :presentation-widget:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.2130396Z > Task :source-local:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.2131177Z > Task :source-local:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.2131978Z > Task :source-local:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3122379Z > Task :source-local:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3128136Z > Task :source-local:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3130530Z > Task :source-local:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3132889Z > Task :presentation-core:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3135217Z > Task :presentation-core:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3137871Z > Task :presentation-core:compileReleaseLibraryResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3144054Z > Task :source-local:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3144756Z > Task :source-local:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3145422Z > Task :source-local:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.3146151Z > Task :core-metadata:compileReleaseLibraryResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.4121860Z > Task :source-local:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.5154825Z > Task :app:processReleaseManifest
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.5159889Z > Task :source-api:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.8140337Z > Task :source-api:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.8141092Z > Task :source-api:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.9121555Z > Task :presentation-widget:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.9123945Z > Task :presentation-widget:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.9126133Z > Task :telemetry:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:53.9128280Z > Task :telemetry:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.0131746Z > Task :app:processReleaseManifestForPackage
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.0133576Z > Task :source-local:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.0134526Z > Task :telemetry:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.0135501Z > Task :core:archive:compileReleaseLibraryResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.0136438Z > Task :core:archive:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.0137309Z > Task :core:archive:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.0138210Z > Task :core:archive:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.0139356Z > Task :telemetry:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.0140244Z > Task :telemetry:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1150632Z > Task :core:archive:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1151877Z > Task :telemetry:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1152693Z > Task :telemetry:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1153452Z > Task :telemetry:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1154285Z > Task :core:archive:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1155109Z > Task :telemetry:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1155987Z > Task :core:archive:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1156726Z > Task :telemetry:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1157462Z > Task :telemetry:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1158280Z > Task :telemetry:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1159270Z > Task :core:archive:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.1160049Z > Task :telemetry:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2146006Z > Task :app:javaPreCompileRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2150861Z > Task :core:archive:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2179702Z > Task :app:extractProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2180275Z > Task :core:archive:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2180874Z > Task :app:mergeReleaseStartupProfile
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2181488Z > Task :app:generateReleaseAssets UP-TO-DATE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2182156Z > Task :source-local:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2182792Z > Task :source-local:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2183419Z > Task :core:common:stripReleaseDebugSymbols NO-SOURCE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2184163Z > Task :core:common:copyReleaseJniLibsProjectAndLocalJars
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2184940Z > Task :core:common:extractDeepLinksForAarRelease FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.2185646Z > Task :core:archive:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.4121622Z > Task :core:common:extractReleaseAnnotations FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.4126443Z > Task :core:common:mergeReleaseConsumerProguardFiles
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.4127391Z > Task :core:common:prepareLintJarForPublish
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.4128304Z > Task :core:common:mergeReleaseJavaResource
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.5121515Z > Task :core:common:syncReleaseLibJars FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.5125858Z > Task :app:mergeReleaseAssets
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.6152103Z > Task :core:common:bundleReleaseAar
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.6179921Z > Task :app:compressReleaseAssets FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.6180621Z > Task :core:common:mapReleaseSourceSetPaths
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.6181315Z > Task :core:archive:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.7130589Z > Task :app:extractReleaseVersionControlInfo
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.7131462Z > Task :app:validateSigningRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.7132107Z > Task :app:writeReleaseAppMetadata
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.8125465Z > Task :app:writeReleaseSigningConfigVersions
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.8126236Z > Task :core:archive:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:54.8126863Z > Task :core:archive:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:55.0122539Z > Task :core:common:mergeReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:55.1120753Z > Task :core:common:verifyReleaseResources FROM-CACHE
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:31:55.1122123Z > Task :core:common:assembleRelease
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:00.0123388Z > Task :app:processReleaseResources
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:30.0121193Z > Task :app:compileReleaseKotlin
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.0123538Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.0124543Z > Task :app:compileReleaseKotlin FAILED
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.0140672Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/tachiyomi/ui/home/FeedScreen.kt:68:29 Unresolved reference 'remember'.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.0143391Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/tachiyomi/ui/home/FeedScreen.kt:112:52 Cannot infer type for value parameter 'index'. Specify it explicitly.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.0146005Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/tachiyomi/ui/home/FeedScreen.kt:112:59 Cannot infer type for value parameter 'category'. Specify it explicitly.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.0148645Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/tachiyomi/ui/home/FeedScreen.kt:113:21 @Composable invocations can only happen from the context of a @Composable function
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.0151972Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/tachiyomi/ui/home/FeedScreen.kt:118:55 Unresolved reference 'name'.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.0153765Z e: file:///home/runner/work/AniZen/AniZen/app/src/main/java/eu/kanade/tachiyomi/ui/home/FeedScreen.kt:131:50 Unresolved reference 'id'.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2120681Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2121664Z FAILURE: Build failed with an exception.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2122300Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2122939Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1771749086550.json
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2123706Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2124555Z [Incubating] Problems report is available at: file:///home/runner/work/AniZen/AniZen/build/reports/problems/problems-report.html
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2125510Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2126087Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2127208Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2127911Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2128794Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2129973Z For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2131404Z 544 actionable tasks: 285 executed, 250 from cache, 9 up-to-date
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2132221Z * What went wrong:
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2132888Z Execution failed for task ':app:compileReleaseKotlin'.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2134277Z > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2135755Z    > Compilation error. See log for more details
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2136334Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2136602Z * Try:
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2137212Z > Run with --stacktrace option to get the stack trace.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2138012Z > Run with --info or --debug option to get more log output.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2141310Z > Run with --scan to get full insights.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2142050Z > Get more help at https://help.gradle.org.
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2142566Z 
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.2142852Z BUILD FAILED in 1m 21s
+Build & Preview Artifacts	Build Release APK	2026-02-22T08:32:45.8315196Z ##[error]Process completed with exit code 1.
+Build & Preview Artifacts	Post Set up Gradle	﻿2026-02-22T08:32:45.8497326Z Post job cleanup.
+Build & Preview Artifacts	Post Set up Gradle	2026-02-22T08:32:46.1581635Z In post-action step
+Build & Preview Artifacts	Post Set up Gradle	2026-02-22T08:32:46.1591816Z Cache is read-only: will not save state for use in subsequent builds.
+Build & Preview Artifacts	Post Set up Gradle	2026-02-22T08:32:46.1598376Z Generating Job Summary
+Build & Preview Artifacts	Post Set up Gradle	2026-02-22T08:32:46.1622213Z Completed post-action step
+Build & Preview Artifacts	Post Set up JDK	﻿2026-02-22T08:32:46.1815068Z Post job cleanup.
+Build & Preview Artifacts	Post Clone repo	﻿2026-02-22T08:32:46.3583058Z Post job cleanup.
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.4519850Z [command]/usr/bin/git version
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.4610054Z git version 2.52.0
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.4629621Z Temporarily overriding HOME='/home/runner/work/_temp/afbbd183-97e5-477b-bf0d-ff0f6b1278fb' before making global git config changes
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.4631652Z Adding repository directory to the temporary git global config as a safe directory
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.4637479Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AniZen/AniZen
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.4680607Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.4714740Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.4965574Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.4989678Z http.https://github.com/.extraheader
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.5003254Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.5036437Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.5283136Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Preview Artifacts	Post Clone repo	2026-02-22T08:32:46.5316354Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Preview Artifacts	Complete job	﻿2026-02-22T08:32:46.5672961Z Cleaning up orphan processes
+Build & Preview Artifacts	Complete job	2026-02-22T08:32:46.5954085Z Terminate orphan process: pid (2650) (java)

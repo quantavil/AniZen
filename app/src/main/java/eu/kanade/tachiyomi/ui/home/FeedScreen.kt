@@ -31,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +43,7 @@ import eu.kanade.presentation.anime.components.AnimeCover
 import eu.kanade.presentation.components.AppBar
 import kotlinx.coroutines.launch
 import tachiyomi.domain.anime.model.Anime
+import tachiyomi.domain.source.model.FeedSavedSearchCategory
 import tachiyomi.domain.source.model.SavedSearch
 import tachiyomi.i18n.MR
 import tachiyomi.i18n.sy.SYMR
@@ -109,7 +111,7 @@ fun FeedScreen(
                 edgePadding = 0.dp,
                 divider = {}, // Remove default divider if desired, or keep it
             ) {
-                visibleCategories.forEachIndexed { index, category ->
+                visibleCategories.forEachIndexed { index: Int, category: FeedSavedSearchCategory ->
                     Tab(
                         selected = pagerState.currentPage == index,
                         onClick = {
