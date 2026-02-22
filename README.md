@@ -1,3 +1,11 @@
 # AniZen
 
-AniZen is a project focused on providing a collection of anime and manga-related tools and resources, created in the spirit of learning and sharing. While we strive to offer a user-friendly experience, we recognize that our project is still a work in progress. We welcome feedback and contributions from the community to help improve and expand upon what we offer. Thank you for your interest in AniZen!
+Welcome to AniZen! This is a community-driven project.
+
+## Join Us on Discord
+
+We invite you to join our community on Discord: [Discord Invite Link](https://discord.gg/8eQBJuWAY)
+
+## Getting Started
+
+Please follow the instructions to get set up…
