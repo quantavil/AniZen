@@ -121,7 +121,7 @@ class FeedManageScreen : Screen() {
             ) {
                 if (state.categories.size > 1) {
                     ScrollableTabRow(
-                        selectedTabIndex = pagerState.currentPage,
+                        selectedTabIndex = pagerState.currentPage.coerceIn(0, state.categories.lastIndex),
                         edgePadding = 0.dp,
                         divider = {},
                     ) {

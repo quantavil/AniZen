@@ -50,7 +50,7 @@ class FeedManageScreenModel(
     private val deleteFeedSavedSearchCategory: DeleteFeedSavedSearchCategory = Injekt.get(),
 ) : StateScreenModel<FeedManageScreenModel.State>(State()) {
 
-    private var feedJobs = mutableMapOf<Long, Job>()
+    private val feedJobs = java.util.concurrent.ConcurrentHashMap<Long, Job>()
 
     init {
         screenModelScope.launchIO {

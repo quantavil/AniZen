@@ -106,7 +106,7 @@ fun FeedScreen(
     Column(modifier = Modifier.fillMaxSize()) {
         if (visibleCategories.size > 1) {
             ScrollableTabRow(
-                selectedTabIndex = pagerState.currentPage,
+                selectedTabIndex = pagerState.currentPage.coerceIn(0, visibleCategories.lastIndex),
                 modifier = Modifier.padding(top = contentPadding.calculateTopPadding()),
                 edgePadding = 0.dp,
                 divider = {}, // Remove default divider if desired, or keep it
