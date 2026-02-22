@@ -30,6 +30,9 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.util.TreeMap
 
+import tachiyomi.domain.source.interactor.GetFeedSavedSearchCategories
+import tachiyomi.domain.source.model.FeedSavedSearchCategory
+
 class SourcesScreenModel(
     private val preferences: BasePreferences = Injekt.get(),
     private val sourcePreferences: SourcePreferences = Injekt.get(),
@@ -37,6 +40,7 @@ class SourcesScreenModel(
     private val toggleSource: ToggleSource = Injekt.get(),
     private val toggleSourcePin: ToggleSourcePin = Injekt.get(),
     private val insertFeedSavedSearch: InsertFeedSavedSearch = Injekt.get(),
+    private val getFeedSavedSearchCategories: GetFeedSavedSearchCategories = Injekt.get(),
 ) : StateScreenModel<SourcesScreenModel.State>(State()) {
 
     private val _events = Channel<Event>(Int.MAX_VALUE)
@@ -51,7 +55,15 @@ class SourcesScreenModel(
                 }
                 .collectLatest(::collectLatestAnimeSources)
         }
+        
+        screenModelScope.launchIO {
+            getFeedSavedSearchCategories.subscribe().collectLatest { categories ->
+                mutableState.update { it.copy(categories = categories.toImmutableList()) }
+            }
+        }
     }
+
+    // ... collectLatestAnimeSources ...
 
     private fun collectLatestAnimeSources(sources: List<Source>) {
         mutableState.update { state ->
@@ -99,9 +111,18 @@ class SourcesScreenModel(
         toggleSourcePin.await(source)
     }
 
-    fun addToFeed(source: Source) {
+    fun onAddToFeedClicked(source: Source) {
+        val categories = state.value.categories
+        if (categories.size > 1) {
+            mutableState.update { it.copy(dialog = Dialog.FeedCategorySelect(source)) }
+        } else {
+            addToFeed(source, 1)
+        }
+    }
+
+    fun addToFeed(source: Source, categoryId: Long) {
         screenModelScope.launchIO {
-            val currentFeed = insertFeedSavedSearch.feedSavedSearchRepository.getGlobal()
+            val currentFeed = insertFeedSavedSearch.feedSavedSearchRepository.getGlobal(categoryId)
             if (currentFeed.any { it.source == source.id && it.savedSearch == null }) {
                 return@launchIO
             }
@@ -114,13 +135,14 @@ class SourcesScreenModel(
                     global = true,
                     feedOrder = nextOrder,
                     type = FeedSavedSearch.Type.Latest.value,
+                    category = categoryId,
                 )
             )
         }
     }
 
     fun showSourceDialog(source: Source) {
-        mutableState.update { it.copy(dialog = Dialog(source)) }
+        mutableState.update { it.copy(dialog = Dialog.SourceOptions(source)) }
     }
 
     fun closeDialog() {
@@ -131,13 +153,17 @@ class SourcesScreenModel(
         data object FailedFetchingSources : Event
     }
 
-    data class Dialog(val source: Source)
+    sealed interface Dialog {
+        data class SourceOptions(val source: Source) : Dialog
+        data class FeedCategorySelect(val source: Source) : Dialog
+    }
 
     @Immutable
     data class State(
         val dialog: Dialog? = null,
         val isLoading: Boolean = true,
         val items: ImmutableList<SourceUiModel> = persistentListOf(),
+        val categories: ImmutableList<FeedSavedSearchCategory> = persistentListOf(),
     ) {
         val isEmpty = items.isEmpty()
     }

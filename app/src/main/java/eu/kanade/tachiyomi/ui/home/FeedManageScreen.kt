@@ -38,6 +38,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -107,7 +108,7 @@ class FeedManageScreen : Screen() {
                             Tab(
                                 selected = state.selectedCategoryId == category.id,
                                 onClick = { screenModel.selectCategory(category.id) },
-                                text = { Text(text = category.name) },
+                                text = { Text(text = category.name, maxLines = 1, overflow = TextOverflow.Ellipsis) },
                             )
                         }
                     }
@@ -124,7 +125,7 @@ class FeedManageScreen : Screen() {
                         itemsIndexed(
                             items = state.items,
                             key = { _, item -> "feed-${item.feed.id}" },
-                        ) { index: Int, item ->
+                        ) { index, item ->
                             FeedManageItem(
                                 title = item.title,
                                 type = item.subtitle,
@@ -134,9 +135,10 @@ class FeedManageScreen : Screen() {
                                 onMoveDown = { screenModel.moveDown(item.feed) },
                                 onDuplicate = { screenModel.duplicate(item.feed) },
                                 onDelete = { deleteDialogItem = item.feed },
-                                                        onClick = { editFeedItem = item },
-                                                    )
-                                                    if (index != state.items.lastIndex) {                                HorizontalDivider()
+                                onClick = { editFeedItem = item },
+                            )
+                            if (index != state.items.lastIndex) {
+                                HorizontalDivider()
                             }
                         }
                     }
@@ -155,7 +157,8 @@ class FeedManageScreen : Screen() {
                         value = name,
                         onValueChange = { name = it },
                         label = { Text("Name") },
-                        singleLine = true
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
                     )
                 },
                 confirmButton = {
@@ -189,7 +192,8 @@ class FeedManageScreen : Screen() {
                         value = name,
                         onValueChange = { name = it },
                         label = { Text("Name") },
-                        singleLine = true
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
                     )
                 },
                 confirmButton = {
