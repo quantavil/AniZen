@@ -23,7 +23,7 @@ class ReorderFeed(
     private suspend fun awaitGlobal(feed: FeedSavedSearch, moveTo: MoveTo, global: Boolean = true) = withNonCancellableContext {
         mutex.withLock {
             val feeds = if (global) {
-                feedSavedSearchRepository.getGlobal()
+                feedSavedSearchRepository.getGlobal(feed.category)
                     .toMutableList()
             } else {
                 feedSavedSearchRepository.getBySourceId(feed.source)

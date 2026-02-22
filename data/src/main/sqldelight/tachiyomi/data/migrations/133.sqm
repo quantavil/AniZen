@@ -1,0 +1,9 @@
+CREATE TABLE feed_categories(
+    _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    sort INTEGER NOT NULL
+);
+
+INSERT INTO feed_categories(_id, name, sort) VALUES (1, 'Global', 0);
+
+ALTER TABLE feed_saved_search ADD COLUMN category INTEGER NOT NULL DEFAULT 1 REFERENCES feed_categories(_id) ON DELETE CASCADE;

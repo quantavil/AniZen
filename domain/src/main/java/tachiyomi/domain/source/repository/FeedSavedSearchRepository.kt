@@ -7,13 +7,13 @@ import tachiyomi.domain.source.model.SavedSearch
 
 interface FeedSavedSearchRepository {
 
-    suspend fun getGlobal(): List<FeedSavedSearch>
+    suspend fun getGlobal(categoryId: Long = 1): List<FeedSavedSearch>
 
-    fun getGlobalAsFlow(): Flow<List<FeedSavedSearch>>
+    fun getGlobalAsFlow(categoryId: Long = 1): Flow<List<FeedSavedSearch>>
 
-    suspend fun getGlobalFeedSavedSearch(): List<SavedSearch>
+    suspend fun getGlobalFeedSavedSearch(categoryId: Long = 1): List<SavedSearch>
 
-    suspend fun countGlobal(): Long
+    suspend fun countGlobal(categoryId: Long = 1): Long
 
     suspend fun getBySourceId(sourceId: Long): List<FeedSavedSearch>
 

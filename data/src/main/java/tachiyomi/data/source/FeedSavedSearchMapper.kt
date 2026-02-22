@@ -10,6 +10,7 @@ object FeedSavedSearchMapper {
         global: Boolean,
         feedOrder: Long,
         searchType: Long,
+        category: Long,
     ): FeedSavedSearch {
         return FeedSavedSearch(
             id = id,
@@ -18,6 +19,7 @@ object FeedSavedSearchMapper {
             global = global,
             feedOrder = feedOrder,
             type = searchType.toInt(),
+            category = category,
         )
     }
 }

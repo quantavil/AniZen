@@ -7,7 +7,10 @@ CREATE TABLE feed_saved_search (
     global INTEGER AS Boolean NOT NULL,
     feed_order INTEGER NOT NULL DEFAULT 0,
     search_type INTEGER NOT NULL DEFAULT 1,
+    category INTEGER NOT NULL DEFAULT 1,
     FOREIGN KEY(saved_search) REFERENCES saved_search (_id)
+    ON DELETE CASCADE,
+    FOREIGN KEY(category) REFERENCES feed_categories (_id)
     ON DELETE CASCADE
 );
 
@@ -21,15 +24,21 @@ SELECT * FROM feed_saved_search ORDER BY feed_order;
 selectAllGlobal:
 SELECT * FROM feed_saved_search WHERE global = 1 ORDER BY feed_order;
 
+selectGlobalByCategory:
+SELECT * FROM feed_saved_search WHERE global = 1 AND category = :categoryId ORDER BY feed_order;
+
 countGlobal:
 SELECT count(*) FROM feed_saved_search WHERE global = 1;
+
+countGlobalByCategory:
+SELECT count(*) FROM feed_saved_search WHERE global = 1 AND category = :categoryId;
 
 selectBySource:
 SELECT * FROM feed_saved_search WHERE source = :sourceId AND global = 0 ORDER BY feed_order;
 
 insert:
-INSERT INTO feed_saved_search (source, saved_search, global, feed_order, search_type)
- VALUES (:sourceId, :savedSearch, :global, (SELECT COALESCE(MAX(feed_order), 0) + 1 FROM feed_saved_search), :searchType);
+INSERT INTO feed_saved_search (source, saved_search, global, feed_order, search_type, category)
+ VALUES (:sourceId, :savedSearch, :global, (SELECT COALESCE(MAX(feed_order), 0) + 1 FROM feed_saved_search), :searchType, :category);
 
 deleteById:
 DELETE FROM feed_saved_search WHERE _id = :id;
@@ -41,6 +50,14 @@ selectGlobalFeedSavedSearch:
 SELECT saved_search.*
 FROM (
     SELECT saved_search FROM feed_saved_search WHERE global = 1 ORDER BY feed_order
+) AS A
+JOIN saved_search
+ON saved_search._id = A.saved_search;
+
+selectGlobalFeedSavedSearchByCategory:
+SELECT saved_search.*
+FROM (
+    SELECT saved_search FROM feed_saved_search WHERE global = 1 AND category = :categoryId ORDER BY feed_order
 ) AS A
 JOIN saved_search
 ON saved_search._id = A.saved_search;
@@ -79,9 +96,10 @@ SELECT coalesce(f.source, s.source) source, f.global, f.saved_search, s.name, s.
 update:
 UPDATE feed_saved_search
 SET source = coalesce(:source, source),
-    saved_search = coalesce(:saved_search, saved_search),
+    saved_search = CASE WHEN :delete_saved_search THEN NULL ELSE coalesce(:saved_search, saved_search) END,
     global = coalesce(:global, global),
     feed_order = coalesce(:feed_order, feed_order),
-    search_type = coalesce(:search_type, search_type)
+    search_type = coalesce(:search_type, search_type),
+    category = coalesce(:category, category)
 WHERE _id = :id;
 -- KMK <--

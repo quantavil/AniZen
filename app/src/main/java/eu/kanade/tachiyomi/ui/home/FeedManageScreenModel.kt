@@ -20,6 +20,12 @@ import tachiyomi.domain.source.service.SourceManager
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
+import tachiyomi.domain.source.interactor.DeleteFeedSavedSearchCategory
+import tachiyomi.domain.source.interactor.GetFeedSavedSearchCategories
+import tachiyomi.domain.source.interactor.InsertFeedSavedSearchCategory
+import tachiyomi.domain.source.interactor.UpdateFeedSavedSearchCategory
+import tachiyomi.domain.source.model.FeedSavedSearchCategory
+
 class FeedManageScreenModel(
     private val sourceManager: SourceManager = Injekt.get(),
     private val getFeedSavedSearchGlobal: GetFeedSavedSearchGlobal = Injekt.get(),
@@ -27,22 +33,69 @@ class FeedManageScreenModel(
     private val reorderFeed: ReorderFeed = Injekt.get(),
     private val deleteFeedSavedSearchById: DeleteFeedSavedSearchById = Injekt.get(),
     private val updateFeedSavedSearch: UpdateFeedSavedSearch = Injekt.get(),
+    private val getSavedSearchBySourceId: tachiyomi.domain.source.interactor.GetSavedSearchBySourceId = Injekt.get(),
+    private val insertFeedSavedSearch: tachiyomi.domain.source.interactor.InsertFeedSavedSearch = Injekt.get(),
+    private val getFeedSavedSearchCategories: GetFeedSavedSearchCategories = Injekt.get(),
+    private val insertFeedSavedSearchCategory: InsertFeedSavedSearchCategory = Injekt.get(),
+    private val updateFeedSavedSearchCategory: UpdateFeedSavedSearchCategory = Injekt.get(),
+    private val deleteFeedSavedSearchCategory: DeleteFeedSavedSearchCategory = Injekt.get(),
 ) : StateScreenModel<FeedManageScreenModel.State>(State()) {
 
     init {
+        screenModelScope.launchIO {
+            getFeedSavedSearchCategories.subscribe().collect { categories ->
+                mutableState.update { it.copy(categories = categories.toImmutableList()) }
+                if (state.value.selectedCategoryId == -1L && categories.isNotEmpty()) {
+                     mutableState.update { it.copy(selectedCategoryId = categories.first().id) }
+                }
+                getFeed()
+            }
+        }
+    }
+
+    fun selectCategory(categoryId: Long) {
+        mutableState.update { it.copy(selectedCategoryId = categoryId) }
         getFeed()
     }
 
-    fun getFeed() {
+    fun createCategory(name: String) {
         screenModelScope.launchIO {
-            val feedSavedSearches = getFeedSavedSearchGlobal.await()
-            val savedSearches = getSavedSearchGlobalFeed.await()
+            insertFeedSavedSearchCategory.await(name)
+        }
+    }
+
+    fun deleteCategory(categoryId: Long) {
+        screenModelScope.launchIO {
+            deleteFeedSavedSearchCategory.await(categoryId)
+            if (state.value.selectedCategoryId == categoryId) {
+                mutableState.update { it.copy(selectedCategoryId = 1) } // Default to Global
+            }
+        }
+    }
+
+    fun renameCategory(categoryId: Long, name: String) {
+        screenModelScope.launchIO {
+            updateFeedSavedSearchCategory.await(categoryId, name)
+        }
+    }
+
+    fun getFeed() {
+        val categoryId = state.value.selectedCategoryId
+        if (categoryId == -1L) return
+
+        screenModelScope.launchIO {
+            val feedSavedSearches = getFeedSavedSearchGlobal.await(categoryId)
+            val savedSearches = getSavedSearchGlobalFeed.await(categoryId)
             
             val items = feedSavedSearches.map { feed ->
                 val source = sourceManager.get(feed.source)
+                val savedSearch = savedSearches.find { it.id == feed.savedSearch }
+                
                 FeedItem(
                     feed = feed,
-                    title = savedSearches.find { it.id == feed.savedSearch }?.name ?: source?.name ?: "Unknown",
+                    title = source?.name ?: "Unknown",
+                    subtitle = savedSearch?.name ?: FeedSavedSearch.Type.from(feed.type).name,
+                    source = source,
                 )
             }
 
@@ -54,18 +107,32 @@ class FeedManageScreenModel(
         }
     }
 
-    fun toggleMethod(feed: FeedSavedSearch) {
-        if (feed.savedSearch != null) return
+    suspend fun getSourceSavedSearches(sourceId: Long): List<SavedSearch> {
+        return getSavedSearchBySourceId.await(sourceId)
+    }
+
+    fun updateFeed(feed: FeedSavedSearch, type: FeedSavedSearch.Type, savedSearchId: Long?) {
         screenModelScope.launchIO {
-            val newType = when (FeedSavedSearch.Type.from(feed.type)) {
-                FeedSavedSearch.Type.Latest -> FeedSavedSearch.Type.Popular
-                FeedSavedSearch.Type.Popular -> FeedSavedSearch.Type.Latest
-                else -> FeedSavedSearch.Type.Latest
-            }
             updateFeedSavedSearch.await(
                 FeedSavedSearchUpdate(
                     id = feed.id,
-                    searchType = newType.value.toLong(),
+                    searchType = type.value.toLong(),
+                    savedSearch = savedSearchId,
+                    deleteSavedSearch = savedSearchId == null,
+                )
+            )
+            getFeed()
+        }
+    }
+
+    fun duplicate(feed: FeedSavedSearch) {
+        screenModelScope.launchIO {
+            val currentFeed = getFeedSavedSearchGlobal.await(feed.category)
+            val nextOrder = (currentFeed.maxOfOrNull { it.feedOrder } ?: -1) + 1
+            insertFeedSavedSearch.await(
+                feed.copy(
+                    id = -1,
+                    feedOrder = nextOrder
                 )
             )
             getFeed()
@@ -96,11 +163,15 @@ class FeedManageScreenModel(
     @Immutable
     data class State(
         val items: ImmutableList<FeedItem> = persistentListOf(),
+        val categories: ImmutableList<FeedSavedSearchCategory> = persistentListOf(),
+        val selectedCategoryId: Long = -1L,
     )
 
     @Immutable
     data class FeedItem(
         val feed: FeedSavedSearch,
         val title: String,
+        val subtitle: String,
+        val source: eu.kanade.tachiyomi.source.Source?,
     )
 }

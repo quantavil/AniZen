@@ -15,17 +15,23 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -34,6 +40,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.anime.components.AnimeCover
 import eu.kanade.presentation.components.AppBar
+import kotlinx.coroutines.launch
 import tachiyomi.domain.anime.model.Anime
 import tachiyomi.domain.source.model.SavedSearch
 import tachiyomi.i18n.MR
@@ -51,51 +58,107 @@ fun FeedScreen(
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
     val state by screenModel.state.collectAsState()
+    val scope = rememberCoroutineScope()
 
-    when {
-        state.isLoading -> LoadingScreen(Modifier.padding(contentPadding))
-        state.items.isEmpty() -> {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(contentPadding),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
+    if (state.categories.isEmpty()) {
+        LoadingScreen(Modifier.padding(contentPadding))
+        return
+    }
+
+    val pagerState = rememberPagerState { state.categories.size }
+
+    LaunchedEffect(pagerState.currentPage) {
+        // Optional: Persist selected category or other logic
+    }
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        if (state.categories.size > 1) {
+            ScrollableTabRow(
+                selectedTabIndex = pagerState.currentPage,
+                modifier = Modifier.padding(top = contentPadding.calculateTopPadding()),
+                edgePadding = 0.dp,
+                divider = {}, // Remove default divider if desired, or keep it
             ) {
-                EmptyScreen(
-                    stringRes = SYMR.strings.feed_tab_empty,
-                )
-                Button(
-                    onClick = onAddSourceClick,
-                    modifier = Modifier.padding(top = 16.dp),
-                ) {
-                    Icon(imageVector = Icons.Outlined.Add, contentDescription = null)
-                    Spacer(Modifier.width(8.dp))
-                    Text(text = "Add Sources")
+                state.categories.forEachIndexed { index, category ->
+                    Tab(
+                        selected = pagerState.currentPage == index,
+                        onClick = {
+                            scope.launch { pagerState.animateScrollToPage(index) }
+                        },
+                        text = { Text(text = category.name, maxLines = 1, overflow = TextOverflow.Ellipsis) },
+                    )
                 }
             }
         }
-        else -> {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(
-                    start = 16.dp,
-                    end = 16.dp,
-                    top = contentPadding.calculateTopPadding() + 8.dp,
-                    bottom = contentPadding.calculateBottomPadding() + 8.dp
-                ),
-                verticalArrangement = Arrangement.spacedBy(24.dp) // More space between islands
-            ) {
-                items(
-                    items = state.items,
-                    key = { "feed-${it.feed.id}" },
-                ) { item ->
-                    val title = item.savedSearch?.name ?: "${item.source.name} (${tachiyomi.domain.source.model.FeedSavedSearch.Type.from(item.feed.type).name})"
-                    FeedIsland(
-                        title = title,
-                        animeList = item.animeList,
-                        onAnimeClick = onAnimeClick,
+
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxSize(),
+            userScrollEnabled = true,
+        ) { page ->
+            val category = state.categories.getOrNull(page)
+            if (category != null) {
+                val items = state.items[category.id]
+                val listPadding = if (state.categories.size > 1) {
+                    PaddingValues(
+                        start = 16.dp,
+                        end = 16.dp,
+                        top = 8.dp,
+                        bottom = contentPadding.calculateBottomPadding() + 8.dp
                     )
+                } else {
+                    PaddingValues(
+                        start = 16.dp,
+                        end = 16.dp,
+                        top = contentPadding.calculateTopPadding() + 8.dp,
+                        bottom = contentPadding.calculateBottomPadding() + 8.dp
+                    )
+                }
+
+                if (items == null) {
+                    LoadingScreen(Modifier.padding(top = if (state.categories.size > 1) 0.dp else contentPadding.calculateTopPadding()))
+                } else if (items.isEmpty()) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(bottom = contentPadding.calculateBottomPadding()),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        EmptyScreen(
+                            stringRes = SYMR.strings.feed_tab_empty,
+                        )
+                        Button(
+                            onClick = onAddSourceClick,
+                            modifier = Modifier.padding(top = 16.dp),
+                        ) {
+                            Icon(imageVector = Icons.Outlined.Add, contentDescription = null)
+                            Spacer(Modifier.width(8.dp))
+                            Text(text = "Add Sources")
+                        }
+                    }
+                } else {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = listPadding,
+                        verticalArrangement = Arrangement.spacedBy(24.dp)
+                    ) {
+                        items(
+                            items = items,
+                            key = { "feed-${it.feed.id}" },
+                        ) { item ->
+                            val title = if (item.savedSearch != null) {
+                                "${item.source.name} (${item.savedSearch.name})"
+                            } else {
+                                "${item.source.name} (${tachiyomi.domain.source.model.FeedSavedSearch.Type.from(item.feed.type).name})"
+                            }
+                            FeedIsland(
+                                title = title,
+                                animeList = item.animeList,
+                                onAnimeClick = onAnimeClick,
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -149,11 +212,13 @@ private fun FeedCard(
     anime: Anime,
     onClick: () -> Unit,
 ) {
+    val entry = AnimeCover.getEntry(anime.id)
+    val width = if (entry == AnimeCover.Panorama) 200.dp else 100.dp
+
     Column(
-        modifier = Modifier.width(100.dp),
+        modifier = Modifier.width(width),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        val entry = AnimeCover.getEntry(anime.id)
         entry(
             data = anime,
             onClick = onClick,

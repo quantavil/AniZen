@@ -1,0 +1,26 @@
+CREATE TABLE feed_categories(
+    _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    sort INTEGER NOT NULL
+);
+
+-- Insert system category
+INSERT OR IGNORE INTO feed_categories(_id, name, sort) VALUES (1, 'Global', 0);
+
+selectAll:
+SELECT * FROM feed_categories ORDER BY sort;
+
+selectById:
+SELECT * FROM feed_categories WHERE _id = :id;
+
+insert:
+INSERT INTO feed_categories(name, sort) VALUES (:name, (SELECT COALESCE(MAX(sort), 0) + 1 FROM feed_categories));
+
+delete:
+DELETE FROM feed_categories WHERE _id = :id AND _id != 1;
+
+update:
+UPDATE feed_categories SET name = :name WHERE _id = :id;
+
+selectLastInsertedRowId:
+SELECT last_insert_rowid();

@@ -1,12 +1,21 @@
 package eu.kanade.tachiyomi.ui.browse.source
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FilterList
 import androidx.compose.material.icons.outlined.TravelExplore
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -54,24 +63,54 @@ fun Screen.sourcesTab(): TabContent {
                 onLongClickItem = screenModel::showSourceDialog,
             )
 
-            state.dialog?.let { dialog ->
-                val source = dialog.source
-                SourceOptionsDialog(
-                    source = source,
-                    onClickPin = {
-                        screenModel.togglePin(source)
-                        screenModel.closeDialog()
-                    },
-                    onClickDisable = {
-                        screenModel.toggleSource(source)
-                        screenModel.closeDialog()
-                    },
-                    onClickAddToFeed = {
-                        screenModel.addToFeed(source)
-                        screenModel.closeDialog()
-                    },
-                    onDismiss = screenModel::closeDialog,
-                )
+            when (val dialog = state.dialog) {
+                is SourcesScreenModel.Dialog.SourceOptions -> {
+                    val source = dialog.source
+                    SourceOptionsDialog(
+                        source = source,
+                        onClickPin = {
+                            screenModel.togglePin(source)
+                            screenModel.closeDialog()
+                        },
+                        onClickDisable = {
+                            screenModel.toggleSource(source)
+                            screenModel.closeDialog()
+                        },
+                        onClickAddToFeed = {
+                            screenModel.onAddToFeedClicked(source)
+                            screenModel.closeDialog()
+                        },
+                        onDismiss = screenModel::closeDialog,
+                    )
+                }
+                is SourcesScreenModel.Dialog.FeedCategorySelect -> {
+                    val source = dialog.source
+                    AlertDialog(
+                        onDismissRequest = screenModel::closeDialog,
+                        title = { Text(text = "Add to Feed Category") },
+                        text = {
+                            LazyColumn {
+                                items(state.categories) { category ->
+                                    ListItem(
+                                        headlineContent = { Text(category.name) },
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .clickable {
+                                                screenModel.addToFeed(source, category.id)
+                                                screenModel.closeDialog()
+                                            }
+                                    )
+                                }
+                            }
+                        },
+                        confirmButton = {
+                            TextButton(onClick = screenModel::closeDialog) {
+                                Text(text = stringResource(MR.strings.action_cancel))
+                            }
+                        }
+                    )
+                }
+                null -> {}
             }
 
             val internalErrString = stringResource(MR.strings.internal_error)
