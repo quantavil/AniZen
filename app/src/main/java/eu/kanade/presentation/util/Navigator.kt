@@ -99,6 +99,7 @@ fun ScreenTransition(
         transitionSpec = transition,
         modifier = modifier,
         label = "transition",
+        contentKey = { it.key },
     ) { screen ->
         navigator.saveableState("transition", screen) {
             content(screen)
