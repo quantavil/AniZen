@@ -225,10 +225,10 @@ private fun FeedIsland(
                 contentPadding = PaddingValues(horizontal = 16.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                itemsIndexed(
-                    items = animeList.distinctBy { it.id },
-                    key = { index: Int, anime: tachiyomi.domain.anime.model.Anime -> "anime-${anime.id}-$index" },
-                ) { _: Int, anime: tachiyomi.domain.anime.model.Anime ->
+                items(
+                    items = animeList,
+                    key = { anime: tachiyomi.domain.anime.model.Anime -> "anime-${anime.id}" },
+                ) { anime: tachiyomi.domain.anime.model.Anime ->
                     FeedCard(
                         anime = anime,
                         onClick = { onAnimeClick(anime) }

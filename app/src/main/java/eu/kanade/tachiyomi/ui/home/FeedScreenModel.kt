@@ -45,6 +45,8 @@ class FeedScreenModel(
     private val insertFeedSavedSearchCategory: InsertFeedSavedSearchCategory = Injekt.get(),
 ) : StateScreenModel<FeedScreenModel.State>(State()) {
 
+    private val feedJobs = java.util.concurrent.ConcurrentHashMap<Long, kotlinx.coroutines.Job>()
+
     init {
         screenModelScope.launchIO {
             var categories = getFeedSavedSearchCategories.await()
@@ -63,8 +65,6 @@ class FeedScreenModel(
                 .launchIn(screenModelScope)
         }
     }
-
-    private var feedJobs = mutableMapOf<Long, kotlinx.coroutines.Job>()
 
     private fun setupFeedSubscriptions(categories: List<FeedSavedSearchCategory>) {
         // Cancel jobs for removed categories
