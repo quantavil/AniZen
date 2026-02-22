@@ -2,7 +2,7 @@
 
 [![Discord](https://img.shields.io/badge/Join%20Discord-7289da?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/8eQBJuWAY)
 
-**AniZen** is a high-performance, ultra-refined anime media center. It transforms the mobile viewing experience into a professional-grade environment with a focus on **Extreme Performance**, **Audiophile-grade Video**, and **Premium Tactile Feedback**.
+**AniZen** is a high-performance, ultra-refined anime media center. It transforms the mobile viewing experience into a professional-grade environment with a focus on **Extreme Performance* and **Premium Tactile Feedback**.
 
 ---
 
