@@ -1,6 +1,6 @@
 # AniZen
 
-Welcome to AniZen! This project is dedicated to providing a seamless experience for anime lovers across the globe.
+Welcome to AniZen! This project is dedicated to providing a seamless experience for anime lovers.
 
 ## Contributing
 We welcome contributions to AniZen! Please check our [Contributing Guide](CONTRIBUTING.md) for more information.
