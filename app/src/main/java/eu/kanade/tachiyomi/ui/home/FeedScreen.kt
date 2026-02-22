@@ -68,10 +68,7 @@ fun FeedScreen(
     val pagerState = rememberPagerState { state.categories.size }
 
     LaunchedEffect(pagerState.currentPage) {
-        val category = state.categories.getOrNull(pagerState.currentPage)
-        if (category != null) {
-            screenModel.onCategorySelected(category.id)
-        }
+        // Optional: Persist selected category or other logic
     }
 
     Column(modifier = Modifier.fillMaxSize()) {

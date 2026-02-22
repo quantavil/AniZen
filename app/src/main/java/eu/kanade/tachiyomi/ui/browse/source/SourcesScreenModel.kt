@@ -154,8 +154,9 @@ class SourcesScreenModel(
     }
 
     sealed interface Dialog {
-        data class SourceOptions(val source: Source) : Dialog
-        data class FeedCategorySelect(val source: Source) : Dialog
+        val source: Source
+        data class SourceOptions(override val source: Source) : Dialog
+        data class FeedCategorySelect(override val source: Source) : Dialog
     }
 
     @Immutable
