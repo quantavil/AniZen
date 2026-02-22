@@ -69,7 +69,7 @@ fun FeedScreen(
 
     val visibleCategories = remember(state.categories, state.items) {
         state.categories.filter { category ->
-            category.id != 1L || (state.items[category.id]?.isNotEmpty() == true)
+            !category.name.equals("Global", ignoreCase = true) || (state.items[category.id]?.isNotEmpty() == true)
         }
     }
 
