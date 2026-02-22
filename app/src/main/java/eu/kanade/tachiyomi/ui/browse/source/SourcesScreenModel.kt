@@ -122,8 +122,10 @@ class SourcesScreenModel(
                 val globalId = newCategories.firstOrNull()?.id ?: 1L
                 addToFeed(source, globalId)
             }
+            closeDialog()
         } else if (categories.size == 1) {
             addToFeed(source, categories.first().id)
+            closeDialog()
         } else {
             mutableState.update { it.copy(dialog = Dialog.FeedCategorySelect(source)) }
         }
