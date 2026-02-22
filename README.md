@@ -2,11 +2,6 @@
 
 Welcome to AniZen! This project is dedicated to providing a seamless experience for anime lovers across the globe.
 
-## Features
-- Explore an extensive library of anime shows and movies.
-- Rate and review your favorite anime.
-- Join discussions with fellow anime enthusiasts.
-
 ## Contributing
 We welcome contributions to AniZen! Please check our [Contributing Guide](CONTRIBUTING.md) for more information.
 
