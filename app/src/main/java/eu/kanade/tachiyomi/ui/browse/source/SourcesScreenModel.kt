@@ -31,6 +31,7 @@ import uy.kohesive.injekt.api.get
 import java.util.TreeMap
 
 import tachiyomi.domain.source.interactor.GetFeedSavedSearchCategories
+import tachiyomi.domain.source.interactor.InsertFeedSavedSearchCategory
 import tachiyomi.domain.source.model.FeedSavedSearchCategory
 
 class SourcesScreenModel(
@@ -41,6 +42,7 @@ class SourcesScreenModel(
     private val toggleSourcePin: ToggleSourcePin = Injekt.get(),
     private val insertFeedSavedSearch: InsertFeedSavedSearch = Injekt.get(),
     private val getFeedSavedSearchCategories: GetFeedSavedSearchCategories = Injekt.get(),
+    private val insertFeedSavedSearchCategory: InsertFeedSavedSearchCategory = Injekt.get(),
 ) : StateScreenModel<SourcesScreenModel.State>(State()) {
 
     private val _events = Channel<Event>(Int.MAX_VALUE)
@@ -113,31 +115,44 @@ class SourcesScreenModel(
 
     fun onAddToFeedClicked(source: Source) {
         val categories = state.value.categories
-        if (categories.size > 1) {
-            mutableState.update { it.copy(dialog = Dialog.FeedCategorySelect(source)) }
+        if (categories.isEmpty()) {
+            screenModelScope.launchIO {
+                insertFeedSavedSearchCategory.await("Global")
+                val newCategories = getFeedSavedSearchCategories.await()
+                val globalId = newCategories.firstOrNull()?.id ?: 1L
+                addToFeed(source, globalId)
+            }
+            closeDialog()
+        } else if (categories.size == 1) {
+            addToFeed(source, categories.first().id)
+            closeDialog()
         } else {
-            addToFeed(source, 1)
+            mutableState.update { it.copy(dialog = Dialog.FeedCategorySelect(source)) }
         }
     }
 
     fun addToFeed(source: Source, categoryId: Long) {
         screenModelScope.launchIO {
-            val currentFeed = insertFeedSavedSearch.feedSavedSearchRepository.getGlobal(categoryId)
-            if (currentFeed.any { it.source == source.id && it.savedSearch == null }) {
-                return@launchIO
-            }
-            val nextOrder = (currentFeed.maxOfOrNull { it.feedOrder } ?: -1) + 1
-            insertFeedSavedSearch.await(
-                FeedSavedSearch(
-                    id = -1,
-                    source = source.id,
-                    savedSearch = null,
-                    global = true,
-                    feedOrder = nextOrder,
-                    type = FeedSavedSearch.Type.Latest.value,
-                    category = categoryId,
+            try {
+                val currentFeed = insertFeedSavedSearch.feedSavedSearchRepository.getGlobal(categoryId)
+                if (currentFeed.any { it.source == source.id && it.savedSearch == null }) {
+                    return@launchIO
+                }
+                val nextOrder = (currentFeed.maxOfOrNull { it.feedOrder } ?: -1) + 1
+                insertFeedSavedSearch.await(
+                    FeedSavedSearch(
+                        id = -1,
+                        source = source.id,
+                        savedSearch = null,
+                        global = true,
+                        feedOrder = nextOrder,
+                        type = FeedSavedSearch.Type.Latest.value,
+                        category = categoryId,
+                    )
                 )
-            )
+            } catch (e: Exception) {
+                logcat(LogPriority.ERROR, e) { "Failed to add source ${source.name} to feed category $categoryId" }
+            }
         }
     }
 

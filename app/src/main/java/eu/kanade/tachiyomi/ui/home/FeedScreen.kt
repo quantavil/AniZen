@@ -31,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +43,7 @@ import eu.kanade.presentation.anime.components.AnimeCover
 import eu.kanade.presentation.components.AppBar
 import kotlinx.coroutines.launch
 import tachiyomi.domain.anime.model.Anime
+import tachiyomi.domain.source.model.FeedSavedSearchCategory
 import tachiyomi.domain.source.model.SavedSearch
 import tachiyomi.i18n.MR
 import tachiyomi.i18n.sy.SYMR
@@ -65,21 +67,51 @@ fun FeedScreen(
         return
     }
 
-    val pagerState = rememberPagerState { state.categories.size }
+    val visibleCategories = remember(state.categories, state.items) {
+        state.categories.filter { category ->
+            !category.name.equals("Global", ignoreCase = true) || (state.items[category.id]?.isNotEmpty() == true)
+        }
+    }
+
+    if (visibleCategories.isEmpty()) {
+         // If Global is hidden and no other categories exist, show empty state (effectively Global's empty state)
+         Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(contentPadding),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            EmptyScreen(
+                stringRes = SYMR.strings.feed_tab_empty,
+            )
+            Button(
+                onClick = onAddSourceClick,
+                modifier = Modifier.padding(top = 16.dp),
+            ) {
+                Icon(imageVector = Icons.Outlined.Add, contentDescription = null)
+                Spacer(Modifier.width(8.dp))
+                Text(text = "Add Sources")
+            }
+        }
+        return
+    }
+
+    val pagerState = rememberPagerState { visibleCategories.size }
 
     LaunchedEffect(pagerState.currentPage) {
         // Optional: Persist selected category or other logic
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        if (state.categories.size > 1) {
+        if (visibleCategories.size > 1) {
             ScrollableTabRow(
                 selectedTabIndex = pagerState.currentPage,
                 modifier = Modifier.padding(top = contentPadding.calculateTopPadding()),
                 edgePadding = 0.dp,
                 divider = {}, // Remove default divider if desired, or keep it
             ) {
-                state.categories.forEachIndexed { index, category ->
+                visibleCategories.forEachIndexed { index: Int, category: FeedSavedSearchCategory ->
                     Tab(
                         selected = pagerState.currentPage == index,
                         onClick = {
@@ -96,10 +128,10 @@ fun FeedScreen(
             modifier = Modifier.fillMaxSize(),
             userScrollEnabled = true,
         ) { page ->
-            val category = state.categories.getOrNull(page)
+            val category = visibleCategories.getOrNull(page)
             if (category != null) {
                 val items = state.items[category.id]
-                val listPadding = if (state.categories.size > 1) {
+                val listPadding = if (visibleCategories.size > 1) {
                     PaddingValues(
                         start = 16.dp,
                         end = 16.dp,
@@ -116,7 +148,7 @@ fun FeedScreen(
                 }
 
                 if (items == null) {
-                    LoadingScreen(Modifier.padding(top = if (state.categories.size > 1) 0.dp else contentPadding.calculateTopPadding()))
+                    LoadingScreen(Modifier.padding(top = if (visibleCategories.size > 1) 0.dp else contentPadding.calculateTopPadding()))
                 } else if (items.isEmpty()) {
                     Column(
                         modifier = Modifier

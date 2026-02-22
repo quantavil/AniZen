@@ -78,7 +78,6 @@ fun Screen.sourcesTab(): TabContent {
                         },
                         onClickAddToFeed = {
                             screenModel.onAddToFeedClicked(source)
-                            screenModel.closeDialog()
                         },
                         onDismiss = screenModel::closeDialog,
                     )
@@ -90,7 +89,7 @@ fun Screen.sourcesTab(): TabContent {
                         title = { Text(text = "Add to Feed Category") },
                         text = {
                             LazyColumn {
-                                items(state.categories) { category ->
+                                items(state.categories, key = { it.id }) { category ->
                                     ListItem(
                                         headlineContent = { Text(category.name) },
                                         modifier = Modifier

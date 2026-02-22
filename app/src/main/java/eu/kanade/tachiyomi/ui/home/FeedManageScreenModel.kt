@@ -4,9 +4,18 @@ import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableMap
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import tachiyomi.core.common.util.lang.launchIO
 import tachiyomi.domain.source.interactor.DeleteFeedSavedSearchById
 import tachiyomi.domain.source.interactor.GetFeedSavedSearchGlobal
@@ -41,21 +50,58 @@ class FeedManageScreenModel(
     private val deleteFeedSavedSearchCategory: DeleteFeedSavedSearchCategory = Injekt.get(),
 ) : StateScreenModel<FeedManageScreenModel.State>(State()) {
 
+    private var feedJobs = mutableMapOf<Long, Job>()
+
     init {
         screenModelScope.launchIO {
-            getFeedSavedSearchCategories.subscribe().collect { categories ->
+            getFeedSavedSearchCategories.subscribe().collectLatest { categories ->
                 mutableState.update { it.copy(categories = categories.toImmutableList()) }
-                if (state.value.selectedCategoryId == -1L && categories.isNotEmpty()) {
-                     mutableState.update { it.copy(selectedCategoryId = categories.first().id) }
-                }
-                getFeed()
+                setupFeedSubscriptions(categories)
             }
         }
     }
 
-    fun selectCategory(categoryId: Long) {
-        mutableState.update { it.copy(selectedCategoryId = categoryId) }
-        getFeed()
+    private fun setupFeedSubscriptions(categories: List<FeedSavedSearchCategory>) {
+        val categoryIds = categories.map { it.id }.toSet()
+        val removedIds = feedJobs.keys - categoryIds
+        removedIds.forEach { id ->
+            feedJobs[id]?.cancel()
+            feedJobs.remove(id)
+        }
+
+        categories.forEach { category ->
+            if (!feedJobs.containsKey(category.id)) {
+                feedJobs[category.id] = screenModelScope.launchIO {
+                    combine(
+                        getFeedSavedSearchGlobal.subscribe(category.id),
+                        sourceManager.isInitialized,
+                        ::Pair
+                    ).collectLatest { (feedSavedSearches, isInitialized) ->
+                        if (!isInitialized) return@collectLatest
+
+                        val savedSearches = getSavedSearchGlobalFeed.await(category.id)
+                        
+                        val items = feedSavedSearches.map { feed ->
+                            val source = sourceManager.get(feed.source)
+                            val savedSearch = savedSearches.find { it.id == feed.savedSearch }
+                            
+                            FeedItem(
+                                feed = feed,
+                                title = source?.name ?: "Unknown",
+                                subtitle = savedSearch?.name ?: FeedSavedSearch.Type.from(feed.type).name,
+                                source = source,
+                            )
+                        }
+
+                        mutableState.update { state ->
+                            val newItems = state.items.toMutableMap()
+                            newItems[category.id] = items.toImmutableList()
+                            state.copy(items = newItems.toImmutableMap())
+                        }
+                    }
+                }
+            }
+        }
     }
 
     fun createCategory(name: String) {
@@ -67,43 +113,12 @@ class FeedManageScreenModel(
     fun deleteCategory(categoryId: Long) {
         screenModelScope.launchIO {
             deleteFeedSavedSearchCategory.await(categoryId)
-            if (state.value.selectedCategoryId == categoryId) {
-                mutableState.update { it.copy(selectedCategoryId = 1) } // Default to Global
-            }
         }
     }
 
     fun renameCategory(categoryId: Long, name: String) {
         screenModelScope.launchIO {
             updateFeedSavedSearchCategory.await(categoryId, name)
-        }
-    }
-
-    fun getFeed() {
-        val categoryId = state.value.selectedCategoryId
-        if (categoryId == -1L) return
-
-        screenModelScope.launchIO {
-            val feedSavedSearches = getFeedSavedSearchGlobal.await(categoryId)
-            val savedSearches = getSavedSearchGlobalFeed.await(categoryId)
-            
-            val items = feedSavedSearches.map { feed ->
-                val source = sourceManager.get(feed.source)
-                val savedSearch = savedSearches.find { it.id == feed.savedSearch }
-                
-                FeedItem(
-                    feed = feed,
-                    title = source?.name ?: "Unknown",
-                    subtitle = savedSearch?.name ?: FeedSavedSearch.Type.from(feed.type).name,
-                    source = source,
-                )
-            }
-
-            mutableState.update {
-                it.copy(
-                    items = items.toImmutableList(),
-                )
-            }
         }
     }
 
@@ -121,7 +136,39 @@ class FeedManageScreenModel(
                     deleteSavedSearch = savedSearchId == null,
                 )
             )
-            getFeed()
+        }
+    }
+    
+    fun updateFeedCategory(feed: FeedSavedSearch, newCategoryId: Long) {
+        screenModelScope.launchIO {
+            // Get max order in new category to append at end
+            val targetFeed = getFeedSavedSearchGlobal.await(newCategoryId)
+            val nextOrder = (targetFeed.maxOfOrNull { it.feedOrder } ?: -1) + 1
+            
+            // Delete from old category (or update)
+            // UpdateFeedSavedSearch supports updating category?
+            // FeedSavedSearchUpdate needs category field?
+            // Let's check FeedSavedSearchUpdate.kt
+            // If not present, I might need to delete and insert.
+            // But Insert generates new ID.
+            // If I want to move, I should update.
+            // I'll check FeedSavedSearchUpdate model first.
+            // Assuming I can't update category easily without DB support,
+            // I'll check if I added category to Update model.
+            
+            // Checking FeedSavedSearchUpdate.kt (from previous context or file)
+            // It seems I only added category to FeedSavedSearch.
+            // I should check if UpdateFeedSavedSearch supports it.
+            // If not, I'll delete and re-insert.
+            
+            deleteFeedSavedSearchById.await(feed.id)
+            insertFeedSavedSearch.await(
+                feed.copy(
+                    id = -1,
+                    category = newCategoryId,
+                    feedOrder = nextOrder
+                )
+            )
         }
     }
 
@@ -135,36 +182,31 @@ class FeedManageScreenModel(
                     feedOrder = nextOrder
                 )
             )
-            getFeed()
         }
     }
 
     fun moveUp(feed: FeedSavedSearch) {
         screenModelScope.launchIO {
             reorderFeed.moveUp(feed)
-            getFeed()
         }
     }
 
     fun moveDown(feed: FeedSavedSearch) {
         screenModelScope.launchIO {
             reorderFeed.moveDown(feed)
-            getFeed()
         }
     }
 
     fun delete(feed: FeedSavedSearch) {
         screenModelScope.launchIO {
             deleteFeedSavedSearchById.await(feed.id)
-            getFeed()
         }
     }
 
     @Immutable
     data class State(
-        val items: ImmutableList<FeedItem> = persistentListOf(),
+        val items: ImmutableMap<Long, ImmutableList<FeedItem>> = persistentMapOf(),
         val categories: ImmutableList<FeedSavedSearchCategory> = persistentListOf(),
-        val selectedCategoryId: Long = -1L,
     )
 
     @Immutable

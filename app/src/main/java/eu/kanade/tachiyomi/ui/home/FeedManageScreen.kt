@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -18,11 +20,13 @@ import androidx.compose.material.icons.outlined.ArrowDropUp
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.ScrollableTabRow
@@ -35,6 +39,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,6 +52,7 @@ import eu.kanade.presentation.components.AppBar
 import eu.kanade.presentation.components.RadioMenuItem
 import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.animesource.AnimeCatalogueSource
+import kotlinx.coroutines.launch
 import tachiyomi.domain.source.model.FeedSavedSearch
 import tachiyomi.domain.source.model.SavedSearch
 import tachiyomi.i18n.MR
@@ -55,6 +61,7 @@ import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
+import tachiyomi.presentation.core.screens.LoadingScreen
 
 class FeedManageScreen : Screen() {
 
@@ -63,14 +70,23 @@ class FeedManageScreen : Screen() {
         val navigator = LocalNavigator.currentOrThrow
         val screenModel = rememberScreenModel { FeedManageScreenModel() }
         val state by screenModel.state.collectAsState()
+        val scope = rememberCoroutineScope()
 
         var deleteDialogItem by remember { mutableStateOf<FeedSavedSearch?>(null) }
         var editFeedItem by remember { mutableStateOf<FeedManageScreenModel.FeedItem?>(null) }
+        var moveFeedItem by remember { mutableStateOf<FeedManageScreenModel.FeedItem?>(null) }
 
         // Category Management States
         var showAddCategoryDialog by remember { mutableStateOf(false) }
-        var showRenameCategoryDialog by remember { mutableStateOf(false) }
+        var showRenameCategoryDialog by remember { mutableStateOf<Long?>(null) }
         var categoryToDelete by remember { mutableStateOf<Long?>(null) }
+
+        if (state.categories.isEmpty()) {
+            LoadingScreen()
+            return
+        }
+
+        val pagerState = rememberPagerState { state.categories.size }
 
         Scaffold(
             topBar = { scrollBehavior ->
@@ -81,12 +97,16 @@ class FeedManageScreen : Screen() {
                         IconButton(onClick = { showAddCategoryDialog = true }) {
                             Icon(imageVector = Icons.Outlined.Add, contentDescription = "Add Category")
                         }
-                        if (state.selectedCategoryId != 1L && state.selectedCategoryId != -1L) {
-                            IconButton(onClick = { showRenameCategoryDialog = true }) {
+                        
+                        val currentCategoryId = state.categories.getOrNull(pagerState.currentPage)?.id
+                        if (currentCategoryId != null) {
+                            IconButton(onClick = { showRenameCategoryDialog = currentCategoryId }) {
                                 Icon(imageVector = Icons.Outlined.Edit, contentDescription = "Rename Category")
                             }
-                            IconButton(onClick = { categoryToDelete = state.selectedCategoryId }) {
-                                Icon(imageVector = Icons.Outlined.Delete, contentDescription = "Delete Category")
+                            if (currentCategoryId != 1L) {
+                                IconButton(onClick = { categoryToDelete = currentCategoryId }) {
+                                    Icon(imageVector = Icons.Outlined.Delete, contentDescription = "Delete Category")
+                                }
                             }
                         }
                     },
@@ -99,46 +119,57 @@ class FeedManageScreen : Screen() {
                     .fillMaxSize()
                     .padding(paddingValues)
             ) {
-                if (state.categories.isNotEmpty()) {
+                if (state.categories.size > 1) {
                     ScrollableTabRow(
-                        selectedTabIndex = state.categories.indexOfFirst { it.id == state.selectedCategoryId }.takeIf { it >= 0 } ?: 0,
+                        selectedTabIndex = pagerState.currentPage,
                         edgePadding = 0.dp,
+                        divider = {},
                     ) {
-                        state.categories.forEach { category ->
+                        state.categories.forEachIndexed { index, category ->
                             Tab(
-                                selected = state.selectedCategoryId == category.id,
-                                onClick = { screenModel.selectCategory(category.id) },
+                                selected = pagerState.currentPage == index,
+                                onClick = { scope.launch { pagerState.animateScrollToPage(index) } },
                                 text = { Text(text = category.name, maxLines = 1, overflow = TextOverflow.Ellipsis) },
                             )
                         }
                     }
                 }
 
-                if (state.items.isEmpty()) {
-                    EmptyScreen(
-                        stringRes = MR.strings.information_empty_category,
-                    )
-                } else {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                    ) {
-                        itemsIndexed(
-                            items = state.items,
-                            key = { _, item -> "feed-${item.feed.id}" },
-                        ) { index, item ->
-                            FeedManageItem(
-                                title = item.title,
-                                type = item.subtitle,
-                                canMoveUp = index != 0,
-                                canMoveDown = index != state.items.lastIndex,
-                                onMoveUp = { screenModel.moveUp(item.feed) },
-                                onMoveDown = { screenModel.moveDown(item.feed) },
-                                onDuplicate = { screenModel.duplicate(item.feed) },
-                                onDelete = { deleteDialogItem = item.feed },
-                                onClick = { editFeedItem = item },
+                HorizontalPager(
+                    state = pagerState,
+                    modifier = Modifier.fillMaxSize(),
+                    userScrollEnabled = true,
+                ) { page ->
+                    val category = state.categories.getOrNull(page)
+                    if (category != null) {
+                        val items = state.items[category.id]
+                        if (items.isNullOrEmpty()) {
+                            EmptyScreen(
+                                stringRes = MR.strings.information_empty_category,
                             )
-                            if (index != state.items.lastIndex) {
-                                HorizontalDivider()
+                        } else {
+                            LazyColumn(
+                                modifier = Modifier.fillMaxSize(),
+                            ) {
+                                itemsIndexed(
+                                    items = items,
+                                    key = { _, item -> "feed-${item.feed.id}" },
+                                ) { index, item ->
+                                    FeedManageItem(
+                                        title = item.title,
+                                        type = item.subtitle,
+                                        canMoveUp = index != 0,
+                                        canMoveDown = index != items.lastIndex,
+                                        onMoveUp = { screenModel.moveUp(item.feed) },
+                                        onMoveDown = { screenModel.moveDown(item.feed) },
+                                        onDuplicate = { screenModel.duplicate(item.feed) },
+                                        onDelete = { deleteDialogItem = item.feed },
+                                        onClick = { editFeedItem = item },
+                                    )
+                                    if (index != items.lastIndex) {
+                                        HorizontalDivider()
+                                    }
+                                }
                             }
                         }
                     }
@@ -181,12 +212,13 @@ class FeedManageScreen : Screen() {
         }
 
         // Rename Category Dialog
-        if (showRenameCategoryDialog) {
-            val currentCategory = state.categories.find { it.id == state.selectedCategoryId }
+        if (showRenameCategoryDialog != null) {
+            val categoryId = showRenameCategoryDialog!!
+            val currentCategory = state.categories.find { it.id == categoryId }
             var name by remember { mutableStateOf(currentCategory?.name ?: "") }
             AlertDialog(
-                onDismissRequest = { showRenameCategoryDialog = false },
-                title = { Text(text = "Rename Category") },
+                onDismissRequest = { showRenameCategoryDialog = null },
+                title = { Text(text = if (categoryId == 1L) "Rename Global Category" else "Rename Category") },
                 text = {
                     OutlinedTextField(
                         value = name,
@@ -199,8 +231,8 @@ class FeedManageScreen : Screen() {
                 confirmButton = {
                     TextButton(
                         onClick = {
-                            screenModel.renameCategory(state.selectedCategoryId, name)
-                            showRenameCategoryDialog = false
+                            screenModel.renameCategory(categoryId, name)
+                            showRenameCategoryDialog = null
                         },
                         enabled = name.isNotBlank()
                     ) {
@@ -208,7 +240,7 @@ class FeedManageScreen : Screen() {
                     }
                 },
                 dismissButton = {
-                    TextButton(onClick = { showRenameCategoryDialog = false }) {
+                    TextButton(onClick = { showRenameCategoryDialog = null }) {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
                 }
@@ -237,6 +269,37 @@ class FeedManageScreen : Screen() {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
                 },
+            )
+        }
+        
+        // Move Feed Item Dialog
+        if (moveFeedItem != null) {
+            val feed = moveFeedItem!!.feed
+            AlertDialog(
+                onDismissRequest = { moveFeedItem = null },
+                title = { Text(text = "Move to Category") },
+                text = {
+                    LazyColumn {
+                        itemsIndexed(state.categories) { _, category ->
+                             ListItem(
+                                headlineContent = { Text(category.name) },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        if (feed.category != category.id) {
+                                            screenModel.updateFeedCategory(feed, category.id)
+                                        }
+                                        moveFeedItem = null
+                                    }
+                            )
+                        }
+                    }
+                },
+                confirmButton = {
+                    TextButton(onClick = { moveFeedItem = null }) {
+                        Text(text = stringResource(MR.strings.action_cancel))
+                    }
+                }
             )
         }
 
@@ -290,6 +353,17 @@ class FeedManageScreen : Screen() {
                                 .heightIn(max = 400.dp)
                                 .verticalScroll(rememberScrollState()),
                         ) {
+                            // Move Option
+                            ListItem(
+                                headlineContent = { Text("Move to Category...") },
+                                leadingContent = { Icon(Icons.Outlined.Folder, null) },
+                                modifier = Modifier.clickable {
+                                    editFeedItem = null
+                                    moveFeedItem = feedItem
+                                }
+                            )
+                            HorizontalDivider()
+
                             val currentType = FeedSavedSearch.Type.from(feed.type)
                             val isSavedSearch = feed.savedSearch != null
 
