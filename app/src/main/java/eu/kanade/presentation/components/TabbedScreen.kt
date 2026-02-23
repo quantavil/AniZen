@@ -47,8 +47,8 @@ fun TabbedScreen(
     Scaffold(
         topBar = {
             if (titleRes != null) {
-                val tab = tabs[state.currentPage]
-                val searchEnabled = tab.searchEnabled
+                val tab = tabs.getOrNull(state.currentPage) ?: tabs.getOrNull(0)
+                val searchEnabled = tab?.searchEnabled ?: false
 
                 SearchToolbar(
                     titleContent = {
@@ -56,14 +56,14 @@ fun TabbedScreen(
                             stringResource(titleRes),
                             modifier = modifier,
                             null,
-                            tab.numberTitle,
+                            tab?.numberTitle,
                         )
                     },
                     searchEnabled = searchEnabled,
                     searchQuery = if (searchEnabled) searchQuery else null,
                     onChangeSearchQuery = onChangeSearchQuery,
-                    actions = { AppBarActions(tab.actions) },
-                    navigateUp = tab.navigateUp,
+                    actions = { AppBarActions(tab?.actions ?: persistentListOf()) },
+                    navigateUp = tab?.navigateUp,
                 )
             }
         },
@@ -78,7 +78,7 @@ fun TabbedScreen(
         ) {
             FlexibleTabRow(
                 scrollable = scrollable,
-                selectedTabIndex = state.currentPage,
+                selectedTabIndex = state.currentPage.coerceIn(0, maxOf(0, tabs.lastIndex)),
                 tabsCount = tabs.size,
             ) {
                 tabs.forEachIndexed { index, tab ->

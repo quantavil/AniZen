@@ -173,7 +173,6 @@ object HomeScreen : Screen() {
                                     )
                             },
                             label = "tabContent",
-                            contentKey = { it.key },
                         ) {
                             tabNavigator.saveableState(key = "currentTab", it) {
                                 it.Content()
