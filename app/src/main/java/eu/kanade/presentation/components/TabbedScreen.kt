@@ -56,7 +56,7 @@ fun TabbedScreen(
                             stringResource(titleRes),
                             modifier = modifier,
                             null,
-                            tab?.numberTitle,
+                            tab?.numberTitle ?: 0,
                         )
                     },
                     searchEnabled = searchEnabled,
