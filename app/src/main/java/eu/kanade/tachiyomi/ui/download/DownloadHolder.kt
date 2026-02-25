@@ -75,13 +75,61 @@ class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
      */
     fun notifyDownloadedPages() {
         val speed = download.speed
-        val segments = if (download.totalSegments > 0) " • ${download.downloadedSegments}/${download.totalSegments}" else ""
-        val statusText = if (speed.isNotEmpty()) "$speed$segments" else ""
+        val eta = download.eta
+        val sizeInfo = download.downloadedSize
+        val engine = download.engineType ?: "Normal"
+        val isHls = engine == "HLS"
         
-        binding.downloadProgressText.text = if (download.progress == 0) {
-            if (statusText.isNotEmpty()) statusText else view.context.stringResource(MR.strings.update_check_notification_download_in_progress)
-        } else {
-            "${download.progress}% • $statusText"
+        // 1DM+ Core Status Logic
+        val statusText = buildString {
+            // Line 1: Progress & Size
+            if (sizeInfo.isNotEmpty()) {
+                append(sizeInfo).append(" (").append(download.progress).append("%)")
+            } else if (download.progress > 0) {
+                append(download.progress).append("%")
+            } else {
+                append("0% • Starting...")
+            }
+            
+            // Line 2: Network Performance
+            if (speed.isNotEmpty() || eta.isNotEmpty()) {
+                append("\n")
+                if (speed.isNotEmpty()) append("Speed: ").append(speed)
+                if (eta.isNotEmpty()) {
+                    if (speed.isNotEmpty()) append(" • ")
+                    append("ETA: ").append(eta)
+                }
+            }
+            
+            // Line 3: Connection Intelligence
+            append("\n")
+            append("Threads: ").append(download.activeThreads).append(" Active")
+            if (download.totalSegments > 0) {
+                append(" • ").append(if (isHls) "Segments: " else "Parts: ")
+                append(download.downloadedSegments).append("/").append(download.totalSegments)
+            }
+            
+            // Line 4: Engine Identity
+            append("\nEngine: ").append(if (isHls) "HLS (Sequential Merge)" else "Normal (Direct Multi-threaded)")
+        }
+        
+        binding.downloadProgressText.text = statusText
+
+        // Update Engine Icon & Visibility
+        binding.engineIcon.visibility = View.VISIBLE
+        when (engine) {
+            "Normal" -> {
+                binding.engineIcon.setImageResource(R.drawable.ic_download_item_24dp)
+            }
+            "HLS" -> {
+                binding.engineIcon.setImageResource(R.drawable.ic_video_chapter_20dp)
+            }
+            "Torrent" -> {
+                binding.engineIcon.setImageResource(R.drawable.ic_sync_24dp)
+            }
+            else -> {
+                binding.engineIcon.visibility = View.GONE
+            }
         }
     }
 

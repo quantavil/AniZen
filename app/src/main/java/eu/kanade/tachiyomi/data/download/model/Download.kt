@@ -44,9 +44,14 @@ data class Download(
         }
 
     // Rich Notification Fields
-    @Transient var speed: String = "Connecting..."
+    @Transient var speed: String = ""
+    @Transient var eta: String = ""
+    @Transient var totalSize: Long = -1L
+    @Transient var downloadedSize: String = ""
     @Transient var downloadedSegments: Int = 0
     @Transient var totalSegments: Int = 0
+    @Transient var activeThreads: Int = 0
+    @Transient var engineType: String = "" // "HLS" or "Normal"
     
     private var lastUpdateTime: Long = System.currentTimeMillis()
     private var lastBytesRead: Long = 0
@@ -56,8 +61,11 @@ data class Download(
      * Updates the status of the download
      */
     override fun update(bytesRead: Long, contentLength: Long, done: Boolean) {
-        val newProgress = if (contentLength > 0) {
-            (100 * bytesRead / contentLength).toInt()
+        if (contentLength > 0) {
+            totalSize = contentLength
+        }
+        val newProgress = if (totalSize > 0) {
+            (100 * bytesRead / totalSize).toInt()
         } else {
             -1
         }
@@ -91,8 +99,41 @@ data class Download(
                 smoothSpeed > 1024 -> "%.1f KB/s".format(smoothSpeed / 1024)
                 else -> "${smoothSpeed.toLong()} B/s"
             }
+
+            // Update Downloaded Size String
+            downloadedSize = formatSize(bytesRead)
+            if (totalSize > 0) {
+                downloadedSize += " / " + formatSize(totalSize)
+            }
+
+            // Calculate ETA
+            if (totalSize > 0 && smoothSpeed > 0) {
+                val remainingBytes = totalSize - bytesRead
+                val remainingSeconds = (remainingBytes / smoothSpeed).toLong()
+                eta = formatRemainingTime(remainingSeconds)
+            } else {
+                eta = ""
+            }
+
             lastUpdateTime = now
             lastBytesRead = bytesRead
+        }
+    }
+
+    private fun formatRemainingTime(seconds: Long): String {
+        return when {
+            seconds >= 3600 -> "%dh %dm %ds".format(seconds / 3600, (seconds % 3600) / 60, seconds % 60)
+            seconds >= 60 -> "%dm %ds".format(seconds / 60, seconds % 60)
+            else -> "%ds".format(seconds)
+        }
+    }
+
+    private fun formatSize(bytes: Long): String {
+        return when {
+            bytes >= 1024 * 1024 * 1024 -> "%.2f GB".format(bytes.toDouble() / (1024 * 1024 * 1024))
+            bytes >= 1024 * 1024 -> "%.1f MB".format(bytes.toDouble() / (1024 * 1024))
+            bytes >= 1024 -> "%.1f KB".format(bytes.toDouble() / 1024)
+            else -> "$bytes B"
         }
     }
 
